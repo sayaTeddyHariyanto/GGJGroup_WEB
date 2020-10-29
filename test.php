@@ -6,12 +6,12 @@
     <title>TEST!!!</title>
 </head>
 <body>
-    <h1>
+    <h2>
     <center>
         <font color="green">
             WEBSITE OF GGJ GROUP ZAKAH
         </font>
     </center>
-    </h1>
+    </h2>
 </body>
 </html>
