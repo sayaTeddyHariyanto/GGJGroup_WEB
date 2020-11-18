@@ -1,3 +1,3 @@
 <script>
-
+    $('#dataTable').DataTable();
 </script>
