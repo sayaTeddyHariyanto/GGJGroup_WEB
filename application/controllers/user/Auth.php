@@ -136,8 +136,8 @@ class Auth extends CI_Controller
                 $this->email->subject($subject);
                 // menentukan nama user
                 $nama = $anggota->row()->nama_anggota;
-                $pesan = 'Anda akan diberi akses untuk mengatur ulang password anda, sebaiknya anda ingat baik baik password baru anda nanti.
-                        Silahkan Klik link dibawah ini untuk mengatur ulang password anda.';
+                $pesan = 'Anda akan diberi akses untuk mengatur ulang kata sandi anda, sebaiknya ingat baik baik password baru anda nanti.
+                        Silahkan Klik tombol dibawah ini untuk mengatur ulang password anda.';
                 $link = base_url() . "user/auth/reset_password/" . $anggota->row()->token_anggota . '/' . $anggota->row()->id_anggota;
                 $message = '';
                 $subject = 'Lupa Password?';
