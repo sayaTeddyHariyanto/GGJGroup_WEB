@@ -36,6 +36,10 @@
                                     <td ><?=$detAng->username_anggota?></td>
                                 </tr>
                                 <tr>
+                                    <td class="text-right">Email Anggota :</td>
+                                    <td ><?=$detAng->email_anggota?></td>
+                                </tr>
+                                <tr>
                                     <td class="text-right">Status Anggota :</td>
                                     <td ><?=$detAng->status_anggota==1?"AKTIF":"NONAKTIF"?></td>
                                 </tr>

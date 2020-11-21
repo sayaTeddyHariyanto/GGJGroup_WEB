@@ -42,6 +42,13 @@
                                 <?php echo form_error('no_hp'); ?>
                             </div>
                             <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" title="Masukkan email yang valid" required
+                                    class="form-control" name="email" id="email" aria-describedby="email" placeholder="Masukkan Alamat Email..." value="<?=$detAng->email_anggota?>">
+                                <small id="email" class="form-text text-muted">Masukkan alamat email yang valid</small>
+                                <?php echo form_error('email'); ?>
+                            </div>
+                            <div class="form-group">
                                 <label for="username">Username:</label>
                                 <input type="text" pattern="[a-zA-Z0-9 ]{2,32}" title="Masukkan minimal 2, maksimum 32, hanya alphabet, spasi, dash dan underscore" required
                                     class="form-control" name="username" id="username" aria-describedby="username" placeholder="Masukkan Username..." value="<?=$detAng->username_anggota?>">

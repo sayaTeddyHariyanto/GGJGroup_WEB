@@ -25,6 +25,7 @@
   <link href="<?=base_url()?>assets/user/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="<?=base_url()?>assets/user/vendor/venobox/venobox.css" rel="stylesheet">
   <link href="<?=base_url()?>assets/user/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="<?=base_url()?>assets/user/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
   <!-- Template Main CSS File -->
   <link href="<?=base_url()?>assets/user/css/style.css" rel="stylesheet">
