@@ -81,7 +81,7 @@
                     <div class="form-group">
                         <label for="alamat">Alamat:</label>
                         <textarea class="form-control" name="alamat" id="alamat" rows="3" maxlength="255" placeholder="Masukkan Alamat..." required><?=set_value('alamat')?></textarea>
-                        <small id="nama" class="form-text text-muted">Masukkan alamat maksimum 255 karakter</small>
+                        <small id="alamat" class="form-text text-muted">Masukkan alamat maksimum 255 karakter</small>
                         <?php echo form_error('alamat'); ?>
                     </div>
                     <div class="form-group">
