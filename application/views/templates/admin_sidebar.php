@@ -83,7 +83,7 @@
             <a class="collapse-item" href="<?=base_url()?>admin/slider">Slider</a>
             <a class="collapse-item" href="login.html">Konten website</a>
             <a class="collapse-item" href="register.html">Jadwal Kegiatan</a>
-            <a class="collapse-item" href="forgot-password.html">Kontak Person</a>
+            <a class="collapse-item" href="<?=base_url()?>admin/kontak">Kontak Person</a>
           </div>
         </div>
       </li>
