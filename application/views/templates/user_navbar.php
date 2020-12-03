@@ -11,37 +11,23 @@
       <nav class="nav-menu d-none d-lg-block">
 
         <ul>
-          <li class="active"><a href="index.html">Home</a></li>
+          <li class="active"><a href="<?=base_url()?>user/landingpage">Beranda</a></li>
 
-          <li class="drop-down"><a href="#">About</a>
+          <li><a href="services.html">Pendistribusian</a></li>
+          <li class="drop-down"><a href="#">Layanan</a>
             <ul>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="testimonials.html">Testimonials</a></li>
-
-              <li class="drop-down"><a href="#">Deep Drop Down</a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
+              <li><a href="about.html">Pendaftaran Penerima</a></li>
+              <li><a href="<?=base_url()?>user/pembayaran_zakat">Pembayaran Zakat</a></li>
             </ul>
           </li>
-
-          <li><a href="services.html">Services</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="<?=base_url()?>user/guide/blog">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="pricing.html">Kontak Kami</a></li>
+          <li><a href="pricing.html">Tentang Kami</a></li>
 
         </ul>
 
       </nav><!-- .nav-menu -->
 
-      <a href="index.html" class="btn btn-light text-success font-weight-bold ml-auto">Get Started</a>
+      <a href="<?=base_url()?>user/login_anggota/login_anggota" class="btn btn-light text-success font-weight-bold ml-5">Login</a>
 
     </div>
   </header><!-- End Header -->

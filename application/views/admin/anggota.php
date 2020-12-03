@@ -45,9 +45,9 @@
                         <td><?=$detAng->alamat_anggota?></td>
                         <td><?=$detAng->no_hp_anggota?></td>
                         <td>
-                            <a class="btn mb-2 btn-primary btn-sm mr-2" href="<?=base_url()?>admin/anggota/edit/<?=$detAng->id_anggota?>"><i class="fa fa-edit"></i></a>
-                            <a class="btn mb-2 px-3 btn-info btn-sm mr-2" href="<?=base_url()?>admin/anggota/detail/<?=$detAng->id_anggota?>"><i class="fa fa-info"></i></a>
-                            <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini?');" href="<?=base_url()?>admin/anggota/hapus/<?=$detAng->id_anggota?>" 
+                            <a class="btn mb-2 btn-primary btn-sm mr-2" title="Edit" href="<?=base_url()?>admin/anggota/edit/<?=$detAng->id_anggota?>"><i class="fa fa-edit"></i></a>
+                            <a class="btn mb-2 px-3 btn-info btn-sm mr-2" title="Detail" href="<?=base_url()?>admin/anggota/detail/<?=$detAng->id_anggota?>"><i class="fa fa-info"></i></a>
+                            <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini?');" title="Hapus" href="<?=base_url()?>admin/anggota/hapus/<?=$detAng->id_anggota?>" 
                                 class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
