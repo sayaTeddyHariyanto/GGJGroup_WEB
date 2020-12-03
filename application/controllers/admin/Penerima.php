@@ -6,6 +6,10 @@ class Penerima extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model(['m_penerima', 'm_crud']);
+
+        if ($this->session->userdata('status') == '') {
+            redirect('admin/login');
+        }
     }
 
     function index()

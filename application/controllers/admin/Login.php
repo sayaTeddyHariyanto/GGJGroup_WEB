@@ -32,7 +32,9 @@ class Login extends CI_Controller
             if ($admin != null) {
                 if (md5($password) == $admin['password_admin']) {
                     $data = [
-                        'username' => $admin['username']
+                        'username' => $admin['username'],
+                        'id'       => $admin['id_admin'],
+                        'status'   => $admin['status']
                     ];
                     $this->session->set_userdata($data);
                     redirect('admin/Anggota');

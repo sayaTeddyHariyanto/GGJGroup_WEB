@@ -10,6 +10,10 @@ class Guide extends CI_Controller
     //   redirect('admin/login/');
     // }
     $this->load->model('M_dashboard');
+
+    if ($this->session->userdata('status') == '') {
+      redirect('admin/login');
+    }
   }
 
   function index()

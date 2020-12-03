@@ -8,6 +8,10 @@ class Anggota extends CI_Controller
         parent::__construct();
         $this->load->model('m_crud');
         // $this->load->library('Primslib');
+
+        if ($this->session->userdata('status') == '') {
+            redirect('admin/login');
+        }
     }
 
     function index()
