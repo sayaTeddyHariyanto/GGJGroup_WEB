@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-success">
 
     <div class="container">
 
@@ -36,11 +36,11 @@
                             <div class="col-lg">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h3 text-gray-900 mb-2">Selamat Datang</h1>
+                                        <h1 class="h3 text-gray-900 mb-2">Selamat Datang Anggota</h1>
                                         <h1 class="h6 text-black-900 mb-4">Silakan Login Dahulu</h1>
                                     </div>
                                     <hr>
-                                    <form class="user" method="post" action="<?php echo base_url('user/login_anggota/login_anggota'); ?>">
+                                    <form class="user" method="post" action="<?php echo base_url('user/Auth/login_anggota'); ?>">
                                         <?php echo $this->session->flashdata('message'); ?>
                                         <?php echo validation_errors(); ?>
                                         <div class="form-group">

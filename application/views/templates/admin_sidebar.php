@@ -26,11 +26,11 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="<?= base_url() ?>admin/penerima">
           <i class="fas fa-user-alt"></i>
           <span>Penerima Zakat</span></a>
       </li>
- 
+
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -40,7 +40,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">kelola anggota</h6>
-            <a class="collapse-item" href="<?=base_url()?>admin/anggota">Data Anggota</a>
+            <a class="collapse-item" href="<?= base_url() ?>admin/anggota">Data Anggota</a>
             <a class="collapse-item" href="cards.html">Verifikasi Data Anggota</a>
           </div>
         </div>
@@ -74,13 +74,13 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagees" aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-cog"></i>
+          <i class="fas fa-cog"></i>
           <span>Kelola Website</span>
         </a>
         <div id="collapsePagees" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pilih Aksi</h6>
-            <a class="collapse-item" href="<?=base_url()?>admin/slider">Slider</a>
+            <a class="collapse-item" href="<?= base_url() ?>admin/slider">Slider</a>
             <a class="collapse-item" href="login.html">Konten website</a>
             <a class="collapse-item" href="register.html">Jadwal Kegiatan</a>
             <a class="collapse-item" href="forgot-password.html">Kontak Person</a>

@@ -1,11 +1,12 @@
 <?php
 
-class Auth extends CI_Controller 
+class Auth extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
         $this->load->model('m_crud');
+        $this->load->library('form_validation');
         // $this->load->library('Primslib');
     }
 
@@ -13,7 +14,7 @@ class Auth extends CI_Controller
     {
         $data['anggota'] = $this->m_crud->edit(['id_anggota' => $id, 'token_anggota' => $token], 'tb_anggota')->result();
         $this->load->view('templates/user_header');
-		// $this->load->view('templates/user_navbar');
+        // $this->load->view('templates/user_navbar');
         $this->load->view('user/reset_password', $data);
         $this->load->view('templates/user_footer_js');
         $this->load->view('templates/user_custom_js');
@@ -43,7 +44,7 @@ class Auth extends CI_Controller
             $this->load->view('templates/user_footer_js');
             $this->load->view('templates/user_custom_js');
             $this->load->view('templates/user_footer');
-        }else{
+        } else {
             $where = array(
                 'token_anggota' => $token,
                 'id_anggota' => $id
@@ -64,7 +65,7 @@ class Auth extends CI_Controller
                 </div>
                 ');
                 return redirect("user/auth/login");
-            }else{
+            } else {
                 $password_database = $this->m_crud->edit($where, 'tb_anggota')->row()->password_anggota;
                 if ($password_database == $password) {
                     $this->session->set_flashdata('pesan', '
@@ -75,7 +76,7 @@ class Auth extends CI_Controller
                         </button>
                     </div>
                     ');
-                }else{
+                } else {
                     $this->session->set_flashdata('pesan', '
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Maaf!</strong> Gagal membuat password baru, mohon ulangi atau hubungi admin.
@@ -93,7 +94,7 @@ class Auth extends CI_Controller
     function lupa_password()
     {
         $this->load->view('templates/user_header');
-		// $this->load->view('templates/user_navbar');
+        // $this->load->view('templates/user_navbar');
         $this->load->view('user/lupa_password');
         $this->load->view('templates/user_footer_js');
         $this->load->view('templates/user_custom_js');
@@ -155,7 +156,7 @@ class Auth extends CI_Controller
                     </div>
                     ');
                     return redirect('user/auth/lupa_password');
-                }else {
+                } else {
                     $this->session->set_flashdata('pesan', '
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Maaf!</strong> Email gagal dikirim.
@@ -166,16 +167,56 @@ class Auth extends CI_Controller
                     ');
                     return redirect('user/auth/lupa_password');
                 }
-            }else{
+            } else {
                 $this->session->set_flashdata('pesan', '
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Maaf!</strong> Pengguna dengan email '.$email.' tidak dapat kami temukan pada sistem.
+                    <strong>Maaf!</strong> Pengguna dengan email ' . $email . ' tidak dapat kami temukan pada sistem.
                     <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 ');
                 return redirect('user/auth/lupa_password');
+            }
+        }
+    }
+
+    function index()
+    {
+        $this->load->view('user/login_anggota');
+    }
+
+    function login_anggota()
+    {
+        $this->form_validation->set_rules('username_anggota', 'Username Anggota', 'trim|required');
+        $this->form_validation->set_rules('password_anggota', 'Password', 'trim|required');
+
+        $this->form_validation->set_message('required', 'Mohon maaf, {field} wajib terisi');
+
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert>', '</div>');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('user/login_anggota');
+        } else {
+            $nama = $this->input->post('username_anggota');
+            $password = $this->input->post('password_anggota');
+
+            $user = $this->db->get_where('tb_anggota', ['username_anggota' => $nama])->row_array();
+            if ($user != null) {
+                if (md5($password) == $user['password_anggota']) {
+                    $data = [
+                        'username_anggota' => $user['username_anggota'],
+                        'id' => $user['id_anggota']
+                    ];
+                    $this->session->set_userdata($data);
+                    redirect('user/guide');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password Salah</div>');
+                    redirect('user/Auth');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username Tidak Terdaftar</div>');
+                redirect('user/Auth');
             }
         }
     }
