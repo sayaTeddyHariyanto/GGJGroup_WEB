@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="foto">Foto Slider</label><br>
-                        <img id="prev_foto1" src="" class="img-responsive img-thumbnail" alt="Preview Image" width="300px">
+                        <img id="prev_foto1" src="<?= base_url()?>assets/user/img/upload.png" class="img-responsive img-thumbnail" alt="Preview Image" width="300px">
                         <div class="custom-file mb-2">
                             <input type="file" class="custom-file-input" name="foto" id="foto" required>
                             <label class="custom-file-label" for="foto">Masukkan foto berukuran 753 x 258 . .</label>

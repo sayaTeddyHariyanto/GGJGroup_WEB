@@ -151,7 +151,7 @@ class Kontak extends CI_Controller
         // rules
         $this->form_validation->set_rules('nama', 'Nama Sosial Media', 'trim|required|alpha_numeric_spaces|min_length[2]|max_length[100]');
         $this->form_validation->set_rules('akun', 'Nama Akun', 'trim|required|alpha_numeric_spaces|min_length[2]|max_length[100]');
-        $this->form_validation->set_rules('link', 'Link Akun', 'trim|required|valid_url');
+        $this->form_validation->set_rules('link', 'Link Akun', 'trim|required|callback_check_valid_url');
 
         // custom pesan
         $this->form_validation->set_message('required', 'Mohon maaf, {field} harus diisi');

@@ -21,7 +21,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-success">
 
     <div class="container">
 
@@ -70,16 +70,16 @@
                                         placeholder="Konfirmasi Password Anda">
                                         <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                <button type="submit" class="btn btn-success btn-user btn-block">
                                     Registrasi
                                 </button>
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="forgot-password.html">Lupa Password?</a>
+                                <a class="small" href="<?=base_url()?>user/auth/lupa_password">Lupa Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">Sudah Punya Akun? Login!</a>
+                                <a class="small" href="<?=base_url()?>user/auth/login_anggota">Sudah Punya Akun? Login!</a>
                             </div>
                         </div>
                     </div>

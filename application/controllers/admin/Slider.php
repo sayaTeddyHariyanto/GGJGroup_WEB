@@ -9,9 +9,9 @@ class Slider extends CI_Controller
         $this->load->model('m_crud');
         // $this->load->library('Primslib');
 
-        if ($this->session->userdata('status') == '') {
-            redirect('admin/login');
-        }
+            if ($this->session->userdata('status') == '') {
+                redirect('admin/login');
+            }
     }
 
     function index()
@@ -84,7 +84,7 @@ class Slider extends CI_Controller
             if ($foto != '') {
                 $config['upload_path'] = './assets/user/img/slide';
                 $config['allowed_types'] = 'jpg|jpeg|png';
-                $config['max_size'] = '3024';
+                $config['max_size'] = '20000';
                 //$config['overwrite'] = true;
                 $config['encrypt_name'] = TRUE;
                 //$config['file_name'] = $this->db->get_where('promo', array('id_promo' => $this->input->post('id_promo')))->row()->gambar;
@@ -215,7 +215,7 @@ class Slider extends CI_Controller
 
                 $config['upload_path'] = './assets/user/img/slide/';
                 $config['allowed_types'] = 'jpg|jpeg|png';
-                $config['max_size'] = '3024';
+                $config['max_size'] = '20000';
                 if ($select->num_rows() > 0 && $select->row()->file != '') {
                     $nama_database = explode('.', $select->row()->file); // nama pada database
                     $type = explode(".", $_FILES['foto']['name']); // tipe format yang dimasukkan saat ini
@@ -333,9 +333,10 @@ class Slider extends CI_Controller
         $where = array(
             'id_foto' => $id_foto
         );
-
+        $_id = $this->db->get_where('foto_slider',['id_foto' => $id_foto])->row();
         $this->m_crud->delete($where, 'foto_slider');
         if ($this->db->affected_rows() == true) {
+            unlink(FCPATH. 'assets/user/img/slide/'.$_id->file);
             $this->session->set_flashdata('pesan', '
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Selamat!</strong> Anda berhasil menghapus data.

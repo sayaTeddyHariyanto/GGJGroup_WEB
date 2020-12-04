@@ -18,6 +18,8 @@
             <ul>
               <li><a href="about.html">Pendaftaran Penerima</a></li>
               <li><a href="<?=base_url()?>user/pembayaran_zakat">Pembayaran Zakat</a></li>
+              <li><a href="<?=base_url()?>user/history_pendaftaran">History Pendaftaran Penerima</a></li>
+              <li><a href="<?=base_url()?>user/history_pembayaran">History Pembayaran Zakat</a></li>
             </ul>
           </li>
           <li><a href="pricing.html">Kontak Kami</a></li>

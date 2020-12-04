@@ -1,7 +1,7 @@
 <script>
   $('#dataTable').DataTable();
 
-    
+  if (($("#foto").length > 0)){ 
   var inputBox = document.getElementById("foto"); // Mengambil elemen tempat Input gambar
 
   inputBox.addEventListener('change', function(input) { // Jika tempat Input Gambar berubah
@@ -15,10 +15,11 @@
     }
     reader.readAsDataURL(img[0]); // menampilkan gambar
   });
-
+  }
   // Fungsi menampilkan tooltip pada tombol
   $(function () {
       $('[data-toggle="tooltip"]').tooltip()
   });
+
 
 </script>
