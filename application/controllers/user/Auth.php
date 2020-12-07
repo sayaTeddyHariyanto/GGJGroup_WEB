@@ -209,15 +209,21 @@ class Auth extends CI_Controller
                         'id' => $user['id_anggota']
                     ];
                     $this->session->set_userdata($data);
-                    redirect('user/guide');
+                    redirect('user/landingpage');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password Salah</div>');
-                    redirect('user/Auth');
+                    redirect('user/Auth/login_anggota');
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username Tidak Terdaftar</div>');
-                redirect('user/Auth');
+                redirect('user/Auth/login_anggota');
             }
         }
+    }
+
+    function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('user/auth/login_anggota');
     }
 }
