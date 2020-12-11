@@ -253,4 +253,22 @@ class Anggota extends CI_Controller
         $this->load->view('templates/admin_custom_js');
         $this->load->view('templates/admin_footer');
     }
+
+    public function print()
+    {
+        $this->load->library('Dompdf_gen');
+
+        $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
+
+        $this->load->view('admin/anggota_print', $data);
+
+        $paper_size = 'A4';
+        $oriantation = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $oriantation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("laporan_anggota_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+    }
 }
