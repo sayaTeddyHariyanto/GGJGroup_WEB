@@ -16,7 +16,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url()?>admin/guide">
+        <a class="nav-link" href="<?= base_url() ?>admin/guide">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -26,7 +26,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="<?= base_url() ?>admin/penerima">
           <i class="fas fa-user-alt"></i>
           <span>Penerima Zakat</span></a>
       </li>
@@ -88,9 +88,9 @@
         <div id="collapsePagees" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pilih Aksi</h6>
-            <a class="collapse-item" href="<?= base_url()?>admin/slider">Slider</a>
-            <a class="collapse-item" href="<?= base_url()?>admin/berita">Konten website</a>
-            <a class="collapse-item" href="<?= base_url()?>admin/jadwal">Jadwal Kegiatan</a>
+            <a class="collapse-item" href="<?= base_url() ?>admin/slider">Slider</a>
+            <a class="collapse-item" href="<?= base_url() ?>admin/berita">Konten website</a>
+            <a class="collapse-item" href="<?= base_url() ?>admin/jadwal">Jadwal Kegiatan</a>
             <a class="collapse-item" href="<?= base_url() ?>admin/kontak">Kontak Person</a>
           </div>
         </div>

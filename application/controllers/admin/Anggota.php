@@ -14,13 +14,31 @@ class Anggota extends CI_Controller
         }
     }
 
+    function printpdf()
+    {
+        $this->load->library('Dompdf_gen');
+
+        $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
+
+        $this->load->view('admin/anggota_print', $data);
+
+        $paper_size = 'A4';
+        $oriantation = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $oriantation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("laporan_anggota_" . date('Y-m-d_H-i-s') . ".pdf", array('Attachment' => 0));
+    }
+
     function index()
     {
         $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
         $this->load->view('templates/admin_header');
         $this->load->view('templates/admin_sidebar');
-		$this->load->view('templates/admin_navbar');
-		$this->load->view('admin/anggota', $data);
+        $this->load->view('templates/admin_navbar');
+        $this->load->view('admin/anggota', $data);
         $this->load->view('templates/admin_footer_js');
         $this->load->view('templates/admin_custom_js');
         $this->load->view('templates/admin_footer');
@@ -78,7 +96,7 @@ class Anggota extends CI_Controller
             $this->load->view('templates/admin_footer_js');
             $this->load->view('templates/admin_custom_js');
             $this->load->view('templates/admin_footer');
-        }else{
+        } else {
             $data = array(
                 'nama_anggota' => $this->input->post('nama'),
                 'alamat_anggota' => $this->input->post('alamat'),
@@ -101,7 +119,7 @@ class Anggota extends CI_Controller
                 </div>
                 ');
                 redirect('admin/anggota');
-            }else{
+            } else {
                 $this->session->set_flashdata('pesan', '
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong>Maaf!</strong> Anda gagal menambahkan data.
@@ -121,8 +139,8 @@ class Anggota extends CI_Controller
         $data['anggota'] = $this->m_crud->edit($where, 'tb_anggota')->result();
         $this->load->view('templates/admin_header');
         $this->load->view('templates/admin_sidebar');
-		$this->load->view('templates/admin_navbar');
-		$this->load->view('admin/anggota_edit', $data);
+        $this->load->view('templates/admin_navbar');
+        $this->load->view('admin/anggota_edit', $data);
         $this->load->view('templates/admin_footer_js');
         $this->load->view('templates/admin_custom_js');
         $this->load->view('templates/admin_footer');
@@ -172,7 +190,7 @@ class Anggota extends CI_Controller
             $this->load->view('templates/admin_footer_js');
             $this->load->view('templates/admin_custom_js');
             $this->load->view('templates/admin_footer');
-        }else{
+        } else {
             $where = array(
                 'id_anggota' => $id_anggota
             );
@@ -197,7 +215,7 @@ class Anggota extends CI_Controller
                 </div>
                 ');
                 redirect("admin/anggota/edit/$id_anggota");
-            }else{
+            } else {
                 $this->session->set_flashdata('pesan', '
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong>Maaf!</strong> Anda gagal mengubah data.
@@ -228,7 +246,7 @@ class Anggota extends CI_Controller
             </div>
             ');
             redirect("admin/anggota");
-        }else{
+        } else {
             $this->session->set_flashdata('pesan', '
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Maaf!</strong> Anda gagal menghapus data.
@@ -247,28 +265,10 @@ class Anggota extends CI_Controller
         $data['anggota'] = $this->m_crud->edit($where, 'tb_anggota')->result();
         $this->load->view('templates/admin_header');
         $this->load->view('templates/admin_sidebar');
-		$this->load->view('templates/admin_navbar');
-		$this->load->view('admin/anggota_detail', $data);
+        $this->load->view('templates/admin_navbar');
+        $this->load->view('admin/anggota_detail', $data);
         $this->load->view('templates/admin_footer_js');
         $this->load->view('templates/admin_custom_js');
         $this->load->view('templates/admin_footer');
-    }
-
-    public function print()
-    {
-        $this->load->library('Dompdf_gen');
-
-        $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
-
-        $this->load->view('admin/anggota_print', $data);
-
-        $paper_size = 'A4';
-        $oriantation = 'landscape';
-        $html = $this->output->get_output();
-        $this->dompdf->set_paper($paper_size, $oriantation);
-
-        $this->dompdf->load_html($html);
-        $this->dompdf->render();
-        $this->dompdf->stream("laporan_anggota_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
     }
 }
