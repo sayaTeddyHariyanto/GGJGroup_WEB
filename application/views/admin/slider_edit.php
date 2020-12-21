@@ -24,22 +24,22 @@
                     <div class="form-group">
                         <label for="nama">Nama Slider:</label>
                         <input type="text" pattern="[a-zA-Z0-9 ]{2,100}" title="Masukkan minimal 2, maksimum 100, hanya alphabet, spasi, dash dan underscore" required
-                            class="form-control" name="nama" id="nama" aria-describedby="nama" placeholder="Masukkan nama..." value="<?=set_value('nama')?>">
+                            class="form-control" name="nama" id="nama" aria-describedby="nama" placeholder="Masukkan nama..." value="<?=$detSlider->foto?>">
                         <small id="nama" class="form-text text-muted">Masukkan nama slider yang sesuai</small>
                         <?php echo form_error('nama'); ?>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi Slider:</label>
-                        <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" maxlength="255" placeholder="Masukkan deskripsi..." required><?=set_value('deskripsi')?></textarea>
+                        <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" maxlength="255" placeholder="Masukkan deskripsi..." required><?=$detSlider->deskripsi?></textarea>
                         <small id="deskripsi" class="form-text text-muted">Masukkan deskripsi maksimum 255 karakter</small>
                         <?php echo form_error('deskripsi'); ?>
                     </div>
                     <div class="form-group">
                         <label for="foto">Foto Slider</label><br>
-                        <img id="prev_foto1" src="<?= base_url()?>assets/user/img/upload.png" class="img-responsive img-thumbnail" alt="Preview Image" width="300px">
+                        <img id="prev_foto1" src="<?= base_url()?>assets/user/img/slide/<?=$detSlider->file?>" class="img-responsive img-thumbnail" alt="Preview Image" width="300px">
                         <div class="custom-file mb-2">
                             <input type="file" class="custom-file-input" name="foto" id="foto" required>
-                            <label class="custom-file-label" for="foto">Masukkan foto berukuran 753 x 258 . .</label>
+                            <label class="custom-file-label" for="foto"><?=$detSlider->file?></label>
                         </div>
                         <small id="foto" class="form-text text-muted">Pilihlah File foto slider berukuran 710 x 285. Max 3 MB. Format (JPG/PNG)</small>
                     </div>
