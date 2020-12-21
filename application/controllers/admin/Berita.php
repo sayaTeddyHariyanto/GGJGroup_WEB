@@ -9,6 +9,9 @@ class Berita extends CI_Controller
         $this->load->model('m_crud');
         // $this->load->library('Primslib');
 
+        // parent::__construct();
+        // $this->load->helper(array('form', 'url'));
+
         if ($this->session->userdata('status') == '') {
             redirect('admin/login');
         }
@@ -32,7 +35,7 @@ class Berita extends CI_Controller
             'id_berita' => $id_berita
         );
         $data = array(
-            'status_kegiatan' => 0
+            'status_berita' => 0
         );
 
         $this->m_crud->update($where, $data, 'tb_berita');
@@ -64,7 +67,7 @@ class Berita extends CI_Controller
             'id_berita' => $id_berita
         );
         $data = array(
-            'status_kegiatan' => 1
+            'status_berita' => 1
         );
 
         $this->m_crud->update($where, $data, 'tb_berita');
@@ -122,34 +125,79 @@ class Berita extends CI_Controller
 
     function tambah()
     {
-        $data = array(
-            'judul_berita' => $this->input->post('judul'),
-            'konten' => $this->input->post('konten'),
-            'tanggal_berita' => $this->input->post('tanggal'),
-            'status_berita' => $this->input->post('status')
-        );
+        $thumbnail = null;
+        // memeriksa apakah admin mengganti gambar atau tidak
+        if ($_FILES['thumbnail']['name'] != null) {
+            // jika memilih gambar
+            $thumbnail = $_FILES['thumbnail']['name'];
 
-        $this->m_crud->insert($data, 'tb_berita');
-        if ($this->db->affected_rows() == true) {
-            $this->session->set_flashdata('pesan', '
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Selamat!</strong> Anda berhasil menambahkan data berita Kegiatan.
-                <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            ');
-            redirect('admin/berita');
-        } else {
-            $this->session->set_flashdata('pesan', '
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Maaf!</strong> Anda gagal menambahkan data konten Berita.
-                <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            ');
-            redirect('admin/berita');
+            if ($thumbnail != '') {
+                $config['upload_path'] = './assets/admin/img/berita/';
+                $config['allowed_types'] = 'jpg|jpeg|png';
+                $config['max_size'] = '33024';
+                //$config['overwrite'] = true;
+                $config['encrypt_name'] = TRUE;
+                //$config['file_name'] = $this->db->get_where('promo', array('id_promo' => $this->input->post('id_promo')))->row()->gambar;
+                // $config['max_width']  = '2048';
+                // $config['max_height']  = '2048';
+                // $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload');
+                $this->upload->initialize($config);
+
+                if (!$this->upload->do_upload('thumbnail')) {
+                    $this->session->set_flashdata('pesan', '
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Maaf!</strong> Anda gagal mengunggah thumbnail.
+                        <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    ');
+                    $data['berita'] = $this->m_crud->getAll('tb_berita')->result();
+                    $this->load->view('templates/admin_header');
+                    $this->load->view('templates/admin_sidebar');
+                    $this->load->view('templates/admin_navbar');
+                    $this->load->view('admin/berita', $data);
+                    $this->load->view('templates/admin_footer_js');
+                    $this->load->view('templates/admin_custom_js');
+                    $this->load->view('templates/admin_footer');
+                } else {
+                    $thumbnail = $this->upload->data('file_name');
+                }
+            }
+
+            $data = array(
+                'judul_berita' => $this->input->post('judul'),
+                'deskripsi' => $this->input->post('deskripsi'),
+                'tanggal_berita' => $this->input->post('tanggal'),
+                'konten' => $this->input->post('editor1'),
+                'status_berita' => $this->input->post('status'),
+                'thumbnail' => $thumbnail
+            );
+
+            $this->m_crud->insert($data, 'tb_berita');
+            if ($this->db->affected_rows() == true) {
+                $this->session->set_flashdata('pesan', '
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Selamat!</strong> Anda berhasil menambahkan data.
+                    <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                ');
+                redirect('admin/berita');
+            } else {
+                $this->session->set_flashdata('pesan', '
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Maaf!</strong> Anda gagal menambahkan data.
+                    <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                ');
+                redirect('admin/berita');
+            }
         }
     }
 
@@ -170,38 +218,126 @@ class Berita extends CI_Controller
     {
         $id_berita = $this->input->post('id_berita');
 
-        $where = array(
-            'id_berita' => $id_berita
-        );
+        $thumbnail = null;
+        $thumbnail = $_FILES['thumbnail']['name'];
+        $select = $this->m_crud->edit(array('id_berita' => $this->input->post('id_berita')), 'tb_berita');
 
-        $data = array(
-            'judul_berita' => $this->input->post('judul'),
-            'konten' => $this->input->post('konten'),
-            'tanggal_berita' => $this->input->post('tanggal'),
-            'status_berita' => $this->input->post('status')
-        );
+        if ($thumbnail != '') {
+            $filename = explode(".", $select->row()->file)[0];
+            array_map('unlink', glob(FCPATH . "./assets/admin/img/berita/$filename.*"));
 
-        $this->m_crud->update($where, $data, 'tb_berita');
-        if ($this->db->affected_rows() == true) {
-            $this->session->set_flashdata('pesan', '
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Selamat!</strong> Anda berhasil mengubah data berita.
-                <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            ');
-            redirect("admin/jadwal/edit/$id_berita");
+            $config['upload_path'] = './assets/admin/img/berita/';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['max_size'] = '23024';
+            if ($select->num_rows() > 0 && $select->row()->file != '') {
+                $nama_database = explode('.', $select->row()->file); // nama pada database
+                $type = explode(".", $_FILES['thumbnail']['name']); // tipe format yang dimasukkan saat ini
+                $config['file_name'] = $nama_database[0] . '.' . $type[1];
+            } else {
+                $config['encrypt_name'] = TRUE;
+            }
+            // $config['max_width']  = '2048';
+            // $config['max_height']  = '2048';
+
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('thumbnail')) {
+                $this->session->set_flashdata('pesan', '
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Maaf!</strong> Anda gagal mengunggah thumbnail.
+                        <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    ');
+                $data['berita'] = $this->m_crud->getAll('tb_berita')->result();
+                $this->load->view('templates/admin_header');
+                $this->load->view('templates/admin_sidebar');
+                $this->load->view('templates/admin_navbar');
+                $this->load->view('admin/berita', $data);
+                $this->load->view('templates/admin_footer_js');
+                $this->load->view('templates/admin_custom_js');
+                $this->load->view('templates/admin_footer');
+            } else {
+                $thumbnail = $this->upload->data('file_name');
+            }
+
+            // Tentukan masukan ke database
+            $save = array(
+                'judul_berita'  => $this->input->post('judul'),
+                'deskripsi'     => $this->input->post('deskripsi'),
+                'konten'        => $this->input->post('editor1'),
+                'tanggal_berita' => $this->input->post('tanggal'),
+                'status_berita'   => $this->input->post('status'),
+                'thumbnail' => $this->input->post('thumbnail')
+            );
+
+            $where = array('id_berita' => $id_berita);
+            // query update data ke database
+            $this->m_crud->update($where, $save, 'tb_berita');
+            // cek apakah update berhasil
+            if ($this->db->affected_rows() == true) {
+                $this->session->set_flashdata('pesan', '
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Selamat!</strong> Anda berhasil mengubah data.
+                        <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    ');
+                redirect("admin/berita/edit/$id_berita");
+            } else {
+                $this->session->set_flashdata('pesan', '
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Maaf!</strong> Anda gagal mengubah data.
+                        <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    ');
+                redirect("admin/berita/edit/$id_berita");
+            }
         } else {
-            $this->session->set_flashdata('pesan', '
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Maaf!</strong> Anda gagal mengubah data barita.
-                <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            ');
-            redirect("admin/berita/edit/$id_berita");
+
+            $where = array(
+                'id_berita' => $id_berita
+            );
+
+            $data = array(
+                'judul_berita'  => $this->input->post('judul'),
+                'deskripsi'     => $this->input->post('deskripsi'),
+                'konten'        => $this->input->post('editor1'),
+                'tanggal_berita' => $this->input->post('tanggal'),
+                'status_berita' => $this->input->post('status'),
+                'thumbnail' => $this->input->post('thumbnail')
+            );
+
+            $this->m_crud->update($where, $data, 'tb_berita');
+            if ($this->db->affected_rows() == true) {
+                $this->session->set_flashdata('pesan', '
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Selamat!</strong> Anda berhasil mengubah data.
+                        <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    ');
+                redirect("admin/berita/edit/$id_berita");
+            } else {
+                $this->session->set_flashdata('pesan', '
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Maaf!</strong> Anda gagal mengubah data.
+                        <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    ');
+                redirect("admin/berita/edit/$id_berita");
+            }
+            // terima kode data
+
+
         }
     }
 }

@@ -33,7 +33,6 @@
                             <th>No</th>
                             <th>Judul</th>
                             <th>Deskripsi</th>
-                            <th>Konten</th>
                             <th>Tanggal</th>
                             <th>Aksi</th>
                         </tr>
@@ -45,7 +44,6 @@
                                 <td><?= $i ?></td>
                                 <td><?= $row_berita->judul_berita ?></td>
                                 <td><?= $row_berita->deskripsi ?></td>
-                                <td><?= $row_berita->konten ?></td>
                                 <td><?= $row_berita->tanggal_berita ?></td>
                                 <td>
                                     <?php
@@ -70,9 +68,9 @@
 </div>
 
 <div class="modal fade" id="tambah_data" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <form action="<?= base_url() ?>admin/berita/tambah" method="post">
+            <form action="<?= base_url() ?>admin/berita/tambah" method="post" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title font-weight-bolder text-ijo">Tambah Data</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -86,14 +84,25 @@
                         <small id="judul" class="form-text text-muted">Judul maksimum 100 karakter</small>
                     </div>
                     <div class="form-group">
-                        <label for="judul">Deskripsi</label>
-                        <textarea class="form-control" pattern="[a-zA-Z0-9 ]{2,100}" name="deskripsi" id="deskripsi" rows="3" maxlength="100" placeholder="Masukkan Judul..." required><?= set_value('deskripsi') ?></textarea>
-                        <small id="judul" class="form-text text-muted">Judul maksimum 100 karakter</small>
+                        <label for="deskripsi">Deskripsi</label>
+                        <textarea class="form-control" pattern="[a-zA-Z0-9 ]{2,100}" name="deskripsi" id="deskripsi" rows="3" maxlength="100" placeholder="Masukkan Deskripsi..." required><?= set_value('deskripsi') ?></textarea>
+                        <small id="deskripsi" class="form-text text-muted">Deskripsi maksimum 250 karakter</small>
                     </div>
                     <div class="form-group">
-                        <label for="tanggal">Tanggal Berita</label>
-                        <input type="date" required class="form-control" name="tanggal" id="tanggal" value="<?= set_value('tanggal') ?>">
+                        <label for="thumbnail">Upload Thumbnail</label><br>
+                        <img id="prev_foto1" src="<?= base_url() ?>assets/user/img/upload.png" class="img-responsive img-thumbnail" alt="Preview Image" width="300px">
+                        <div class="custom-file mb-2">
+                            <input type="file" class="custom-file-input" name="thumbnail" id="foto" required>
+                            <label class="custom-file-label" for="thumbnail">Masukkan foto berukuran 753 x 258 . .</label>
+                        </div>
+                        <small id="thumbnail" class="form-text text-muted">Pilihlah File foto thumbnail berukuran 710 x 285. Max 3 MB. Format (JPG/PNG)</small>
                     </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Artikel / Berita</label>
+                        <textarea name="editor1" id="editor1" rows="10" cols="80">
+                    </textarea>
+                    </div>
+                    <input type="hidden" readonly required class="form-control" name="tanggal" id="tanggal" value="<?= date('Y-m-d') ?>">
                     <div class="form-group">
                         <label for="status">Status Tampil Berita</label>
                         <select class="custom-select" name="status" id="status" required>
@@ -105,7 +114,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Tambah</button>
+                    <button type="submit" value="upload" class="btn btn-success">Tambah</button>
                 </div>
             </form>
         </div>

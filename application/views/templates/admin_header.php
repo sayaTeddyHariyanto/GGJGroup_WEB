@@ -23,5 +23,9 @@
 
   <link rel="stylesheet" href="<?= base_url() ?>assets/admin/css/bootstrap-select.min.css">
 
+  <script src="<?= base_url() ?>assets/admin/vendor/ckeditor/ckeditor.js"></script>
+
+  <!-- <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script> -->
+
 
 </head>
