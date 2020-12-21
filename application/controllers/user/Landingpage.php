@@ -36,6 +36,19 @@ class Landingpage extends CI_Controller
         $this->load->view('templates/user_footer');
     }
 
+    function dashboard()
+    {
+        $id = $this->session->userdata('id');
+        $data['profil'] = $this->m_crud->edit(['id_anggota' => $id], 'tb_anggota')->row();
+        $this->load->view('templates/helper');
+        $this->load->view('templates/user_header');
+		$this->load->view('templates/user_navbar');
+		$this->load->view('user/dashboard_user', $data);
+        $this->load->view('templates/user_footer_js');
+        $this->load->view('templates/user_custom_js');
+        $this->load->view('templates/user_footer');
+    }
+
     function addr_line1($addr_line1)
     {
         if (preg_match('/[\^£$%&*}{@#~><>|=+¬]/', $addr_line1)) {
