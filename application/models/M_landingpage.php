@@ -27,4 +27,14 @@ class M_landingpage extends CI_Model
         pembayaran_zakat.id_metode = metode_pembayaran.id_metode AND
         pembayaran_zakat.id_zakat = '$id'");
     }
+	
+    function getBulanforSidebar()
+    {
+        return $this->db->query("SELECT tanggal_berita FROM tb_berita GROUP BY month(tanggal_berita) ORDER BY tanggal_berita ASC");
+    }
+
+    function getBeritabyBulan($bulan)
+    {
+        return $this->db->query("SELECT * FROM tb_berita WHERE tanggal_berita LIKE '%$bulan%' ORDER BY tanggal_berita ASC");
+    }
 }
