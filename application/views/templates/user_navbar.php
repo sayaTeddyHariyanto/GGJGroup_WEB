@@ -15,25 +15,25 @@
         <ul>
           <li class="active"><a href="<?=base_url()?>user/landingpage">Beranda</a></li>
 
-          <li><a href="services.html">Pendistribusian</a></li>
+          <li><a href="<?=base_url()?>user/distribusi">Pendistribusian</a></li>
           <li class="drop-down"><a href="#">Layanan</a>
             <ul>
-              <li><a href="about.html">Pendaftaran Penerima</a></li>
+              <li><a href="<?=base_url()?>user/pendaftaran_penerima">Pendaftaran Penerima</a></li>
               <li><a href="<?=base_url()?>user/pembayaran_zakat">Pembayaran Zakat</a></li>
               <li><a href="<?=base_url()?>user/history_pendaftaran">History Pendaftaran Penerima</a></li>
               <li><a href="<?=base_url()?>user/history_pembayaran">History Pembayaran Zakat</a></li>
             </ul>
           </li>
-          <li><a href="pricing.html">Kontak Kami</a></li>
-          <li><a href="pricing.html">Tentang Kami</a></li>
+          <li><a href="<?=base_url()?>user/kontakkami">Kontak Kami</a></li>
+          <li><a href="<?=base_url()?>user/tentangkami">Tentang Kami</a></li>
           <?php if($this->session->userdata('id') != ''){?>
           <li class="drop-down d-lg-none d-block"><a href="">Profil Saya</a>
             <ul>
                 <li><a href="<?=base_url()?>user/dashboard">Dashboard</a></li>
-                <li><a href="<?=base_url()?>user/history_pembayran">History Pembayaran Zakat</a></li>
+                <li><a href="<?=base_url()?>user/history_pembayaran">History Pembayaran Zakat</a></li>
                 <li><a href="<?=base_url()?>user/history_pendaftaran">History Pendaftaran Penerima</a></li>
                 <li><a href="<?=base_url()?>user/edit_profil/">Edit Profile</a></li>
-                <li><a href="<?=base_url()?>user/auth/logout">Log Out</a></li>
+                <li><a onclick="return confirm('Apakah anda yakin ingin logout?');" href="<?=base_url()?>user/auth/logout">Log Out</a></li>
             </ul>
           </li>
           <?php }?>
@@ -56,10 +56,10 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="<?=base_url()?>user/dashboard">Dashboard</a>
-                <a class="dropdown-item" href="<?=base_url()?>user/history_pembayran">History Pembayaran Zakat</a>
+                <a class="dropdown-item" href="<?=base_url()?>user/history_pembayaran">History Pembayaran Zakat</a>
                 <a class="dropdown-item" href="<?=base_url()?>user/history_pendaftaran">History Pendaftaran Penerima</a>
-                <a class="dropdown-item" href="<?=base_url()?>user/edit_profil/">Edit Profile</a>
-                <a class="dropdown-item" href="<?=base_url()?>user/auth/logout">Log Out</a>
+                <a class="dropdown-item" href="<?=base_url()?>user/anggota/edit">Edit Profile</a>
+                <a onclick="return confirm('Apakah anda yakin ingin logout?');" class="dropdown-item" href="<?=base_url()?>user/auth/logout">Log Out</a>
               </div>
             </li>   
           </ul>

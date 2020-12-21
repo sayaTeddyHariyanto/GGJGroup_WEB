@@ -59,7 +59,7 @@
                 <div class="col-3 text-right">
                     <img src="http://placehold.it/50x50" alt="Hahaha" width="100" class="img-fluid rounded-circle">
                 </div>
-                <a class="btn btn-success btn-sm mt-4 ml-auto px-5" href="<?=base_url()?>user/anggota/edit/<?=$this->session->userdata('id');?>" role="button">Edit</a>
+                <a class="btn btn-success btn-sm mt-4 ml-auto px-5" href="<?=base_url()?>user/anggota/edit" role="button">Edit</a>
             </div>
 
             <h4 class="mt-4">Navigasi</h4>
@@ -70,7 +70,7 @@
                         <h6>Pembayaran Zakat</h6>
                     </div>
                 </a>
-                <a class="col-lg-6 col-12 my-2" href="<?=base_url()?>user/distribusi_zakat">
+                <a class="col-lg-6 col-12 my-2" href="<?=base_url()?>user/distribusi">
                     <div class="card bg-success text-white p-2 align-items-center justify-content-center">
                         <h6>Distribusi Zakat</h6>
                     </div>

@@ -25,7 +25,7 @@
         <div class="card-header bg-success my-0 text-white text-center">
         <h4>History Pendaftaran Penerima</h4>
         </div>
-        <div class="card shadow mb-4">
+        <div class="card mb-4">
         <div class="card-body">
             <div class="table-responsive">
             <table class="table table-bordered" id="dataTable">

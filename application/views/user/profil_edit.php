@@ -8,7 +8,7 @@
         <!-- <h2>Pembayaran Zakat</h2> -->
         <ol>
             <li><a href="<?=base_url()?>user/landingpage">Beranda</a></li>
-            <li><a href="<?=base_url()?>user/history_pendaftaran">History Pendaftaran Penerima</a></li>
+            <li><a href="">Edit Profil</a></li>
         </ol>
         </div>
 
@@ -23,7 +23,7 @@
 
     <div class="col-lg-8 col-12 px-0 card shadow mb-5">
         <div class="card-header bg-success my-0 text-white text-center">
-            <h4>Dashboard Saya</h4>
+            <h4>Edit Profil Saya</h4>
         </div>
         <div class="card mb-4">
         <div class="card-body">

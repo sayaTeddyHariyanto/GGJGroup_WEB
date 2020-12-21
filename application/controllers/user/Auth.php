@@ -23,6 +23,7 @@ class Auth extends CI_Controller
 
     function password_reset()
     {
+        // menangkap masukan dari form
         $token = $this->input->post('token');
         $id = $this->input->post('id');
         $password = md5($this->input->post('password'));
@@ -35,8 +36,8 @@ class Auth extends CI_Controller
         $this->form_validation->set_message('matches', 'Kolom <strong>{field}</strong> harus sama persis dengan kolom <strong>{param}</strong>.');
         $this->form_validation->set_message('min_length', 'Mohon maaf, Masukan <strong>{field}</strong> minimum <strong>{param}</strong> karakter.');
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible fade show" role="alert">', '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-        // validasi
-        if ($this->form_validation->run() == false) {
+        // validasi form
+        if ($this->form_validation->run() == false) { // jika validasi gagal
             $data['anggota'] = $this->m_crud->edit(['id_anggota' => $id, 'token_anggota' => $token], 'tb_anggota')->result();
             $this->load->view('templates/user_header');
             // $this->load->view('templates/user_navbar');
@@ -44,18 +45,18 @@ class Auth extends CI_Controller
             $this->load->view('templates/user_footer_js');
             $this->load->view('templates/user_custom_js');
             $this->load->view('templates/user_footer');
-        } else {
-            $where = array(
+        } else {                                      // jika validasi benar
+            $where = array( 
                 'token_anggota' => $token,
                 'id_anggota' => $id
             );
 
-            $data = array(
+            $data = array(  // menyimpan password baru
                 'password_anggota' => $password
             );
-
+            // memanggil fungsi update ke tabel anggota
             $this->m_crud->update($where, $data, 'tb_anggota');
-            if ($this->db->affected_rows() == true) {
+            if ($this->db->affected_rows() == true) {   // jika update berhasil
                 $this->session->set_flashdata('pesan', '
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>Selamat!</strong> Berhasil membuat kata sandi baru, silahkan login.
@@ -64,10 +65,10 @@ class Auth extends CI_Controller
                     </button>
                 </div>
                 ');
-                return redirect("user/auth/login");
-            } else {
+                return redirect("user/auth/login"); // arahkan pengguna ke halaman login
+            } else {    // jika update tidak berhasil
                 $password_database = $this->m_crud->edit($where, 'tb_anggota')->row()->password_anggota;
-                if ($password_database == $password) {
+                if ($password_database == $password) {  // jika ternyata password yang dimasukkan sama dengan password sebelumnya
                     $this->session->set_flashdata('pesan', '
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Maaf!</strong> Anda memasukkan password lama anda, silahkan login dengan password lama anda.
@@ -76,7 +77,7 @@ class Auth extends CI_Controller
                         </button>
                     </div>
                     ');
-                } else {
+                } else {    // jika gagal mengupdate password anggota
                     $this->session->set_flashdata('pesan', '
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Maaf!</strong> Gagal membuat password baru, mohon ulangi atau hubungi admin.
@@ -86,7 +87,7 @@ class Auth extends CI_Controller
                     </div>
                     ');
                 }
-                return redirect("user/auth/reset_password/$token/$id");
+                return redirect("user/auth/reset_password/$token/$id");     // arahkan pengguna kembali ke halaman reset password
             }
         }
     }
@@ -188,33 +189,33 @@ class Auth extends CI_Controller
 
     function login_anggota()
     {
+        // Menentukan konfigurasi validasi masukan dari form
         $this->form_validation->set_rules('username_anggota', 'Username Anggota', 'trim|required');
         $this->form_validation->set_rules('password_anggota', 'Password', 'trim|required');
-
         $this->form_validation->set_message('required', 'Mohon maaf, {field} wajib terisi');
-
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert>', '</div>');
-
+        // Memeriksa apakah sesuai form validasi?
         if ($this->form_validation->run() == false) {
-            $this->load->view('user/login_anggota');
+            $this->load->view('user/login_anggota'); // jika tidak sesuai dengan form validasi
         } else {
-            $nama = $this->input->post('username_anggota');
-            $password = $this->input->post('password_anggota');
-
+            // jika sesuai dengan form validasi
+            $nama = $this->input->post('username_anggota'); // menangkap inputan username
+            $password = $this->input->post('password_anggota'); // menangkap inputan password
+            // Memeriksa apakah ada username yang sama pada database?
             $user = $this->db->get_where('tb_anggota', ['username_anggota' => $nama])->row_array();
-            if ($user != null) {
-                if (md5($password) == $user['password_anggota']) {
+            if ($user != null) { // jika username ditemukan, maka lanjut memeriksa apakah inputan password sama dengan pemilik username tersebut?
+                if (md5($password) == $user['password_anggota']) { // jika password benar, maka lanjut membuat session
                     $data = [
                         'username_anggota' => $user['username_anggota'],
                         'id' => $user['id_anggota']
                     ];
-                    $this->session->set_userdata($data);
-                    redirect('user/landingpage');
-                } else {
+                    $this->session->set_userdata($data); // session dibuat dengan membawa 2 variabel pada array
+                    redirect('user/landingpage'); // setelah membuat session, user diarahkan ke halaman landingpage
+                } else { // jika password salah, maka munculkan pesan 'password salah'
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password Salah</div>');
                     redirect('user/Auth/login_anggota');
                 }
-            } else {
+            } else { // jika username tidak ditemukan, maka munculkan pesan 'username salah'
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username Tidak Terdaftar</div>');
                 redirect('user/Auth/login_anggota');
             }

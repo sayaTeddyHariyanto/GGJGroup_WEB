@@ -49,6 +49,11 @@ class Login extends CI_Controller
         }
     }
 
+    function logout(){
+		$this->session->sess_destroy(); //menghentikan semua sesion
+		redirect(base_url('admin/login')); // diarahkan ke form login
+	}
+
 
     /*
     function index()

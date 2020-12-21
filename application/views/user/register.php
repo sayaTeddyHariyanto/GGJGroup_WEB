@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control form-control-user" id="alamat" name="alamat"
-                                        placeholder="Masukkan Alamat Anda" value="<?= set_value('alamat'); ?>"></textarea>
+                                        placeholder="Masukkan Alamat Anda" rows="1" value="<?= set_value('alamat'); ?>"></textarea>
                                         <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
                                 <div class="form-group">
@@ -76,10 +76,10 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="<?=base_url()?>user/auth/lupa_password">Lupa Password?</a>
+                                <a class="text-success" href="<?=base_url()?>user/auth/lupa_password">Lupa Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="<?=base_url()?>user/auth/login_anggota">Sudah Punya Akun? Login!</a>
+                                <a class="text-success" href="<?=base_url()?>user/auth/login_anggota">Sudah Punya Akun? Login!</a>
                             </div>
                         </div>
                     </div>

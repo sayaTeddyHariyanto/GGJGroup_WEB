@@ -48,11 +48,12 @@ class Register extends CI_Controller
         $this->form_validation->set_message('is_unique', 'Mohon maaf, Email yang anda masukkan sudah terdaftar');
         $this->form_validation->set_message('matches', 'Mohon maaf, Password yang anda masukkan tidak cocok');
 
-        if ($this->form_validation->run() == false){
+        // Periksa apakah masukan sesuai dengan form validasi?
+        if ($this->form_validation->run() == false){ // jika salah
             $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
             $this->load->view('user/register');
-        }else{
-            $data = array(
+        }else{                                      // jika benar
+            $data = array( // menyimpan masukan kedalam array $data
                 'nama_anggota' => $this->input->post('nama'),
                 'alamat_anggota' => $this->input->post('alamat'),
                 'no_hp_anggota' => $this->input->post('no_hp'),
@@ -62,10 +63,9 @@ class Register extends CI_Controller
                 'token_anggota' => md5(rand(0, 1000)),
                 'status_anggota' => '0'
             );
-            
-
+            // memanggil fungsi insert untuk membuat baris baru pada tabel anggota
             $this->m_crud->insert($data, 'tb_anggota');
-            if ($this->db->affected_rows() == true) {
+            if ($this->db->affected_rows() == true) { // jika berhasil menambah data anggota, kirim pesan berhasil
                 $this->session->set_flashdata('pesan', '
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>Selamat!</strong> Akun Anda Berhasil Dibuat.
@@ -74,8 +74,8 @@ class Register extends CI_Controller
                     </button>
                 </div>
                 ');
-                redirect('admin/anggota');
-            }else{
+                redirect('user/auth');  // arahkan pengguna ke halaman login
+            }else{                                   // jika gagal menambahkan anggota, kirim pesan gagal
                 $this->session->set_flashdata('pesan', '
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong>Maaf!</strong> Akun Anda Gagal Dibuat.
@@ -84,7 +84,7 @@ class Register extends CI_Controller
                     </button>
                 </div>
                 ');
-                redirect('admin/anggota');
+                redirect('user/register');   // arahkan pengguna kembali ke halaman register
             }
         }
 

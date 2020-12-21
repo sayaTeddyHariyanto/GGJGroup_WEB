@@ -40,36 +40,37 @@
                                         <h1 class="h6 text-black-900 mb-4">Silakan Login Dahulu</h1>
                                     </div>
                                     <hr>
-                                    <form class="user" method="post" action="<?php echo base_url('user/Auth/login_anggota'); ?>">
+                                    <form class="user my-4" method="post" action="<?php echo base_url('user/Auth/login_anggota'); ?>">
                                         <?php echo $this->session->flashdata('message'); ?>
+                                        <?php echo $this->session->flashdata('pesan'); ?>
                                         <?php echo validation_errors(); ?>
                                         <div class="form-group">
                                             <input type="text" required class="form-control form-control-user" id="username_anggota" name="username_anggota" placeholder="Masukkan Username Anda..." value="<?= set_value('username_anggota'); ?>">
-                                            <small id="username_anggota" class="form-text text-muted">Masukkan Username Admin</small>
+                                            <!-- <small id="username_anggota" class="form-text text-muted">Masukkan Username Admin</small> -->
 
                                             <?php //echo form_error('username'); 
                                             ?>
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="password_anggota" name="password_anggota" placeholder="Password">
-                                            <small id="password_anggota" class="form-text text-muted">Masukkan Password min.8 Karakter</small>
+                                            <input type="password" class="form-control form-control-user" id="password_anggota" name="password_anggota" placeholder="Masukkan Password Anda..">
+                                            <!-- <small id="password_anggota" class="form-text text-muted">Masukkan Password min.8 Karakter</small> -->
                                             <?php //echo form_error('password_admin'); 
                                             ?>
                                         </div>
-                                        <center>
-                                            <button type="submit" class="btn btn-success btn-lg">
-                                                Login
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-success btn-rounded">
+                                                <span class="mx-4">Login</span>
                                             </button>
-                                        </center>
+                                        </div>
 
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="<?=base_url()?>user/auth/lupa_password">Lupa Password?</a>
+                                        <a class="text-success" href="<?=base_url()?>user/auth/lupa_password">Lupa Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="<?=base_url()?>user/register">Buat Akun Baru</a>
+                                        <a class="text-success" href="<?=base_url()?>user/register">Buat Akun Baru</a>
                                     </div>
                                 </div>
                             </div>

@@ -64,3 +64,4 @@ $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/
 $route['/'] = 'user/landingpage';
 $route['user'] = 'user/landingpage';
 $route['admin'] = 'admin/login';
+$route['user/dashboard'] = 'user/landingpage/dashboard';

@@ -22,7 +22,7 @@
                     </div>
                     <div class="card-footer text-center bg-white">
                         <input class="btn btn-primary" type="submit" value="Submit">
-                        <a class="btn btn-secondary" href="<?=base_url()?>/user/auth/login">Login?</a>
+                        <a class="btn btn-secondary" href="<?=base_url()?>user/auth/login_anggota">Login?</a>
                     </div>
                     </form>
                 </div>

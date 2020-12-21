@@ -10,8 +10,9 @@ class Anggota extends CI_Controller
         // $this->load->library('Primslib');
     }
 
-    function edit($id)
+    function edit()
     {
+        $id = $this->session->userdata('id');
         $data['anggota'] = $this->m_crud->edit(['id_anggota' => $id], 'tb_anggota')->result();
         $this->load->view('templates/user_header');
         $this->load->view('templates/user_navbar');
