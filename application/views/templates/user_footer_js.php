@@ -24,19 +24,19 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Beranda</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Tentang Kami</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Kontak Kami</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Bantuan</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="<?=base_url()?>user/landingpage">Beranda</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="<?=base_url()?>user/tentangkami">Tentang Kami</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="<?=base_url()?>user/kontakkami">Kontak Kami</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="<?=base_url()?>user/bantuan">Bantuan</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Pendistribusian</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Pendaftaran Penerima</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Pembayaran Zakat</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="<?=base_url()?>user/distribusi/all">Pendistribusian</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="<?=base_url()?>user/pendaftaran_penerima">Pendaftaran Penerima</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="<?=base_url()?>user/pembayaran_zakat">Pembayaran Zakat</a></li>
             </ul>
           </div>
 

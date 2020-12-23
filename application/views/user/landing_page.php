@@ -124,19 +124,19 @@
           <div class="col-lg-<?php if($totalberita <= 3){echo "4";}else if($totalberita == 4){if($i==2 || $i==3){echo "8";}else{echo "4";}}else{if($i==2){echo "8";}else{echo "4";}}?>  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
             <article class="entry">
 
-              <a href="<?=base_url()?>user/berita/detail/<?=$rowBerita->id_berita?>">
+              <a href="<?=base_url()?>user/distribusi/detail/<?=$rowBerita->id_berita?>">
                 <div class="entry-img">
                   <img src="<?=base_url()?>assets/user/img/blog-1.jpg" alt="" class="img-fluid">
                 </div>
               </a>
 
               <h2 class="entry-title">
-                <a href="<?=base_url()?>user/berita/detail/<?=$rowBerita->id_berita?>"><?=$rowBerita->judul_berita?></a>
+                <a href="<?=base_url()?>user/distribusi/detail/<?=$rowBerita->id_berita?>"><?=$rowBerita->judul_berita?></a>
               </h2>
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="<?=base_url()?>user/berita/detail/<?=$rowBerita->id_berita?>"><time datetime="2020-01-01"><?=$rowBerita->tanggal_berita?></time></a></li>
+                  <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="<?=base_url()?>user/distribusi/detail/<?=$rowBerita->id_berita?>"><time datetime="2020-01-01"><?=$rowBerita->tanggal_berita?></time></a></li>
                 </ul>
               </div>
 
@@ -145,7 +145,7 @@
                   <?=$rowBerita->konten?>
                 </p>
                 <div class="read-more">
-                  <a href="<?=base_url()?>user/berita/detail/<?=$rowBerita->id_berita?>">Read More</a>
+                  <a href="<?=base_url()?>user/distribusi/detail/<?=$rowBerita->id_berita?>">Read More</a>
                 </div>
               </div>
 
@@ -155,7 +155,7 @@
 
         <div class="blog-pagination mx-auto" data-aos="fade-up">
           <ul class="justify-content-center">
-            <li><a href="#">Lihat selengkapnya <i class="icofont-rounded-right"></i></a></li>
+            <li><a href="<?=base_url()?>user/landingpage/blog_all/">Lihat selengkapnya <i class="icofont-rounded-right"></i></a></li>
           </ul>
         </div>
 

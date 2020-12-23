@@ -22,4 +22,9 @@ class Welcome extends CI_Controller {
 	{
 		redirect('user/');
 	}
+
+	public function page404()
+	{
+		$this->load->view('user/404');
+	}
 }

@@ -1247,11 +1247,11 @@ section {
 
 .contact .info i {
   font-size: 20px;
-  color: #d1d1d1;;
+  color:  #8795a4;
   float: left;
   width: 44px;
   height: 44px;
-  background: #edeff1;
+  background: #f1f1f1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1264,7 +1264,7 @@ section {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 5px;
-  color: #d1d1d1;;
+  color: #d1d1d1;
 }
 
 .contact .info p {
@@ -1279,7 +1279,7 @@ section {
 }
 
 .contact .info .email:hover i, .contact .info .address:hover i, .contact .info .phone:hover i {
-  background: #d1d1d1;;
+  background: #18d26e;
   color: #fff;
 }
 

@@ -54,7 +54,7 @@
 
                 <div class="form-group text-center">
                     <button class="btn btn-primary text-white px-3 mr-1" type="submit">Simpan Perubahan</button>
-                    <button onclick="window.history.go(-1); return false;" class="btn btn-danger text-white px-3 mr-1">Kembali</button>
+                    <button onclick="window.history.go(-1); return false;" class="btn btn-danger text-white px-3 mr-1"><i class="fas fa-arrow-left mr-2"></i>Kembali</button>
                 </div>
             </form>
         </div>

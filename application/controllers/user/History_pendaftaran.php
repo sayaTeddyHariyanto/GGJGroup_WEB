@@ -8,6 +8,17 @@
             $this->load->model('m_crud');
             //$this->load->model('m_landingpage');
             // $this->load->library('Primslib');
+            if ($this->session->userdata('id') == '') {
+                $this->session->set_flashdata('pesan', '
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Sesi habis!</strong> mohon login terlebih dahulu.
+                    <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                ');
+                redirect('user/auth/login_anggota');
+            }
         }
 
         function index()

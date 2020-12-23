@@ -6,7 +6,7 @@
   <header id="header" class="fixed-top bg-success">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo"><a class="text-light" href="index.html">GGJ Group</a></h1>
+      <h1 class="logo"><a class="text-light" href="<?=base_url()?>user/landingpage">GGJ Group</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="<?=base_url()?>assets/user/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -15,7 +15,7 @@
         <ul>
           <li class="active"><a href="<?=base_url()?>user/landingpage">Beranda</a></li>
 
-          <li><a href="<?=base_url()?>user/distribusi">Pendistribusian</a></li>
+          <li><a href="<?=base_url()?>user/distribusi/all">Pendistribusian</a></li>
           <li class="drop-down"><a href="#">Layanan</a>
             <ul>
               <li><a href="<?=base_url()?>user/pendaftaran_penerima">Pendaftaran Penerima</a></li>

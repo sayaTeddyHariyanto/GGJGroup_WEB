@@ -30,36 +30,48 @@
             <h4>Data Saya</h4>
             <hr>
             <div class="row mx-4">
-                <div class="col-9">
+                <div class="col-lg-9 col-12">
                     <table>
                         <tbody class="table table-borderless">
                             <tr>
-                                <td>Nama</td>
-                                <td>:</td>
-                                <td><?=$profil->nama_anggota?></td>
+                                <td class="py-1">No. Anggota</td>
+                                <td class="py-1">:</td>
+                                <td class="py-1"><?=$profil->id_anggota?></td>
                             </tr>
                             <tr>
-                                <td>No. Anggota</td>
-                                <td>:</td>
-                                <td><?=$profil->id_anggota?></td>
+                                <td class="py-1">Nama</td>
+                                <td class="py-1">:</td>
+                                <td class="py-1"><?=$profil->nama_anggota?></td>
                             </tr>
                             <tr>
-                                <td>Alamat</td>
-                                <td>:</td>
-                                <td><?=$profil->alamat_anggota?></td>
+                                <td class="py-1">Alamat</td>
+                                <td class="py-1">:</td>
+                                <td class="py-1"><?=$profil->alamat_anggota?></td>
                             </tr>
                             <tr>
-                                <td>No Hp</td>
-                                <td>:</td>
-                                <td><?=$profil->no_hp_anggota?></td>
+                                <td class="py-1">No Hp</td>
+                                <td class="py-1">:</td>
+                                <td class="py-1"><?=$profil->no_hp_anggota?></td>
+                            </tr>
+                            <tr>
+                                <td class="py-1">Username</td>
+                                <td class="py-1">:</td>
+                                <td class="py-1"><?=$profil->username_anggota?></td>
+                            </tr>
+                            <tr>
+                                <td class="py-1">Email</td>
+                                <td class="py-1">:</td>
+                                <td class="py-1"><?=$profil->email_anggota?></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="col-3 text-right">
+                <div class="col-lg-3 col-12 text-lg-right my-lg-0 my-4 text-center">
                     <img src="http://placehold.it/50x50" alt="Hahaha" width="100" class="img-fluid rounded-circle">
                 </div>
-                <a class="btn btn-success btn-sm mt-4 ml-auto px-5" href="<?=base_url()?>user/anggota/edit" role="button">Edit</a>
+                <div class="col-12 text-lg-right text-center">
+                    <a class="btn btn-success btn-sm mt-4 px-5" href="<?=base_url()?>user/anggota/edit" role="button">Edit</a>
+                </div>
             </div>
 
             <h4 class="mt-4">Navigasi</h4>
