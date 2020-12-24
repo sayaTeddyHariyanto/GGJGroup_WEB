@@ -50,7 +50,7 @@ class Penerima extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('pesan', '
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Maaf!</strong> coba lengkapi ulang form register.
+            <strong>Maaf!</strong> coba lengkapi ulang form.
             <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -187,6 +187,7 @@ class Penerima extends CI_Controller
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>');
+
                 redirect("admin/penerima/edit_penerima/$id_penerima");
             } else {
                 $this->session->set_flashdata('pesan', '
@@ -197,6 +198,8 @@ class Penerima extends CI_Controller
                         </button>
                     </div>
                     ');
+                //var_dump($data);
+                //die;
                 redirect("admin/penerima/edit_penerima/$id_penerima");
             }
         }

@@ -72,9 +72,9 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pilih Laporan</h6>
-            <a class="collapse-item" href="login.html">Harian</a>
-            <a class="collapse-item" href="register.html">Bulanan</a>
-            <a class="collapse-item" href="forgot-password.html">Tahunan</a>
+            <a class="collapse-item" href="register.html">Pembayaran Zakat</a>
+            <a class="collapse-item" href="forgot-password.html">Keuangan</a>
+            <a class="collapse-item" href="<?= base_url() ?>admin/Laporan_distribusi">Distribusi</a>
           </div>
         </div>
       </li>
