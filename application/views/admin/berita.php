@@ -99,8 +99,7 @@
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Artikel / Berita</label>
-                        <textarea name="editor1" id="editor1" rows="10" cols="80">
-                    </textarea>
+                        <textarea class="form-control" name="editor1" id="ckeditor"></textarea>
                     </div>
                     <input type="hidden" readonly required class="form-control" name="tanggal" id="tanggal" value="<?= date('Y-m-d') ?>">
                     <div class="form-group">

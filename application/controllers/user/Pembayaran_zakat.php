@@ -1,6 +1,6 @@
 <?php
 
-class Pembayaran_zakat extends CI_Controller 
+class Pembayaran_zakat extends CI_Controller
 {
     function __construct()
     {
@@ -26,7 +26,7 @@ class Pembayaran_zakat extends CI_Controller
         // $data['anggota'] = $this->m_crud->edit(['id_anggota' => $id, 'token_anggota' => $token], 'tb_anggota')->result();
         $data['metode'] = $this->m_crud->getAll('metode_pembayaran')->result();
         $this->load->view('templates/user_header');
-		$this->load->view('templates/user_navbar');
+        $this->load->view('templates/user_navbar');
         $this->load->view('user/pembayaran_zakat', $data);
         $this->load->view('templates/user_footer_js');
         $this->load->view('templates/user_custom_js');
@@ -38,7 +38,7 @@ class Pembayaran_zakat extends CI_Controller
         $data['pembayaran'] = $this->m_landingpage->SelectPembayaranById($id)->result();
         $this->load->view('templates/helper');
         $this->load->view('templates/user_header');
-		$this->load->view('templates/user_navbar');
+        $this->load->view('templates/user_navbar');
         $this->load->view('user/pembayaran_zakat_verifikasi', $data);
         $this->load->view('templates/user_footer_js');
         $this->load->view('templates/user_custom_js');
@@ -50,7 +50,7 @@ class Pembayaran_zakat extends CI_Controller
         $data['pembayaran'] = $this->m_landingpage->SelectPembayaranById($id)->result();
         $this->load->view('templates/helper');
         $this->load->view('templates/user_header');
-		$this->load->view('templates/user_navbar');
+        $this->load->view('templates/user_navbar');
         $this->load->view('user/pembayaran_zakat_berhasil', $data);
         $this->load->view('templates/user_footer_js');
         $this->load->view('templates/user_custom_js');
@@ -70,8 +70,8 @@ class Pembayaran_zakat extends CI_Controller
                 $select_pembayaran = $this->m_crud->edit(['id_zakat' => $id], 'pembayaran_zakat');
                 if ($select_pembayaran->row()->bukti_zakat != null) {
                     $filename = explode(".", $select_pembayaran->row()->bukti_zakat)[0];
-                    array_map('unlink', glob(FCPATH."assets/user/img/bukti_bayar/$filename.*"));
-    
+                    array_map('unlink', glob(FCPATH . "assets/user/img/bukti_bayar/$filename.*"));
+
                     $config['upload_path'] = './assets/user/img/bukti_bayar/';
                     $config['allowed_types'] = 'jpg|jpeg|png';
                     $config['max_size'] = '3024';
@@ -79,7 +79,7 @@ class Pembayaran_zakat extends CI_Controller
                     $nama_database = explode('.', $select_pembayaran->row()->bukti_zakat); // nama pada database
                     $type = explode(".", $_FILES['bukti']['name']); // tipe format yang dimasukkan saat ini
                     $config['file_name'] = $nama_database[0] . '.' . $type[1];
-                }else{
+                } else {
                     $config['upload_path'] = './assets/user/img/bukti_bayar/';
                     $config['allowed_types'] = 'jpg|jpeg|png';
                     $config['max_size'] = '3024';
@@ -91,12 +91,11 @@ class Pembayaran_zakat extends CI_Controller
                 // $config['max_width']  = '2048';
                 // $config['max_height']  = '2048';
                 // $config['encrypt_name'] = TRUE;
-                
+
                 $this->load->library('upload');
                 $this->upload->initialize($config);
-                
-                if (!$this->upload->do_upload('bukti'))
-                {
+
+                if (!$this->upload->do_upload('bukti')) {
                     $this->session->set_flashdata('pesan', '
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Maaf!</strong> Anda gagal mengunggah bukti.
@@ -105,56 +104,53 @@ class Pembayaran_zakat extends CI_Controller
                         </button>
                     </div>
                     ');
-                    $data['pembayaran'] = $this->m_crud->edit(['id_zakat' => $id], 'pembayaran_zakat')->result();
+                    $data['pembayaran'] = $this->m_landingpage->SelectPembayaranById($id)->result();
+                    $this->load->view('templates/helper');
                     $this->load->view('templates/user_header');
                     $this->load->view('templates/user_navbar');
                     $this->load->view('user/pembayaran_zakat_verifikasi', $data);
                     $this->load->view('templates/user_footer_js');
                     $this->load->view('templates/user_custom_js');
                     $this->load->view('templates/user_footer');
-                }
-                else
-                {
+                } else {
                     $bukti = $this->upload->data('file_name');
-                }
 
+                    $where = array(
+                        'id_zakat' => $id
+                    );
+
+                    $data = array(
+                        'bukti_zakat' => $bukti,
+                        'status_zakat' => '1'
+                    );
+
+                    $this->db->trans_start();
+                    $this->m_crud->update($where, $data, 'pembayaran_zakat');
+                    $this->db->trans_complete();
+                    if ($this->db->trans_status() == true) {
+                        $this->session->set_flashdata('pesan', '
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Selamat!</strong> Berhasil mengunggah bukti pembayaran.
+                            <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        ');
+                        redirect('user/pembayaran_zakat/verifikasi_berhasil/' . $id);
+                    } else {
+                        $this->session->set_flashdata('pesan', '
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Maaf!</strong> Server sedang sibuk.
+                            <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        ');
+                        redirect('user/pembayaran_zakat/verifikasi/' . $id);
+                    }
+                }
             }
         }
-
-        $where = array(
-            'id_zakat' => $id
-        );
-
-        $data = array(
-            'bukti_zakat' => $bukti,
-            'status_zakat' => '1'
-        );
-
-        $this->db->trans_start();
-        $this->m_crud->update($where, $data, 'pembayaran_zakat');
-        $this->db->trans_complete();
-        if ($this->db->trans_status() == true) {
-            $this->session->set_flashdata('pesan', '
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Selamat!</strong> Berhasil mengunggah bukti pembayaran.
-                <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            ');
-            redirect('user/pembayaran_zakat/verifikasi_berhasil/' . $id);
-        }else{
-            $this->session->set_flashdata('pesan', '
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Maaf!</strong> Server sedang sibuk.
-                <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            ');
-            redirect('user/pembayaran_zakat/verifikasi/' . $id);
-        }
-    
     }
 
     function bayar()
@@ -176,10 +172,10 @@ class Pembayaran_zakat extends CI_Controller
             </div>
             ');
             $this->index();
-        }else{
+        } else {
             if ($this->session->userdata('id') != null) {
                 $id = $this->session->userdata('id');
-            }else{
+            } else {
                 $id = '1';
             }
 
@@ -206,7 +202,7 @@ class Pembayaran_zakat extends CI_Controller
                 </div>
                 ');
                 redirect("user/pembayaran_zakat/verifikasi/$id_pembayaran");
-            }else{
+            } else {
                 $this->session->set_flashdata('pesan', '
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong>Maaf!</strong> Server sedang sibuk.

@@ -128,13 +128,13 @@ class Anggota extends CI_Controller
 
     function update()
     {
+        // var_dump($_POST); die;
         $id_anggota = $this->input->post('id_anggota');
 
         // rules
         $this->form_validation->set_rules('alamat', 'Alamat', 'trim|callback_addr_line1');
         $this->form_validation->set_rules('no_hp', 'Nomor Hp', 'trim|required|numeric|min_length[10]|max_length[13]');
         $this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_dash|min_length[2]|max_length[32]');
-        $this->form_validation->set_rules('status', 'Status', 'trim|required|numeric');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 
         // custom pesan
