@@ -72,19 +72,11 @@
                         <small id="username" class="form-text text-muted">Masukkan Username anggota dengan benar</small>
                         <?php echo form_error('username'); ?>
                     </div>
-                    <div class="form-group">
-                        <label for="status">Status:</label>
-                        <select class="custom-select" name="status" id="status" required>
-                            <option value="" selected>Pilih Status</option>
-                            <option value="1" <?=$detAng->status_anggota=='1'?"selected":""?>>AKTIF</option>
-                            <option value="0" <?=$detAng->status_anggota=='0'?"selected":""?>>NONAKTIF</option>
-                        </select>
-                        <?php echo form_error('status'); ?>
-                    </div>
-                    <a class="btn btn-success px-3 mr-1" href="<?=base_url()?>user/anggota/ganti_password">Reset Password</a>
                 </div>
                 <div class="form-group text-center">
-                    <button class="btn btn-primary px-3 mr-1" type="submit">Simpan</button>
+                    <a class="btn btn-success px-3 mr-1" href="<?=base_url()?>user/anggota/ganti_password">Reset Password</a>
+                    <button class="btn btn-primary px-4 mr-1" type="submit">Simpan</button>
+                    <button onclick="window.history.go(-1); return false;" class="btn btn-danger text-white px-3 mr-1"><i class="fas fa-arrow-left mr-2"></i>Kembali</button>
                 </div>
             </form>
         <?php } ?>

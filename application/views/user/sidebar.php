@@ -40,7 +40,11 @@ $bulan = $ci->m_landingpage->getBulanforSidebar()->result();
             <a href="" data-toggle="collapse" data-target="#collapse<?=$i?>" aria-expanded="true" aria-controls="collapse<?=$i?>">
             <div class="card-header" id="heading<?=$i?>">
                 <span class="mb-0 text-dark">
-                    <?=substr($rowBulan->tanggal_berita, 0, 7)?>
+                    <?php $blnabjad = substr($rowBulan->tanggal_berita, 0, 7) . "-01 00:00:00";
+                    $old_date = $blnabjad;
+                    $old_date_timestamp = strtotime($old_date);
+                    echo date('F yy', $old_date_timestamp);
+                    ?>
                 </span>
             </div>
             </a>
