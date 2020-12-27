@@ -33,7 +33,7 @@
                 <li><a href="<?=base_url()?>user/history_pembayaran">History Pembayaran Zakat</a></li>
                 <li><a href="<?=base_url()?>user/history_pendaftaran">History Pendaftaran Penerima</a></li>
                 <li><a href="<?=base_url()?>user/edit_profil/">Edit Profile</a></li>
-                <li><a onclick="return confirm('Apakah anda yakin ingin logout?');" href="<?=base_url()?>user/auth/logout">Log Out</a></li>
+                <li><a onclick="return confirm('Apakah anda yakin ingin logout?');" href="<?=base_url()?>user/anggota/logout">Log Out</a></li>
             </ul>
           </li>
           <?php }?>
@@ -59,7 +59,7 @@
                 <a class="dropdown-item" href="<?=base_url()?>user/history_pembayaran">History Pembayaran Zakat</a>
                 <a class="dropdown-item" href="<?=base_url()?>user/history_pendaftaran">History Pendaftaran Penerima</a>
                 <a class="dropdown-item" href="<?=base_url()?>user/anggota/edit">Edit Profile</a>
-                <a onclick="return confirm('Apakah anda yakin ingin logout?');" class="dropdown-item" href="<?=base_url()?>user/auth/logout">Log Out</a>
+                <a onclick="return confirm('Apakah anda yakin ingin logout?');" class="dropdown-item" href="<?=base_url()?>user/anggota/logout">Log Out</a>
               </div>
             </li>   
           </ul>

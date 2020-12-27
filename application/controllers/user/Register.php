@@ -59,9 +59,9 @@ class Register extends CI_Controller
                 'no_hp_anggota' => $this->input->post('no_hp'),
                 'email_anggota' => $this->input->post('email'),
                 'username_anggota' => $this->input->post('name'),
-                'password_anggota' => md5($this->input->post('password')),
+                'password_anggota' => md5($this->input->post('password1')),
                 'token_anggota' => md5(rand(0, 1000)),
-                'status_anggota' => '0'
+                'status_anggota' => '1'
             );
             // memanggil fungsi insert untuk membuat baris baru pada tabel anggota
             $this->m_crud->insert($data, 'tb_anggota');

@@ -219,4 +219,10 @@ class Anggota extends CI_Controller
         }
     }
 
+    function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('user/auth/login_anggota');
+    }
+
 }
