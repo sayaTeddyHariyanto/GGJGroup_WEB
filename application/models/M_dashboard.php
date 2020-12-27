@@ -48,6 +48,12 @@ class M_dashboard extends CI_Model{
         $sisa_saldo = $total_zakat - $total_distribusi;
         return $sisa_saldo;
     }
+    
+    public function laporanBulanan(){
+        $bulan_sekarang = date("Y-m");
+        $total = $this->db->query("SELECT *, SUM(pembayaran_zakat.nominal_zakat) AS total FROM pembayaran_zakat GROUP BY month(pembayaran_zakat.tanggal_zakat)")
+        
+    }
 
     // public function getFavorit()
     // {
