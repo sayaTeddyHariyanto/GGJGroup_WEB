@@ -17,8 +17,9 @@ class Kontak extends CI_Controller
     function index()
     {
         $data['kontak'] = $this->m_crud->getAll('kontak')->result();
+        $data['sidebar'] = 'website';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
 		$this->load->view('templates/admin_navbar');
 		$this->load->view('admin/kontak', $data);
         $this->load->view('templates/admin_footer_js');
@@ -50,7 +51,7 @@ class Kontak extends CI_Controller
     {
         // rules
         $this->form_validation->set_rules('nama', 'Nama Sosial Media', 'trim|required|alpha_numeric_spaces|min_length[2]|max_length[100]');
-        $this->form_validation->set_rules('akun', 'Nama Akun', 'trim|required|alpha_numeric_spaces|min_length[2]|max_length[100]');
+        $this->form_validation->set_rules('akun', 'Nama Akun', 'trim|required|min_length[2]|max_length[100]');
         $this->form_validation->set_rules('link', 'Link Akun', 'trim|required|callback_check_valid_url');
 
         // custom pesan
@@ -76,8 +77,9 @@ class Kontak extends CI_Controller
             </div>
             ');
             $data['kontak'] = $this->m_crud->getAll('kontak')->result();
+            $data['sidebar'] = 'website';
             $this->load->view('templates/admin_header');
-            $this->load->view('templates/admin_sidebar');
+            $this->load->view('templates/admin_sidebar', $data);
             $this->load->view('templates/admin_navbar');
             $this->load->view('admin/kontak', $data);
             $this->load->view('templates/admin_footer_js');
@@ -135,8 +137,9 @@ class Kontak extends CI_Controller
     {
         $where = array('id_kontak' => $id_kontak);
         $data['kontak'] = $this->m_crud->edit($where, 'kontak')->result();
+        $data['sidebar'] = 'website';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
 		$this->load->view('templates/admin_navbar');
 		$this->load->view('admin/kontak_edit', $data);
         $this->load->view('templates/admin_footer_js');
@@ -150,7 +153,7 @@ class Kontak extends CI_Controller
 
         // rules
         $this->form_validation->set_rules('nama', 'Nama Sosial Media', 'trim|required|alpha_numeric_spaces|min_length[2]|max_length[100]');
-        $this->form_validation->set_rules('akun', 'Nama Akun', 'trim|required|alpha_numeric_spaces|min_length[2]|max_length[100]');
+        $this->form_validation->set_rules('akun', 'Nama Akun', 'trim|required|min_length[2]|max_length[100]');
         $this->form_validation->set_rules('link', 'Link Akun', 'trim|required|callback_check_valid_url');
 
         // custom pesan
@@ -177,8 +180,9 @@ class Kontak extends CI_Controller
             ');
             $where = array('id_kontak' => $id_kontak);
             $data['kontak'] = $this->m_crud->edit($where, 'kontak')->result();
+            $data['sidebar'] = 'website';
             $this->load->view('templates/admin_header');
-            $this->load->view('templates/admin_sidebar');
+            $this->load->view('templates/admin_sidebar', $data);
             $this->load->view('templates/admin_navbar');
             $this->load->view('admin/kontak_edit', $data);
             $this->load->view('templates/admin_footer_js');
@@ -270,8 +274,9 @@ class Kontak extends CI_Controller
     {
         $where = array('id_kontak' => $id_kontak);
         $data['kontak'] = $this->m_crud->edit($where, 'kontak')->result();
+        $data['sidebar'] = 'website';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
 		$this->load->view('templates/admin_navbar');
 		$this->load->view('admin/kontak_detail', $data);
         $this->load->view('templates/admin_footer_js');

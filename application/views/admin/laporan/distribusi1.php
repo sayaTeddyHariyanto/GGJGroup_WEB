@@ -1,8 +1,8 @@
 <div class="container-fluid">
 
     <div class="row justify-content-center py-3">
-        <div class="col-md-8 card p-0">
-            <div class="card-header pb-0">
+        <div class="col-md-10 card shadow p-0">
+            <div class="card-body pb-0">
                 <h2 class="font-weight-bolder mb-0">Distribusi Zakat</h2>
                 <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
                     <li class="breadcrumb-item"><a href="<?= base_url() ?>admin/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
@@ -67,36 +67,27 @@
                     </div>
                 </div>
 
-                <div class="card shadow mb-4">
+                <div class="card mb-4">
+                    <div class="card-header bg-success py-3">
+                        <h6 class="m-0 font-weight-bold text-white">Tabel Distribusi Zakat</h6>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Kategori</th>
-                                        <th>Judul Distribusi</th>
                                         <th>Tanggal Distribusi</th>
                                         <th>Nominal Distribusi</th>
-                                        <th>Status Distribusi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
                                     foreach ($distribusi as $dst) : ?>
                                         <tr>
-                                            <td><?= $i ?></td>
-                                            <td><?= $dst->nama_kategori ?></td>
-                                            <td><?= $dst->judul_distribusi ?></td>
+                                            <td><?= $i ?>. </td>
                                             <td><?= $dst->tanggal_distribusi ?></td>
-                                            <td><?= $dst->Total_distribusi ?></td>
-                                            <td><?php
-                                                if ($dst->status_distribusi == "0") {
-                                                    echo "<span class='badge badge-danger'>Belum Terdistribusi</span>";
-                                                } else {
-                                                    echo "<span class='badge badge-primary'>Sudah Terdistribusi</span>";
-                                                }
-                                                ?></td>
+                                            <td  class="text-right">Rp. <?= number_format($dst->Total_distribusi, 0, ',', '.') ?></td>
                                         </tr>
                                     <?php $i++;
                                     endforeach; ?>
@@ -105,6 +96,19 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Area Chart -->
+                <div class="card mb-4">
+                    <div class="card-header bg-success py-3">
+                        <h6 class="m-0 font-weight-bold text-white">Grafik Distribusi Zakat</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="laporanArea"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>

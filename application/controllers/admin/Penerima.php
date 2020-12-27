@@ -18,8 +18,9 @@ class Penerima extends CI_Controller
         $data['penerima'] = $this->m_penerima->tampil_tabel()->result();
         $data['kategori'] = $this->m_penerima->kategori();
         $data['anggota'] = $this->m_penerima->anggota();
+        $data['sidebar'] = 'penerima';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/penerima', $data);
         $this->load->view('templates/admin_footer_js');
@@ -59,9 +60,10 @@ class Penerima extends CI_Controller
             $data['penerima'] = $this->m_penerima->tampil_tabel()->result();
             $data['kategori'] = $this->m_crud->getAll('tb_kategori')->result();
             $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
+            $data['sidebar'] = 'penerima';
 
             $this->load->view('templates/admin_header');
-            $this->load->view('templates/admin_sidebar');
+            $this->load->view('templates/admin_sidebar', $data);
             $this->load->view('templates/admin_navbar');
             $this->load->view('admin/penerima', $data);
             $this->load->view('templates/admin_footer_js');
@@ -112,10 +114,11 @@ class Penerima extends CI_Controller
         $data['penerima'] = $this->m_crud->edit($where, 'tb_penerima')->result();
         $data['kategori'] = $this->m_crud->getAll('tb_kategori')->result();
         $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
+        $data['sidebar'] = 'penerima';
         //$where = array('id_penerima' => $id_penerima);
         //$data['penerima'] = $this->m_penerima->edit($where, 'tb_penerima')->result();
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/penerima_edit', $data);
         $this->load->view('templates/admin_footer_js');
@@ -156,8 +159,9 @@ class Penerima extends CI_Controller
             $data['penerima'] = $this->m_crud->edit($where, 'tb_penerima')->result();
             $data['kategori'] = $this->m_crud->edit($where, 'tb_penerima')->result();
             $data['anggota']  = $this->m_crud->edit($where, 'tb_penerima')->result();
+            $data['sidebar'] = 'penerima';
             $this->load->view('templates/admin_header');
-            $this->load->view('templates/admin_sidebar');
+            $this->load->view('templates/admin_sidebar', $data);
             $this->load->view('templates/admin_navbar');
             $this->load->view('admin/penerima_edit', $data);
             $this->load->view('templates/admin_footer_js');
@@ -240,9 +244,10 @@ class Penerima extends CI_Controller
         //$where = array('id_penerima' => $id_penerima);
 
         $data['penerima'] = $this->m_penerima->detail($id_penerima)->result();
+        $data['sidebar'] = 'penerima';
 
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/penerima_detail', $data);
         $this->load->view('templates/admin_footer_js');

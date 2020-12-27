@@ -17,8 +17,9 @@ class Slider extends CI_Controller
     function index()
     {
         $data['slider'] = $this->m_crud->getAll('foto_slider')->result();
+        $data['sidebar'] = 'website';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
 		$this->load->view('templates/admin_navbar');
 		$this->load->view('admin/slider', $data);
         $this->load->view('templates/admin_footer_js');
@@ -65,8 +66,9 @@ class Slider extends CI_Controller
             </div>
             ');
             $data['slider'] = $this->m_crud->getAll('foto_slider')->result();
+            $data['sidebar'] = 'website';
             $this->load->view('templates/admin_header');
-            $this->load->view('templates/admin_sidebar');
+            $this->load->view('templates/admin_sidebar', $data);
             $this->load->view('templates/admin_navbar');
             $this->load->view('admin/slider', $data);
             $this->load->view('templates/admin_footer_js');
@@ -106,8 +108,9 @@ class Slider extends CI_Controller
                     </div>
                     ');
                     $data['slider'] = $this->m_crud->getAll('foto_slider')->result();
+                    $data['sidebar'] = 'website';
                     $this->load->view('templates/admin_header');
-                    $this->load->view('templates/admin_sidebar');
+                    $this->load->view('templates/admin_sidebar', $data);
                     $this->load->view('templates/admin_navbar');
                     $this->load->view('admin/slider', $data);
                     $this->load->view('templates/admin_footer_js');
@@ -156,8 +159,9 @@ class Slider extends CI_Controller
     {
         $where = array('id_foto' => $id_foto);
         $data['slider'] = $this->m_crud->edit($where, 'foto_slider')->result();
+        $data['sidebar'] = 'website';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
 		$this->load->view('templates/admin_navbar');
 		$this->load->view('admin/slider_edit', $data);
         $this->load->view('templates/admin_footer_js');
@@ -197,8 +201,9 @@ class Slider extends CI_Controller
             ');
             $where = array('id_foto' => $id_foto);
             $data['slider'] = $this->m_crud->edit($where, 'foto_slider')->result();
+            $data['sidebar'] = 'website';
             $this->load->view('templates/admin_header');
-            $this->load->view('templates/admin_sidebar');
+            $this->load->view('templates/admin_sidebar', $data);
             $this->load->view('templates/admin_navbar');
             $this->load->view('admin/slider_edit', $data);
             $this->load->view('templates/admin_footer_js');
@@ -240,8 +245,9 @@ class Slider extends CI_Controller
                     </div>
                     ');
                     $data['slider'] = $this->m_crud->getAll('foto_slider')->result();
+                    $data['sidebar'] = 'website';
                     $this->load->view('templates/admin_header');
-                    $this->load->view('templates/admin_sidebar');
+                    $this->load->view('templates/admin_sidebar', $data);
                     $this->load->view('templates/admin_navbar');
                     $this->load->view('admin/slider', $data);
                     $this->load->view('templates/admin_footer_js');
@@ -363,8 +369,9 @@ class Slider extends CI_Controller
     {
         $where = array('id_foto' => $id_foto);
         $data['slider'] = $this->m_crud->edit($where, 'foto_slider')->result();
+        $data['sidebar'] = 'website';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
 		$this->load->view('templates/admin_navbar');
 		$this->load->view('admin/slider_detail', $data);
         $this->load->view('templates/admin_footer_js');

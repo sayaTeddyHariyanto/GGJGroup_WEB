@@ -8,6 +8,19 @@ class Auth extends CI_Controller
         $this->load->model('m_crud');
         $this->load->library('form_validation');
         // $this->load->library('Primslib');
+        
+        if ($this->session->userdata('id') != '') {
+            $this->session->set_flashdata('pesan', '
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Dimohon untuk logout terlebih dahulu.
+                <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            ');
+            redirect('user/dashboard');
+        }
+        
     }
 
     function reset_password($token, $id)
@@ -204,13 +217,18 @@ class Auth extends CI_Controller
             // Memeriksa apakah ada username yang sama pada database?
             $user = $this->db->get_where('tb_anggota', ['username_anggota' => $nama])->row_array();
             if ($user != null) { // jika username ditemukan, maka lanjut memeriksa apakah inputan password sama dengan pemilik username tersebut?
-                if (md5($password) == $user['password_anggota']) { // jika password benar, maka lanjut membuat session
-                    $data = [
-                        'username_anggota' => $user['username_anggota'],
-                        'id' => $user['id_anggota']
-                    ];
-                    $this->session->set_userdata($data); // session dibuat dengan membawa 2 variabel pada array
-                    redirect('user/landingpage'); // setelah membuat session, user diarahkan ke halaman landingpage
+                if (md5($password) == $user['password_anggota']) { // jika password benar, maka lanjut
+                    if($user['status_anggota'] == '1'){ // jika user sudah aktif maka membuat session
+                        $data = [
+                            'username_anggota' => $user['username_anggota'],
+                            'id' => $user['id_anggota']
+                        ];
+                        $this->session->set_userdata($data); // session dibuat dengan membawa 2 variabel pada array
+                        redirect('user/landingpage'); // setelah membuat session, user diarahkan ke halaman landingpage
+                    }else{
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Akun anda belum aktif</div>');
+                        redirect('user/Auth/login_anggota');
+                    }
                 } else { // jika password salah, maka munculkan pesan 'password salah'
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password Salah</div>');
                     redirect('user/Auth/login_anggota');

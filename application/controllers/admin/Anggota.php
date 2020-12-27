@@ -35,10 +35,24 @@ class Anggota extends CI_Controller
     function index()
     {
         $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
+        $data['sidebar'] = 'keanggotaan';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/anggota', $data);
+        $this->load->view('templates/admin_footer_js');
+        $this->load->view('templates/admin_custom_js');
+        $this->load->view('templates/admin_footer');
+    }
+
+    function verifikasi()
+    {
+        $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
+        $data['sidebar'] = 'keanggotaan';
+        $this->load->view('templates/admin_header');
+        $this->load->view('templates/admin_sidebar', $data);
+        $this->load->view('templates/admin_navbar');
+        $this->load->view('admin/anggota_verifikasi', $data);
         $this->load->view('templates/admin_footer_js');
         $this->load->view('templates/admin_custom_js');
         $this->load->view('templates/admin_footer');
@@ -89,8 +103,9 @@ class Anggota extends CI_Controller
             </div>
             ');
             $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
+            $data['sidebar'] = 'keanggotaan';
             $this->load->view('templates/admin_header');
-            $this->load->view('templates/admin_sidebar');
+            $this->load->view('templates/admin_sidebar', $data);
             $this->load->view('templates/admin_navbar');
             $this->load->view('admin/anggota', $data);
             $this->load->view('templates/admin_footer_js');
@@ -137,8 +152,9 @@ class Anggota extends CI_Controller
     {
         $where = array('id_anggota' => $id_anggota);
         $data['anggota'] = $this->m_crud->edit($where, 'tb_anggota')->result();
+        $data['sidebar'] = 'keanggotaan';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/anggota_edit', $data);
         $this->load->view('templates/admin_footer_js');
@@ -259,12 +275,47 @@ class Anggota extends CI_Controller
         }
     }
 
+    function status($id_anggota, $status)
+    {
+        $where = array(
+            'id_anggota' => $id_anggota
+        );
+
+        $update = array(
+            'status_anggota' => $status
+        );
+
+        $this->m_crud->update($where, $update, 'tb_anggota');
+        if ($this->db->affected_rows() == true) {
+            $this->session->set_flashdata('pesan', '
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Selamat!</strong> Anda berhasil mengubah data.
+                <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            ');
+            redirect("admin/anggota/verifikasi");
+        } else {
+            $this->session->set_flashdata('pesan', '
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Maaf!</strong> Anda gagal mengubah data.
+                <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            ');
+            redirect("admin/anggota/verifikasi");
+        }
+    }
+
     function detail($id_anggota)
     {
         $where = array('id_anggota' => $id_anggota);
         $data['anggota'] = $this->m_crud->edit($where, 'tb_anggota')->result();
+        $data['sidebar'] = 'keanggotaan';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/anggota_detail', $data);
         $this->load->view('templates/admin_footer_js');

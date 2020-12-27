@@ -2,7 +2,7 @@
 
 <!-- ======= Breadcrumbs ======= -->
 <section id="breadcrumbs" class="breadcrumbs">
-<div class="container">
+<div class="container mt-5">
 
     <div class="d-flex justify-content-between align-items-center">
     <!-- <h2>Pembayaran Zakat</h2> -->
@@ -45,13 +45,13 @@
                         <td><?=$detBayar->nominal_zakat?></td>
                         <td>
                                 <?php if ($detBayar->status_zakat == '0'){
-                                    echo '<li class="breadcrumb-item">Menunggu Verifikasi</li>';
+                                    echo 'Menunggu Verifikasi';
                         
                                 }else if ($detBayar->status_zakat == '1'){
-                                echo '<li class="breadcrumb-item active">Terverifikasi</li>';
+                                echo 'Terverifikasi';
                                 }
                                 ?>
-                                <li><a href="<?=base_url()?>user/history_pembayaran/detail/<?=$detBayar->id_zakat?>">Lihat Detail</a></li>
+                                <br><a class="badge badge-success text-white p-2" href="<?=base_url()?>user/history_pembayaran/detail/<?=$detBayar->id_zakat?>">Lihat Detail</a></li>
                         </td>
                     </tr>
                     <?php $i++; endforeach;?>

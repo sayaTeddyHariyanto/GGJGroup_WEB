@@ -3,7 +3,7 @@
 
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
+      <div class="container mt-5">
 
         <div class="d-flex justify-content-between align-items-center">
           <!-- <h2>Pembayaran Zakat</h2> -->
@@ -28,12 +28,17 @@
             <article class="entry entry-single">
 
               <div class="entry-img">
-                <img src="<?=base_url()?>assets/user/img/blog-1.jpg" alt="" class="img-fluid">
+                <img src="<?=base_url()?>assets/admin/img/berita/<?=$rowBlog->thumbnail?>" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
                 <span><?=$rowBlog->judul_berita?></span>
               </h2>
+              <p class="mt-n3 small text-justify text-secondary">
+                <?=$rowBlog->deskripsi?>
+              </p>
+
+              <hr>
 
               <div class="entry-meta">
                 <ul>

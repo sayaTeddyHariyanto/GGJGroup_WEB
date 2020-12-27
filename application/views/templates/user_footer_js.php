@@ -6,14 +6,17 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="footer-info">
-              <h3>GGJ Group Zakah</h3>
+              <?php $ci = &get_instance(); $profil = $ci->m_crud->getAll('profil')->result();
+                foreach($profil as $rowProfil){?>
+              <h3><?=$rowProfil->nama_profil?></h3>
               <p>
-                <span>Alamat GGJ Group Zakah ini satu baris aja apa bisa ke Enter sendiri</span><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
+                <span><?=$rowProfil->alamat_profil?></span><br>
+                <strong>Phone:</strong> <?=$rowProfil->no_telp_profil?><br>
+                <strong>Email:</strong> <?=$rowProfil->email_profil?><br>
               </p>
+              <?php }?>
               <div class="social-links mt-3">
-                <?php $ci = &get_instance(); $kontak = $ci->m_crud->getAll('kontak')->result();
+                <?php $kontak = $ci->m_crud->getAll('kontak')->result();
                 foreach($kontak as $rowKontak){?>
                 <a href="<?=$rowKontak->link_akun?>" data-toggle="tooltip" data-placement="top" title="<?=$rowKontak->nama_akun?> (<?=$rowKontak->nama_sosmed?>)"><i class="bx <?=$rowKontak->ikon?>"></i></a>
                 <?php }?>
@@ -37,6 +40,7 @@
               <li><i class="bx bx-chevron-right"></i> <a href="<?=base_url()?>user/distribusi/all">Pendistribusian</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="<?=base_url()?>user/pendaftaran_penerima">Pendaftaran Penerima</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="<?=base_url()?>user/pembayaran_zakat">Pembayaran Zakat</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="<?=base_url()?>admin/">Admin</a></li>
             </ul>
           </div>
 

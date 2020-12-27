@@ -25,8 +25,10 @@ class Landingpage extends CI_Controller
         $data['saldo'] = $saldo;
         $data['penerima'] = $this->m_landingpage->selectcount_penerima()->row()->total;
         $data['slider'] = $this->m_crud->getAll('foto_slider')->result();
-        $data['berita'] = $this->m_crud->getAll('tb_berita')->result();
         $data['jadwal'] = $this->m_crud->getAll('jadwal_kegiatan')->result();
+        $this->db->where('status_berita', '1');
+        $this->db->limit(5);
+        $data['berita'] = $this->m_crud->getAll('tb_berita')->result();
         $this->load->view('templates/helper');
         $this->load->view('templates/user_header');
 		$this->load->view('templates/user_navbar');
@@ -165,10 +167,11 @@ class Landingpage extends CI_Controller
 
     function kontak()
     {
+        $data['profil'] = $this->m_crud->edit(['id_profil' => 1], 'profil')->result();
         $this->load->view('templates/helper');
         $this->load->view('templates/user_header');
         $this->load->view('templates/user_navbar');
-        $this->load->view('user/kontak');
+        $this->load->view('user/kontak', $data);
         $this->load->view('templates/user_footer_js');
         $this->load->view('templates/user_custom_js');
         $this->load->view('templates/user_footer');
@@ -176,10 +179,11 @@ class Landingpage extends CI_Controller
 
     function tentang()
     {
+        $data['profil'] = $this->m_crud->edit(['id_profil' => 1], 'profil')->result();
         $this->load->view('templates/helper');
         $this->load->view('templates/user_header');
         $this->load->view('templates/user_navbar');
-        $this->load->view('user/tentang');
+        $this->load->view('user/tentang', $data);
         $this->load->view('templates/user_footer_js');
         $this->load->view('templates/user_custom_js');
         $this->load->view('templates/user_footer');

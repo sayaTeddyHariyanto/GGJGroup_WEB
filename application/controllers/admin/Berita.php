@@ -20,8 +20,9 @@ class Berita extends CI_Controller
     function index()
     {
         $data['berita'] = $this->m_crud->getAll('tb_berita')->result();
+        $data['sidebar'] = 'website';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/berita', $data);
         $this->load->view('templates/admin_footer_js');
@@ -205,10 +206,23 @@ class Berita extends CI_Controller
     {
         $where = array('id_berita' => $id_berita);
         $data['berita'] = $this->m_crud->edit($where, 'tb_berita')->result();
+        $data['sidebar'] = 'website';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/berita_edit', $data);
+        $this->load->view('templates/admin_footer_js');
+        $this->load->view('templates/admin_custom_js');
+        $this->load->view('templates/admin_footer');
+    }
+
+    function add()
+    {
+        $data['sidebar'] = 'website';
+        $this->load->view('templates/admin_header');
+        $this->load->view('templates/admin_sidebar', $data);
+        $this->load->view('templates/admin_navbar');
+        $this->load->view('admin/berita_tambah');
         $this->load->view('templates/admin_footer_js');
         $this->load->view('templates/admin_custom_js');
         $this->load->view('templates/admin_footer');
@@ -223,14 +237,14 @@ class Berita extends CI_Controller
         $select = $this->m_crud->edit(array('id_berita' => $this->input->post('id_berita')), 'tb_berita');
 
         if ($thumbnail != '') {
-            $filename = explode(".", $select->row()->file)[0];
+            $filename = explode(".", $select->row()->thumbnail)[0];
             array_map('unlink', glob(FCPATH . "./assets/admin/img/berita/$filename.*"));
 
             $config['upload_path'] = './assets/admin/img/berita/';
             $config['allowed_types'] = 'jpg|jpeg|png';
             $config['max_size'] = '23024';
-            if ($select->num_rows() > 0 && $select->row()->file != '') {
-                $nama_database = explode('.', $select->row()->file); // nama pada database
+            if ($select->num_rows() > 0 && $select->row()->thumbnail != '') {
+                $nama_database = explode('.', $select->row()->thumbnail); // nama pada database
                 $type = explode(".", $_FILES['thumbnail']['name']); // tipe format yang dimasukkan saat ini
                 $config['file_name'] = $nama_database[0] . '.' . $type[1];
             } else {
@@ -270,7 +284,7 @@ class Berita extends CI_Controller
                 'konten'        => $this->input->post('editor1'),
                 'tanggal_berita' => $this->input->post('tanggal'),
                 'status_berita'   => $this->input->post('status'),
-                'thumbnail' => $this->input->post('thumbnail')
+                'thumbnail' => $thumbnail
             );
 
             $where = array('id_berita' => $id_berita);
@@ -310,7 +324,6 @@ class Berita extends CI_Controller
                 'konten'        => $this->input->post('editor1'),
                 'tanggal_berita' => $this->input->post('tanggal'),
                 'status_berita' => $this->input->post('status'),
-                'thumbnail' => $this->input->post('thumbnail')
             );
 
             $this->m_crud->update($where, $data, 'tb_berita');
@@ -371,6 +384,18 @@ class Berita extends CI_Controller
                 echo json_encode($jsondata);
             } else {
                 $data = $this->upload->data();
+
+                $data = $this->upload->data();
+                $config['image_library']='gd2';
+                $config['source_image']='./assets/images/'.$data['file_name'];
+                $config['create_thumb']= FALSE;
+                $config['maintain_ratio']= FALSE;
+                $config['quality']= '50%';
+                $config['width']= 600;
+                $config['height']= 400;
+                $config['new_image']= './assets/images/'.$data['file_name'];
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
 
                 // JPG compression
                 if ($this->upload->data('file_ext') === '.jpg') {

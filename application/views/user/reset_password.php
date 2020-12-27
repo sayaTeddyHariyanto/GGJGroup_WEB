@@ -1,6 +1,6 @@
 <?php foreach ($anggota as $rowAng ) { ?>
 <div class="wrapper py-5 bg-success" style="width: 100vw; height:100vh;">
-    <div class="container">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-12">
                 <div class="card shadow bg-white">

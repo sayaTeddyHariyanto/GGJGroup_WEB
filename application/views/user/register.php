@@ -9,7 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Registrasi Anggota</title>
+    <title>GGJ Group Zakah</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="<?=base_url()?>assets/user/img/logo_ggj.png" rel="icon">
+    <link href="<?=base_url()?>assets/user/img/logo_ggj.png" rel="apple-touch-icon">
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url(); ?>assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

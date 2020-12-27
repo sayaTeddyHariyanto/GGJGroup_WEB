@@ -5,16 +5,21 @@ class Laporan_distribusi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_distribusi');
+        if ($this->session->userdata('status') == '') {
+            redirect('admin/login');
+        }
     }
     function index()
     {
         $data['distribusi'] = $this->M_distribusi->get_distribusi();
+        $data['sidebar'] = 'laporan';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/laporan/distribusi1', $data);
         $this->load->view('templates/admin_footer_js');
         $this->load->view('templates/admin_custom_js');
+        $this->load->view('templates/admin_chart_area', $data);
         $this->load->view('templates/admin_footer');
     }
 
@@ -31,12 +36,14 @@ class Laporan_distribusi extends CI_Controller
             'jenis'  => $jenis
         );
 
+        $data['sidebar'] = 'laporan';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/laporan/distribusi2', $data);
         $this->load->view('templates/admin_footer_js');
         $this->load->view('templates/admin_custom_js');
+        $this->load->view('templates/admin_chart_area', $data);
         $this->load->view('templates/admin_footer');
     }
 
@@ -69,12 +76,14 @@ class Laporan_distribusi extends CI_Controller
             'jenis'  => $jenis
         );
 
+        $data['sidebar'] = 'laporan';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/laporan/distribusi2', $data);
         $this->load->view('templates/admin_footer_js');
         $this->load->view('templates/admin_custom_js');
+        $this->load->view('templates/admin_chart_area', $data);
         $this->load->view('templates/admin_footer');
     }
 
@@ -106,12 +115,15 @@ class Laporan_distribusi extends CI_Controller
             'tahun' => $tahun,
             'jenis'  => $jenis
         );
+
+        $data['sidebar'] = 'laporan';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/laporan/distribusi2', $data);
         $this->load->view('templates/admin_footer_js');
         $this->load->view('templates/admin_custom_js');
+        $this->load->view('templates/admin_chart_area', $data);
         $this->load->view('templates/admin_footer');
     }
 

@@ -17,8 +17,9 @@ class Saran extends CI_Controller
     function index()
     {
         $data['saran'] = $this->m_crud->getAll('tb_saran')->result();
+        $data['sidebar'] = 'website';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/saran', $data);
         $this->load->view('templates/admin_footer_js');
@@ -29,8 +30,9 @@ class Saran extends CI_Controller
     function detail($id)
     {
         $data['saran'] = $this->m_crud->edit(['id_saran' => $id], 'tb_saran')->result();
+        $data['sidebar'] = 'website';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/saran_detail', $data);
         $this->load->view('templates/admin_footer_js');

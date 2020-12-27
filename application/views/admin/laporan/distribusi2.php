@@ -1,8 +1,8 @@
 <div class="container-fluid">
 
     <div class="row justify-content-center py-3">
-        <div class="col-md-8 card p-0">
-            <div class="card-header pb-0">
+        <div class="col-md-10 card shadow p-0">
+            <div class="card-body pb-0">
                 <h2 class="font-weight-bolder mb-0">Distribusi Zakat</h2>
                 <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
                     <li class="breadcrumb-item"><a href="<?= base_url() ?>admin/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
@@ -24,7 +24,7 @@
                             <div class="input-group mb-3">
                                 <input type="hidden" name="jenis" value="box_harian">
                                 <input type="date" name="t_awal" id="t_awal" required value="<?= $data['jenis'] == 'box_harian' ? $data['t_awal'] : "" ?>" class="form-control" placeholder="Dari Tanggal . .">
-                                <input type="date" name="t_akhir" id="t_akhir" required value=<?= $data['jenis'] == 'box_harian' ? $data['t_akhir'] : "" ?>" class="form-control" placeholder="Sampai Tanggal . .">
+                                <input type="date" name="t_akhir" id="t_akhir" required value="<?= $data['jenis'] == 'box_harian' ? $data['t_akhir'] : "" ?>" class="form-control" placeholder="Sampai Tanggal . .">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-warning" type="submit" id="submit">Submit</button>
                                 </div>
@@ -85,36 +85,27 @@
                     <i class="fas fa-arrow-left mr-2"></i> Kembali
                 </a>
 
-                <div class="card shadow mb-4">
+                <div class="card mb-4">
+                    <div class="card-header bg-success py-3">
+                        <h6 class="m-0 font-weight-bold text-white">Tabel Distribusi Zakat</h6>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Kategori</th>
-                                        <th>Judul Distribusi</th>
                                         <th>Tanggal Distribusi</th>
                                         <th>Nominal Distribusi</th>
-                                        <th>Status Distribusi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
                                     foreach ($distribusi as $dst) : ?>
                                         <tr>
-                                            <td><?= $i ?></td>
-                                            <td><?= $dst->nama_kategori ?></td>
-                                            <td><?= $dst->judul_distribusi ?></td>
-                                            <td><?= $dst->tanggal_distribusi ?></td>
-                                            <td><?= $dst->Total_distribusi ?></td>
-                                            <td><?php
-                                                if ($dst->status_distribusi == "0") {
-                                                    echo "<span class='badge badge-danger'>Belum Terdistribusi</span>";
-                                                } else {
-                                                    echo "<span class='badge badge-primary'>Sudah Terdistribusi</span>";
-                                                }
-                                                ?></td>
+                                            <td><?= $i ?>.</td>
+                                            <td><?= $data['jenis'] == 'box_tahunan' ? substr($dst->tanggal_distribusi, 0, 7) : $dst->tanggal_distribusi ?></td>
+                                            <td class="text-right">Rp. <?= number_format($dst->Total_distribusi, 0, ',', '.') ?></td>
                                         </tr>
                                     <?php $i++;
                                     endforeach; ?>
@@ -123,6 +114,19 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Area Chart -->
+                <div class="card mb-4">
+                    <div class="card-header bg-success py-3">
+                        <h6 class="m-0 font-weight-bold text-white">Grafik Distribusi Zakat</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="laporanArea"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>

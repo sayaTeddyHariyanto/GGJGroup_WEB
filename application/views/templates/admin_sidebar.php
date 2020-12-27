@@ -15,7 +15,7 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item <?php if(isset($sidebar)){ echo $sidebar == 'dashboard' ? "active" : ""; }?>">
         <a class="nav-link" href="<?= base_url() ?>admin/guide">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -25,31 +25,31 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <li class="nav-item <?php if(isset($sidebar)){ echo $sidebar == 'penerima' ? "active" : ""; }?>">
         <a class="nav-link" href="<?= base_url() ?>admin/penerima">
           <i class="fas fa-user-alt"></i>
           <span>Penerima Zakat</span></a>
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item <?php if(isset($sidebar)){ echo $sidebar == 'keanggotaan' ? "active" : ""; }?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-user-friends"></i>
           <span>Keanggotaan</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">kelola anggota</h6>
+            <h6 class="collapse-header">Kelola Anggota</h6>
             <a class="collapse-item" href="<?= base_url() ?>admin/anggota">Data Anggota</a>
-            <a class="collapse-item" href="cards.html">Verifikasi Data Anggota</a>
+            <a class="collapse-item" href="<?= base_url() ?>admin/anggota/verifikasi">Verifikasi Data Anggota</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item <?php if(isset($sidebar)){ echo $sidebar == 'zakat' ? "active" : ""; }?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-user-friends"></i>
+          <i class="fas fa-dollar-sign"></i>
           <span>Zakat</span>
         </a>
         <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -62,14 +62,14 @@
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item <?php if(isset($sidebar)){ echo $sidebar == 'distribusi' ? "active" : ""; }?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-user-friends"></i>
+          <i class="fas fa-car"></i>
           <span>Distribusi</span>
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">kelola ditribusi</h6>
+            <h6 class="collapse-header">Kelola Ditribusi</h6>
             <a class="collapse-item" href="<?= base_url() ?>admin/distribusi">Data Distribusi</a>
           </div>
         </div>
@@ -78,7 +78,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item <?php if(isset($sidebar)){ echo $sidebar == 'laporan' ? "active" : ""; }?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Laporan</span>
@@ -86,15 +86,15 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pilih Laporan</h6>
-            <a class="collapse-item" href="register.html">Pembayaran Zakat</a>
-            <a class="collapse-item" href="forgot-password.html">Keuangan</a>
-            <a class="collapse-item" href="<?= base_url() ?>admin/Laporan_distribusi">Distribusi</a>
+            <a class="collapse-item" href="<?= base_url() ?>admin/pembayaran_zakat">Pembayaran Zakat</a>
+            <a class="collapse-item" href="<?= base_url() ?>admin/keuangan">Keuangan</a>
+            <a class="collapse-item" href="<?= base_url() ?>admin/laporan_distribusi">Distribusi</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item <?php if(isset($sidebar)){ echo $sidebar == 'website' ? "active" : ""; }?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagees" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-cog"></i>
           <span>Kelola Website</span>
@@ -107,6 +107,7 @@
             <a class="collapse-item" href="<?= base_url() ?>admin/jadwal">Jadwal Kegiatan</a>
             <a class="collapse-item" href="<?= base_url() ?>admin/kontak">Kontak Person</a>
             <a class="collapse-item" href="<?= base_url() ?>admin/saran">Kritik Saran</a>
+            <a class="collapse-item" href="<?= base_url() ?>admin/profil">Profil Kami</a>
           </div>
         </div>
       </li>

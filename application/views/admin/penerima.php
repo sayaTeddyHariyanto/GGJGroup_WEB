@@ -44,22 +44,22 @@
                         <?php $i = 1;
                         foreach ($penerima as $pnrm) : ?>
                             <tr>
-                                <td><?= $i ?></td>
+                                <td><?= $i ?>.</td>
                                 <td><?= $pnrm->nama_kategori ?></td>
                                 <td><?= $pnrm->nama_anggota ?></td>
                                 <td><?= $pnrm->nama_penerima ?></td>
                                 <td><?= $pnrm->jumlah_terima ?></td>
                                 <td><?php
                                     if ($pnrm->status_penerima == "0") {
-                                        echo "<span class='badge badge-danger'> Tak Baik</span>";
+                                        echo "<span class='badge badge-danger p-2'> Tidak Aktif</span>";
                                     } else {
-                                        echo "<span class='badge badge-primary'> Baik sangat</span>";
+                                        echo "<span class='badge badge-primary p-2'> Aktif</span>";
                                     }
                                     ?></td>
                                 <td>
-                                    <a class="btn mb-2 btn-primary btn-sm mr-2" href="<?= base_url() ?>admin/penerima/edit_penerima/<?= $pnrm->id_penerima ?>"><i class="fa fa-edit"></i></a>
-                                    <a class="btn mb-2 px-3 btn-info btn-sm mr-2" href="<?= base_url() ?>admin/penerima/detail_penerima/<?= $pnrm->id_penerima ?>"><i class="fa fa-info"></i></a>
-                                    <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini?');" href="<?= base_url() ?>admin/penerima/hapus_penerima/<?= $pnrm->id_penerima ?>" class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
+                                    <a data-toggle="tooltip" data-placement="top" title="Edit" class="btn mb-2 btn-primary btn-sm mr-2" href="<?= base_url() ?>admin/penerima/edit_penerima/<?= $pnrm->id_penerima ?>"><i class="fa fa-edit"></i></a>
+                                    <a data-toggle="tooltip" data-placement="top" title="Detail" class="btn mb-2 px-3 btn-info btn-sm mr-2" href="<?= base_url() ?>admin/penerima/detail_penerima/<?= $pnrm->id_penerima ?>"><i class="fa fa-info"></i></a>
+                                    <a data-toggle="tooltip" data-placement="top" title="Hapus" onclick="return confirm('Apakah anda yakin ingin menghapus item ini?');" href="<?= base_url() ?>admin/penerima/hapus_penerima/<?= $pnrm->id_penerima ?>" class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php $i++;

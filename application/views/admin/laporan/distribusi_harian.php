@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Print <?= $jenis ?></title>
@@ -43,14 +41,13 @@
             text-align: center;
         }
     </style>
-</head>
-
-<body>
+</head><body>
 
     <div style="text-align: center; border-bottom: solid 1px black; padding-bottom: 10px;">
-        <h1>GGJ GROUP ZAKAH</h1>
-        Alamat GGJ GROUP ZAKAH <br>
-        Nomor Telepon (0331)442211 <br>
+        <?php $profil = $this->db->get_where('profil', ['id_profil' => 1])->row();?>
+        <h1><?=$profil->nama_profil?></h1>
+        Alamat : <?=$profil->alamat_profil?><br>
+        Nomor Telepon : <?=$profil->no_telp_profil?> <br>
     </div>
     <div class="judul">
         <h2>Laporan Data <?= $jenis ?></h2>
@@ -86,6 +83,4 @@
         </table>
     </div>
 
-</body>
-
-</html>
+</body></html>

@@ -32,4 +32,14 @@ class M_crud extends CI_Model
         $this->db->where($where);
         $this->db->update($table, $data);
     }
+
+    function select_notif()
+    {
+        return $this->db->query("SELECT id_zakat, pembayaran_zakat.id_anggota, tb_anggota.nama_anggota, bulan_zakat, nominal_zakat, tanggal_zakat, status_zakat FROM tb_anggota, pembayaran_zakat WHERE tb_anggota.id_anggota = pembayaran_zakat.id_anggota ORDER BY status_zakat ASC LIMIT 5");
+    }
+
+    function select_notifbelum()
+    {
+        return $this->db->query("SELECT id_zakat, pembayaran_zakat.id_anggota, tb_anggota.nama_anggota, bulan_zakat, nominal_zakat, tanggal_zakat, status_zakat FROM tb_anggota, pembayaran_zakat WHERE tb_anggota.id_anggota = pembayaran_zakat.id_anggota AND pembayaran_zakat.status_zakat = 0");
+    }
 }

@@ -67,3 +67,4 @@ $route['admin'] = 'admin/login';
 $route['user/dashboard'] = 'user/landingpage/dashboard';
 $route['user/kontakkami'] = 'user/landingpage/kontak';
 $route['user/tentangkami'] = 'user/landingpage/tentang';
+$route['admin/keuangan'] = 'admin/laporan_keuangan';

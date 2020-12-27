@@ -25,24 +25,24 @@
                         <label for="nama">Nama Sosial Media</label>
                             <select required name="nama" id="nama" class="form-control mb-3" placeholder="Masukkan Sosial Media . ." aria-describedby="nama">
                             <option value=""> Mohon pilih Sosmed Anda </option>
-                            <option value="Whatsapp"> Whatsapp </option>
-                            <option value="Instagram"> Instagram </option>
-                            <option value="Facebook"> Facebook </option>
-                            <option value="Twitter"> Twitter </option>
+                            <option value="Whatsapp" <?= $detKontak->nama_sosmed == 'Whatsapp' ? 'selected' : ''?>> Whatsapp </option>
+                            <option value="Instagram" <?= $detKontak->nama_sosmed == 'Instagram' ? 'selected' : ''?>> Instagram </option>
+                            <option value="Facebook" <?= $detKontak->nama_sosmed == 'Facebook' ? 'selected' : ''?>> Facebook </option>
+                            <option value="Twitter" <?= $detKontak->nama_sosmed == 'Twitter' ? 'selected' : ''?>> Twitter </option>
                             </select>
                         <small id="nama" class="text-muted">Pilih Jenis Sosmed Anda.</small>
                         </div>
                         <div class="form-group">
                             <label for="akun">Nama Akun:</label>
-                            <input type="text" pattern="[a-zA-Z0-9 ]{2,100}" required
-                                class="form-control" name="akun" id="akun" aria-describedby="akun" placeholder="Masukkan nama akun..." value="<?=set_value('akun')?>">
+                            <input type="text" pattern="[a-zA-Z0-9 @_-.+]{2,100}" required
+                                class="form-control" name="akun" id="akun" aria-describedby="akun" placeholder="Masukkan nama akun..." value="<?=$detKontak->nama_akun?>">
                             <small id="akun" class="form-text text-muted">Masukkan nama akun yang sesuai</small>
                             <?php echo form_error('akun'); ?>
                         </div>
                         <div class="form-group">
                             <label for="link">Link Akun:</label>
-                            <input type="text" required
-                                class="form-control" name="link" id="link" aria-describedby="link" placeholder="Masukkan link akun..." value="<?=set_value('link')?>">
+                            <input type="url" required
+                                class="form-control" name="link" id="link" aria-describedby="link" placeholder="Masukkan link akun..." value="<?=$detKontak->link_akun?>">
                             <small id="link" class="form-text text-muted">Masukkan link akun yang sesuai</small>
                             <?php echo form_error('link'); ?>
                         </div>  

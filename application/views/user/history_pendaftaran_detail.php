@@ -2,7 +2,7 @@
 
 <!-- ======= Breadcrumbs ======= -->
 <section id="breadcrumbs" class="breadcrumbs">
-<div class="container">
+<div class="container mt-5">
 
     <div class="d-flex justify-content-between align-items-center">
     <!-- <h2>Pembayaran Zakat</h2> -->
@@ -16,7 +16,7 @@
 </section><!-- End Breadcrumbs -->
 
 <!-- ======= Blog Section ======= -->
-<section id="blog" class="blog">
+<section id="blog">
 <div class="container">
 
     <div class="row justify-content-center">
@@ -24,9 +24,8 @@
     <?php foreach($penerima as $detDaftar){?>
     <div class="col-lg-8 col-12 px-0 card shadow mb-5">
         <div class="card-header bg-success my-0 text-white text-center">
-        <h4>History Pendaftaran Penerima</h4>
+            <h4>History Pendaftaran Penerima</h4>
         </div>
-        <form action="<?=base_url()?>user/history_pendaftaran/detail/<?=$detDaftar->id_penerima?>" method="post" enctype="multipart/form-data">
         <div class="card-body px-5">
             <?=$this->session->flashdata('pesan');?>
             <input type="hidden" name="penerima" value="<?=$detDaftar->id_penerima?>">
@@ -61,18 +60,20 @@
                 <tr><th class="text-right">Status</th>
                 <td>:</td>
                 <td><?php if ($detDaftar->status_penerima == '0'){
-                            echo '<li class="badge badge-danger">Menunggu Verifikasi</li>';
+                            echo '<li class="badge badge-danger p-2">Menunggu Verifikasi</li>';
                 
                         }else if ($detDaftar->status_penerima == '1'){
-                        echo '<li class="badge badge-primary">Terverifikasi</li>';
+                        echo '<li class="badge badge-primary p-2">Terverifikasi</li>';
                         }
                         ?></td>
                 </tr>   
             </tbody>
             </table>
             <hr>
+            <div class="text-center">
+                <span onclick="window.history.go(-1); return false;" class="btn btn-secondary text-white px-3 mr-1"><i class="fas fa-arrow-left mr-2"></i>Kembali</span>
+            </div>
         </div>
-        </form>
 
     </div><!-- End blog entries list -->
     <?php }?>

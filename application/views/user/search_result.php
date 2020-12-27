@@ -37,7 +37,7 @@
 
                     <a href="<?=base_url()?>user/distribusi/detail/<?=$rowResult->id_berita?>">
                         <div class="entry-img">
-                            <img src="<?=base_url()?>assets/user/img/blog-1.jpg" alt="" class="img-fluid">
+                            <img src="<?=base_url()?>assets/admin/img/berita/<?=$rowResult->thumbnail?>" alt="" class="img-fluid">
                         </div>
                     </a>
 
@@ -57,7 +57,7 @@
 
                     <div class="entry-content">
                         <p class="text-justify">
-                            <?=$rowResult->konten?>
+                            <?=$rowResult->deskripsi?>
                         </p>
                         <div class="read-more">
                             <a href="<?=base_url()?>user/distribusi/detail/<?=$rowResult->id_berita?>">Read More</a>

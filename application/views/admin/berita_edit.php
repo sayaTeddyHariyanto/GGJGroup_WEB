@@ -17,7 +17,7 @@
 
                 <?php foreach ($berita as $row_berita) { ?>
 
-                    <form action="<?= base_url() . 'admin/berita/update'; ?>" method="post">
+                    <form action="<?= base_url() . 'admin/berita/update'; ?>" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id_berita" value="<?= $row_berita->id_berita ?>">
                         <div class="modal-body">
                             <div class="form-group">
@@ -25,24 +25,28 @@
                             </div>
                             <div class="form-group">
                                 <label for="judul">Ubah Judul</label>
-                                <input type="text" pattern="[a-zA-Z0-9 ]{2,100}" title="Masukkan minimal 2, maksimum 100, hanya alphabet, spasi, dash dan underscore" required class="form-control" name="judul" value="<?= $row_berita->judul_berita ?>">
+                                <input type="text" pattern="[a-zA-Z0-9 ,.-]{2,100}" title="Masukkan minimal 2, maksimum 100, hanya alphabet, spasi, dash dan underscore" required class="form-control" name="judul" value="<?= $row_berita->judul_berita ?>">
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Ubah Deskripsi</label>
-                                <input type="text" pattern="[a-zA-Z0-9 ]{2,100}" title="Masukkan minimal 2, maksimum 250, hanya alphabet, spasi, dash dan underscore" required class="form-control" name="deskripsi" value="<?= $row_berita->deskripsi ?>">
+                                <textarea class="form-control" pattern="[a-zA-Z0-9 ,.-]{2,250}" name="deskripsi" id="deskripsi" rows="3" maxlength="250" placeholder="Masukkan Deskripsi..." required><?= $row_berita->deskripsi ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="thumbnail">Upload Thumbnail</label><br>
+                                <?php if($row_berita->thumbnail != null){?>
+                                <img id="prev_foto1" src="<?= base_url() ?>assets/admin/img/berita/<?=$row_berita->thumbnail?>" class="img-responsive img-thumbnail" alt="Preview Image" width="300px">
+                                <?php }else{ ?>
                                 <img id="prev_foto1" src="<?= base_url() ?>assets/user/img/upload.png" class="img-responsive img-thumbnail" alt="Preview Image" width="300px">
+                                <?php }?>
                                 <div class="custom-file mb-2">
-                                    <input type="file" class="custom-file-input" name="thumbnail" id="foto" required>
+                                    <input type="file" class="custom-file-input" name="thumbnail" id="foto">
                                     <label class="custom-file-label" for="thumbnail">Masukkan foto berukuran 753 x 258 . .</label>
                                 </div>
                                 <small id="foto" class="form-text text-muted">Pilihlah File foto slider berukuran 710 x 285. Max 3 MB. Format (JPG/PNG)</small>
                             </div>
                             <div class="form_group">
                                 <label for="konten">Ubah Artikel / Berita</label>
-                                <textarea name="editor1" id="editor1" rows="10" cols="80"><?= $row_berita->konten ?>
+                                <textarea name="editor1" id="ckeditor" rows="10" cols="80"><?= $row_berita->konten ?>
                                 </textarea>
                             </div>
                             <div class="form-group">

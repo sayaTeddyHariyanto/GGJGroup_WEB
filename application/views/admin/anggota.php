@@ -42,7 +42,7 @@
                         <?php $i = 1;
                         foreach ($anggota as $detAng) : ?>
                             <tr>
-                                <td><?= $i ?></td>
+                                <td><?= $i ?>.</td>
                                 <td><?= $detAng->nama_anggota ?></td>
                                 <td><?= $detAng->alamat_anggota ?></td>
                                 <td><?= $detAng->no_hp_anggota ?></td>

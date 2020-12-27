@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>GGJ Group Zakah - Admin</title>
+    <link href="<?=base_url()?>assets/user/img/logo_ggj.png" rel="icon">
 
     <!-- Custom fonts for this template-->
     <link href="<?php echo base_url('assets/admin/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -45,15 +46,13 @@
                                         <?php echo validation_errors(); ?>
                                         <div class="form-group">
                                             <input type="text" required class="form-control form-control-user" id="username" name="username" placeholder="Masukkan Username Anda..." value="<?= set_value('username'); ?>">
-                                            <small id="username" class="form-text text-muted">Masukkan Username Admin</small>
 
                                             <?php //echo form_error('username'); 
                                             ?>
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="password_admin" name="password_admin" placeholder="Password">
-                                            <small id="password_admin" class="form-text text-muted">Masukkan Password min.8 Karakter</small>
+                                            <input type="password" class="form-control form-control-user" id="password_admin" name="password_admin" placeholder="Masukkan Password..">
                                             <?php //echo form_error('password_admin'); 
                                             ?>
                                         </div>

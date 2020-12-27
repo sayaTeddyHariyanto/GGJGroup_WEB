@@ -78,7 +78,7 @@
             <h3>Jadwal Bulan Ini</h3>
           </div>
           <?php foreach($jadwal as $rowJadwal){?>
-          <div class="col-lg-3 bs-wizard-step <?=$rowJadwal->status_kegiatan=='aktif'?'':'active'?>">
+          <div class="col-lg-3 bs-wizard-step <?=$rowJadwal->status_kegiatan=='1'?'complete':'active'?>">
             <div class="text-center bs-wizard-stepnum"><?=$rowJadwal->tanggal_kegiatan?></div>
             <div class="progress"><div class="progress-bar"></div></div>
             <a href="#" class="bs-wizard-dot"></a>
@@ -126,7 +126,7 @@
 
               <a href="<?=base_url()?>user/distribusi/detail/<?=$rowBerita->id_berita?>">
                 <div class="entry-img">
-                  <img src="<?=base_url()?>assets/user/img/blog-1.jpg" alt="" class="img-fluid">
+                  <img src="<?=base_url()?>assets/admin/img/berita/<?=$rowBerita->thumbnail?>" alt="" class="img-fluid">
                 </div>
               </a>
 
@@ -136,13 +136,15 @@
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="<?=base_url()?>user/distribusi/detail/<?=$rowBerita->id_berita?>"><time datetime="2020-01-01"><?=$rowBerita->tanggal_berita?></time></a></li>
+                  <?php $old_date = $rowBerita->tanggal_berita;
+                        $old_date_timestamp = strtotime($old_date); ?>
+                  <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="<?=base_url()?>user/distribusi/detail/<?=$rowBerita->id_berita?>"><time datetime="2020-01-01"><?=date('l, d F yy', $old_date_timestamp);?></time></a></li>
                 </ul>
               </div>
 
               <div class="entry-content">
                 <p>
-                  <?=$rowBerita->konten?>
+                  <?=$rowBerita->deskripsi?>
                 </p>
                 <div class="read-more">
                   <a href="<?=base_url()?>user/distribusi/detail/<?=$rowBerita->id_berita?>">Read More</a>

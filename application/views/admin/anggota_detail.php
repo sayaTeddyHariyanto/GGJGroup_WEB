@@ -1,7 +1,7 @@
 <div class="container-fluid mb-5">
 
     <div class="row justify-content-center py-3">
-        <div class="col-md-8 card p-0">
+        <div class="col-md-8 card shadow p-0">
             <div class="card-header pb-0">
                 <h2 class="font-weight-bolder mb-0">Detail Data</h2>
                 <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
@@ -48,6 +48,9 @@
 
                 <?php }?>
 
+            </div>
+            <div class="card-footer text-center">
+                <a class="btn btn-secondary" href="<?=base_url()?>admin/anggota" role="button"><i class="fas fa-arrow-left mr-2"></i>Kembali</a>
             </div>
         </div>
     </div>

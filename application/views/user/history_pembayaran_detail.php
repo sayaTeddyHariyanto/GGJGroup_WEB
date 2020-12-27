@@ -2,7 +2,7 @@
 
         <!-- ======= Breadcrumbs ======= -->
         <section id="breadcrumbs" class="breadcrumbs">
-        <div class="container">
+        <div class="container mt-5">
 
             <div class="d-flex justify-content-between align-items-center">
             <!-- <h2>Pembayaran Zakat</h2> -->
@@ -85,6 +85,9 @@
                     </tbody>
                     </table>
                     <hr>
+                    <div class="text-center">
+                        <span onclick="window.history.go(-1); return false;" class="btn btn-secondary text-white px-3 mr-1"><i class="fas fa-arrow-left mr-2"></i>Kembali</span>
+                    </div>
                 </div>
                 </form>
 

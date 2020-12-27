@@ -7,6 +7,9 @@ class Login extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('Adm_login');
+        if ($this->session->userdata('status') != '') {
+            redirect('admin/guide');
+        }
     }
 
     function index()
@@ -37,7 +40,7 @@ class Login extends CI_Controller
                         'status'   => $admin['status']
                     ];
                     $this->session->set_userdata($data);
-                    redirect('admin/Anggota');
+                    redirect('admin/guide');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password Salah</div>');
                     redirect('admin/login');

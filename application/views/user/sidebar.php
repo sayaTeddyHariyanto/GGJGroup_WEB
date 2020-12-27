@@ -60,9 +60,9 @@ $bulan = $ci->m_landingpage->getBulanforSidebar()->result();
                     $old_date_timestamp = strtotime($old_date);
                     ?>
                     <div class="post-item clearfix">
-                        <img src="<?=base_url()?>assets/user/img/blog-2.jpg" alt="<?=$rowBeritaBulan->judul_berita?>">
-                        <h4><a href="blog-single.html"><?=$rowBeritaBulan->judul_berita?></a></h4>
-                        <time datetime="2020-01-01"><?=date('l, d F yy H:i:s', $old_date_timestamp);?></time>
+                        <img src="<?=base_url()?>assets/admin/img/berita/<?=$rowBeritaBulan->thumbnail?>" alt="<?=$rowBeritaBulan->judul_berita?>">
+                        <h4><a href="<?=base_url()?>user/distribusi/detail/<?=$rowBeritaBulan->id_berita?>"><?=$rowBeritaBulan->judul_berita?></a></h4>
+                        <time datetime="2020-01-01"><?=date('d F yy', $old_date_timestamp);?></time>
                     </div>
 
                     <?php endforeach;?>

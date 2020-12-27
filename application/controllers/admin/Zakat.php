@@ -20,8 +20,9 @@ class Zakat extends CI_Controller
             'status_zakat' => 1
         );
         $data['zakat'] = $this->m_crud->edit($where, 'pembayaran_zakat')->result();
+        $data['sidebar'] = 'zakat';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/zakat', $data);
         $this->load->view('templates/admin_footer_js');
@@ -33,8 +34,9 @@ class Zakat extends CI_Controller
     {
         $where = array('id_zakat' => $id_zakat);
         $data['zakat'] = $this->m_crud->edit($where, 'pembayaran_zakat')->result();
+        $data['sidebar'] = 'zakat';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/zakat_detail', $data);
         $this->load->view('templates/admin_footer_js');
@@ -52,8 +54,9 @@ class Zakat extends CI_Controller
             'status_zakat' => 0
         );
         $data['zakat'] = $this->m_crud->edit($where, 'pembayaran_zakat')->result();
+        $data['sidebar'] = 'zakat';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/verifikasi', $data);
         $this->load->view('templates/admin_footer_js');

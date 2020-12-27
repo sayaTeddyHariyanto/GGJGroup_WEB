@@ -2,7 +2,7 @@
 
 <!-- ======= Breadcrumbs ======= -->
 <section id="breadcrumbs" class="breadcrumbs">
-<div class="container">
+<div class="container mt-5">
 
     <div class="d-flex justify-content-between align-items-center">
     <!-- <h2>Pembayaran Zakat</h2> -->
@@ -18,6 +18,9 @@
 <!-- ======= Blog Section ======= -->
 <section id="blog" class="blog">
 <div class="container">
+    <div class="px-4">
+        <?php echo $this->session->flashdata('pesan'); ?>
+    </div>
 
     <div class="row">
 
@@ -45,13 +48,13 @@
                         <td><?=$detDaftar->alamat_penerima?></td>
                         <td>
                                 <?php if ($detDaftar->status_penerima == '0'){
-                                    echo '<li class="breadcrumb-item">Menunggu Verifikasi</li>';
+                                    echo 'Menunggu Verifikasi';
                         
                                 }else if ($detDaftar->status_penerima == '1'){
-                                echo '<li class="breadcrumb-item active">Terverifikasi</li>';
+                                echo 'Terverifikasi';
                                 }
                                 ?>
-                                <li><a href="<?=base_url()?>user/history_pendaftaran/detail/<?=$detDaftar->id_penerima?>">Lihat Detail</a></li>
+                                <br><a class="badge badge-success text-white p-2" href="<?=base_url()?>user/history_pendaftaran/detail/<?=$detDaftar->id_penerima?>">Lihat Detail</a>
                         </td>
                     </tr>
                     <?php $i++; endforeach;?>

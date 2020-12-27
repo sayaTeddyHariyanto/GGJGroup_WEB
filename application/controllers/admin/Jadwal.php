@@ -17,8 +17,9 @@ class Jadwal extends CI_Controller
     function index()
     {
         $data['jadwal'] = $this->m_crud->getAll('jadwal_kegiatan')->result();
+        $data['sidebar'] = 'website';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/jadwal', $data);
         $this->load->view('templates/admin_footer_js');
@@ -156,8 +157,9 @@ class Jadwal extends CI_Controller
     {
         $where = array('id_kegiatan' => $id_kegiatan);
         $data['jadwal'] = $this->m_crud->edit($where, 'jadwal_kegiatan')->result();
+        $data['sidebar'] = 'website';
         $this->load->view('templates/admin_header');
-        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');
         $this->load->view('admin/jadwal_edit', $data);
         $this->load->view('templates/admin_footer_js');
