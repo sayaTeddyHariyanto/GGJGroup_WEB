@@ -26,9 +26,16 @@
         </div>
         <div class="card mb-4">
         <div class="card-body">
+            <?=$this->session->flashdata('pesan');?>
             <h4>Data Saya</h4>
             <hr>
             <div class="row mx-4">
+                <div class="col-lg-3 col-12 text-lg-right my-lg-0 my-4 d-lg-none d-block text-center">
+                    <div class="text-center">
+                    <img src="http://placehold.it/50x50" alt="Hahaha" width="100" class="img-fluid rounded-circle"><br>
+                    <button type="button" class="btn mt-2 btn-sm btn-primary" data-toggle="modal">Edit Foto</button>
+                    </div>
+                </div>
                 <div class="col-lg-9 col-12">
                     <table>
                         <tbody class="table table-borderless">
@@ -65,11 +72,18 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-lg-3 col-12 text-lg-right my-lg-0 my-4 text-center">
-                    <img src="http://placehold.it/50x50" alt="Hahaha" width="100" class="img-fluid rounded-circle">
+                <div class="col-lg-3 col-12 text-lg-right my-lg-0 my-4 d-lg-block d-none text-center">
+                    <div class="text-center">
+                    <?php if($profil->foto_anggota == null || $profil->foto_anggota == ''){?>
+                    <img src="http://placehold.it/50x50" alt="Foto Profil" width="100" class="img-fluid rounded-circle"><br>
+                    <?php }else{ ?>
+                    <img src="<?=base_url()?>assets/user/img/profil/<?=$profil->foto_anggota?>" alt="Foto Profil" width="100" id="preview" class="img-fluid rounded-circle">
+                    <?php }?><br>
+                    <button type="button" data-target="#modalUploadFoto" class="btn mt-2 btn-sm btn-primary" data-toggle="modal">Edit Foto</button>
+                    </div>
                 </div>
                 <div class="col-12 text-lg-right text-center">
-                    <a class="btn btn-success btn-sm mt-4 px-5" href="<?=base_url()?>user/anggota/edit" role="button">Edit</a>
+                    <a class="btn btn-success btn-sm mt-4 px-5" href="<?=base_url()?>user/anggota/edit" role="button">Edit Profil</a>
                 </div>
             </div>
 
@@ -81,7 +95,7 @@
                         <h6>Pembayaran Zakat</h6>
                     </div>
                 </a>
-                <a class="col-lg-6 col-12 my-2" href="<?=base_url()?>user/distribusi">
+                <a class="col-lg-6 col-12 my-2" href="<?=base_url()?>user/distribusi/all">
                     <div class="card bg-success text-white p-2 align-items-center justify-content-center">
                         <h6>Distribusi Zakat</h6>
                     </div>
@@ -91,11 +105,11 @@
                         <h6>Pendaftaran Penerima</h6>
                     </div>
                 </a>
-                <a class="col-lg-6 col-12 my-2" href="<?=base_url()?>user/notifikasi">
+                <!-- <a class="col-lg-6 col-12 my-2" href="<?//=base_url()?>user/notifikasi">
                     <div class="card bg-info text-white p-2 align-items-center justify-content-center">
                         <h6>Notifikasi</h6>
                     </div>
-                </a>
+                </a> -->
             </div>
         </div>
     </div>
@@ -112,3 +126,41 @@
 </section><!-- End Blog Section -->
 
 </main><!-- End #main -->
+
+<!-- Modal -->
+<div class="modal fade" id="modalUploadFoto" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Foto Profil</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <form action="<?=base_url()?>user/anggota/upload_foto" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id_anggota" value="<?=$profil->id_anggota?>">
+            <div class="modal-body text-center">
+                <?php if($profil->foto_anggota == null || $profil->foto_anggota == ''){?>
+                <img src="http://placehold.it/50x50" alt="Foto Profil" width="200" id="preview" class="img-fluid rounded-circle"><br>
+                <div class="text-left custom-file text-left mt-3 mb-2">
+                    <input type="file" accept=".png, .jpg, .jpeg" class="custom-file-input" name="bukti" id="bukti" required>
+                    <label class="custom-file-label" for="bukti">Klik untuk memilih foto</label>
+                </div>
+                <small>Masukkan foto resolusi 512x512px berukuran max 3mb . .</small>
+                <?php }else{ ?>
+                <img src="<?=base_url()?>assets/user/img/profil/<?=$profil->foto_anggota?>" alt="Foto Profil" width="200" id="preview" class="img-fluid rounded-circle"><br>
+                <div class="text-left custom-file text-left mt-3 mb-2">
+                    <input type="file" accept=".png, .jpg, .jpeg" class="custom-file-input" name="bukti" id="bukti" required>
+                    <label class="custom-file-label" for="bukti">Klik untuk memilih foto</label>
+                </div>
+                <small>Masukkan foto resolusi 512x512px berukuran max 3mb . .</small>
+                <?php }?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

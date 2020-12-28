@@ -25,11 +25,11 @@
                             </tr>
                             <tr>
                                 <td class="text-right">Id Anggota :</td>
-                                <td><?= $row_zakat->id_anggota ?></td>
+                                <td><?=$this->db->get_where('tb_anggota', ['id_anggota' => $row_zakat->id_anggota])->row()->nama_anggota; ?></td>
                             </tr>
                             <tr>
                                 <td class="text-right">Id Admin :</td>
-                                <td><?= $row_zakat->id_admin ?></td>
+                                <td><?=$this->db->get_where('tb_admin', ['id_admin' => $row_zakat->id_admin])->row()->nama_admin; ?></td>
                             </tr>
                             <tr>
                                 <td class="text-right">Tanggal Zakat :</td>
@@ -41,21 +41,17 @@
                             </tr>
                             <tr>
                                 <td class="text-right">Nominal Zakat :</td>
-                                <td><?= $row_zakat->nominal_zakat ?></td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">Bukti Zakat :</td>
-                                <td><?= $row_zakat->bukti_zakat ?></td>
+                                <td>Rp. <?= number_format($row_zakat->nominal_zakat, 0, ',', '.') ?></td>
                             </tr>
                             <tr>
                                 <td class="text-right"></td>
                                 <td>
-                                    <div> <img src="..." class="rounded" alt="..."></div>
+                                    <img src="<?=base_url()?>assets/user/img/bukti_bayar/<?= $row_zakat->bukti_zakat ?>" class="img-fluid" width="300" alt="Bukti Pembayaran">
                                 </td>
                             </tr>
                             <tr>
                                 <td class="text-right">Status Zakat :</td>
-                                <td><?= $row_zakat->status_zakat == 1 ? "AKTIF" : "NONAKTIF" ?></td>
+                                <td><?= $row_zakat->status_zakat == 1 ? "TERVERIFIKASI" : "BELUM VERIFIKASI" ?></td>
                             </tr>
                             <tr>
                                 <td class="text-right"></td>

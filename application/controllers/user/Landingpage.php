@@ -26,9 +26,7 @@ class Landingpage extends CI_Controller
         $data['penerima'] = $this->m_landingpage->selectcount_penerima()->row()->total;
         $data['slider'] = $this->m_crud->getAll('foto_slider')->result();
         $data['jadwal'] = $this->m_crud->getAll('jadwal_kegiatan')->result();
-        $this->db->where('status_berita', '1');
-        $this->db->limit(5);
-        $data['berita'] = $this->m_crud->getAll('tb_berita')->result();
+        $data['berita'] = $this->m_landingpage->landingpageberita()->result();
         $this->load->view('templates/helper');
         $this->load->view('templates/user_header');
 		$this->load->view('templates/user_navbar');

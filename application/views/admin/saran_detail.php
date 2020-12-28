@@ -25,7 +25,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right">Saran :</td>
-                                    <td ><?=$detAng->saran?></td>
+                                    <td class="text-justify"><?=$detAng->saran?></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -32,7 +32,8 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Tanggal Pembayaran Zakat</th>
+                        <th>Tanggal</th>
+                        <th>Pembayaran Bulan</th>
                         <th>Nominal Zakat</th>
                         <th>Status</th>
                     </tr>
@@ -42,6 +43,7 @@
                     <tr>
                         <td><?=$i?></td>
                         <td><?=$detBayar->tanggal_zakat?></td>
+                        <td><?=$detBayar->bulan_zakat?></td>
                         <td><?=$detBayar->nominal_zakat?></td>
                         <td>
                                 <?php if ($detBayar->status_zakat == '0'){

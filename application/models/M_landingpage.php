@@ -56,4 +56,16 @@ class M_landingpage extends CI_Model
         $this->db->where('status_berita', 1);
         return $query = $this->db->get('tb_berita',$number,$offset)->result();
     }
+
+    function landingpageberita()
+    {
+        $row = $this->db->query("SELECT * FROM tb_berita WHERE status_berita = 1")->num_rows();
+        if ($row > 0 && $row < 6) {
+            return $this->db->query("SELECT * FROM tb_berita WHERE status_berita = 1 LIMIT 3");
+        }else if($row > 0 && $row >= 6){
+            return $this->db->query("SELECT * FROM tb_berita WHERE status_berita = 1 LIMIT 6");
+        }else{
+            $this->db->query("SELECT * FROM tb_berita");
+        }
+    }
 }

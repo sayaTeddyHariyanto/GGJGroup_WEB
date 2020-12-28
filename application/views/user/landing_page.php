@@ -121,7 +121,7 @@
 
           <?php $i=1; foreach($berita as $rowBerita){
             $totalberita = count((array)$berita); ?>
-          <div class="col-lg-<?php if($totalberita <= 3){echo "4";}else if($totalberita == 4){if($i==2 || $i==3){echo "8";}else{echo "4";}}else{if($i==2){echo "8";}else{echo "4";}}?>  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
             <article class="entry">
 
               <a href="<?=base_url()?>user/distribusi/detail/<?=$rowBerita->id_berita?>">
@@ -154,7 +154,7 @@
             </article><!-- End blog entry -->
           </div>
           <?php $i++; }?>
-
+        
         <div class="blog-pagination mx-auto" data-aos="fade-up">
           <ul class="justify-content-center">
             <li><a href="<?=base_url()?>user/landingpage/blog_all/">Lihat selengkapnya <i class="icofont-rounded-right"></i></a></li>

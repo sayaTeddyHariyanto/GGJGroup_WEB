@@ -45,8 +45,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
         datasets: [{
         label: "Total ",
         lineTension: 0.3,
-        backgroundColor: "rgba(78, 115, 223, 0.05)",
-        borderColor: "rgba(78, 115, 223, 1)",
+        backgroundColor: "rgba(28, 200, 138, 0.3)",
+        borderColor: "rgba(28, 200, 138, 1)",
         pointRadius: 3,
         pointBackgroundColor: "rgba(78, 115, 223, 1)",
         pointBorderColor: "rgba(78, 115, 223, 1)",

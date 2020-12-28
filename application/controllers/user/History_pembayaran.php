@@ -19,6 +19,19 @@ class History_pembayaran extends CI_Controller
             </div>
             ');
             redirect('user/auth/login_anggota');
+        }else{
+            $user = $this->m_crud->edit(['id_anggota' => $this->session->userdata('id')], 'tb_anggota')->row();
+            if ($user->status_anggota == 0) { // jika password benar, maka lanjut
+                $this->session->set_flashdata('pesan', '
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Akun anda belum aktif, mohon tunggu aktivasi akun dari admin.
+                    <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                ');
+                redirect('user/dashboard');
+            }
         }
     }
 

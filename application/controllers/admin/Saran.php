@@ -31,6 +31,7 @@ class Saran extends CI_Controller
     {
         $data['saran'] = $this->m_crud->edit(['id_saran' => $id], 'tb_saran')->result();
         $data['sidebar'] = 'website';
+        $this->m_crud->update(['id_saran' => $id], ['status_saran' => 1], 'tb_saran');
         $this->load->view('templates/admin_header');
         $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_navbar');

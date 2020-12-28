@@ -54,8 +54,13 @@ class Guide extends CI_Controller
 
           foreach ($data_result as $result ) {
               if(strlen($result->saran) >= 50){$saran = substr($result->saran, 0, 50) . '..';}else{$saran = $result->saran;}
+              if ($result->status_saran == 1) {
+                  $text = 'bg-light';
+              }else{
+                    $text = 'bg-white';
+              }
               $output .= '
-              <a class="dropdown-item d-flex align-items-center" href="'.base_url('admin/saran/detail/' . $result->id_saran).'">
+              <a class="dropdown-item d-flex align-items-center '.$text.'" href="'.base_url('admin/saran/detail/' . $result->id_saran).'">
                   <div class="font-weight-bold">
                       <div class="text-truncate">'.$result->email_saran.'</div>
                       <div class="small text-gray-500">'.$saran.'</div>
@@ -73,7 +78,7 @@ class Guide extends CI_Controller
               </a>';
       }
 
-      $jumlah_unseen = $data->num_rows();
+      $jumlah_unseen = $this->m_crud->edit(['status_saran' => 0], 'tb_saran')->num_rows();
 
       $data = array(
           'saran' => $output,

@@ -219,6 +219,103 @@ class Anggota extends CI_Controller
         }
     }
 
+    function upload_foto()
+    {
+        $id = $this->input->post('id_anggota');
+        $bukti = null;
+        // memeriksa apakah admin mengganti gambar atau tidak
+        if ($_FILES['bukti']['name'] != null) {
+            // jika memilih gambar
+            $bukti = $_FILES['bukti']['name'];
+
+            if ($bukti != '') {
+                $select_anggota = $this->m_crud->edit(['id_anggota' => $id], 'tb_anggota');
+                if ($select_anggota->row()->foto_anggota != null) {
+                    $filename = explode(".", $select_anggota->row()->foto_anggota)[0];
+                    array_map('unlink', glob(FCPATH . "assets/user/img/profil/$filename.*"));
+
+                    $config['upload_path'] = './assets/user/img/profil/';
+                    $config['allowed_types'] = 'jpg|jpeg|png';
+                    $config['max_size'] = '3024';
+
+                    $nama_database = explode('.', $select_anggota->row()->foto_anggota); // nama pada database
+                    $type = explode(".", $_FILES['bukti']['name']); // tipe format yang dimasukkan saat ini
+                    $config['file_name'] = $nama_database[0] . '.' . $type[1];
+                } else {
+                    $config['upload_path'] = './assets/user/img/profil/';
+                    $config['allowed_types'] = 'jpg|jpeg|png';
+                    $config['max_size'] = '3024';
+                    $config['encrypt_name'] = TRUE;
+                }
+
+                //$config['overwrite'] = true;
+                //$config['file_name'] = $this->db->get_where('promo', array('id_promo' => $this->input->post('id_promo')))->row()->gambar;
+                // $config['max_width']  = '2048';
+                // $config['max_height']  = '2048';
+                // $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload');
+                $this->upload->initialize($config);
+
+                if (!$this->upload->do_upload('bukti')) {
+                    $this->session->set_flashdata('pesan', '
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Maaf!</strong> Anda gagal mengunggah foto.
+                        <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    ');
+                    
+                    $id = $this->session->userdata('id');
+                    $data['profil'] = $this->m_crud->edit(['id_anggota' => $id], 'tb_anggota')->row();
+                    $this->load->view('templates/helper');
+                    $this->load->view('templates/user_header');
+                    $this->load->view('templates/user_navbar');
+                    $this->load->view('user/dashboard_user', $data);
+                    $this->load->view('templates/user_footer_js');
+                    $this->load->view('templates/user_custom_js');
+                    $this->load->view('templates/user_footer');
+                } else {
+                    $bukti = $this->upload->data('file_name');
+
+                    $where = array(
+                        'id_anggota' => $id
+                    );
+
+                    $data = array(
+                        'foto_anggota' => $bukti
+                    );
+
+                    $this->db->trans_start();
+                    $this->m_crud->update($where, $data, 'tb_anggota');
+                    $this->db->trans_complete();
+                    if ($this->db->trans_status() == true) {
+                        $this->session->set_flashdata('pesan', '
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Selamat!</strong> Berhasil mengunggah foto profil.
+                            <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        ');
+                        redirect('user/dashboard');
+                    } else {
+                        $this->session->set_flashdata('pesan', '
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Maaf!</strong> Server sedang sibuk.
+                            <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        ');
+                        redirect('user/dashboard');
+                    }
+                }
+            }
+        }
+    }
+
     function logout()
     {
         $this->session->sess_destroy();

@@ -50,7 +50,7 @@
       <li class="nav-item <?php if(isset($sidebar)){ echo $sidebar == 'zakat' ? "active" : ""; }?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-dollar-sign"></i>
-          <span>Zakat</span>
+          <span>Pembayaran Zakat</span>
         </a>
         <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -61,18 +61,11 @@
         </div>
       </li>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- Nav Item - Tables -->
       <li class="nav-item <?php if(isset($sidebar)){ echo $sidebar == 'distribusi' ? "active" : ""; }?>">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link" href="<?= base_url() ?>admin/distribusi">
           <i class="fas fa-car"></i>
-          <span>Distribusi</span>
-        </a>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Kelola Ditribusi</h6>
-            <a class="collapse-item" href="<?= base_url() ?>admin/distribusi">Data Distribusi</a>
-          </div>
-        </div>
+          <span>Distribusi Zakat</span></a>
       </li>
 
       <!-- Divider -->
