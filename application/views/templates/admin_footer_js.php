@@ -29,7 +29,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-body">Apakah anda yakin akan logout?</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
             <a class="btn btn-primary" href="<?= base_url() ?>admin/anggota/logout">Logout</a>
@@ -41,7 +41,7 @@
     <!-- Bootstrap core JavaScript-->
     <script src="<?= base_url() ?>assets/admin/vendor/jquery/jquery.min.js"></script>
     <script src="<?= base_url() ?>assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
+
 
     <!-- Core plugin JavaScript-->
     <script src="<?= base_url() ?>assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
