@@ -81,7 +81,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="jumlah_terima">Jumlah Terima</label>
-                                <input type="text" pattern="[0-9 ]{0,32}" title="Maksimum 32, Hanya Angka" required class="form-control" name="jumlah_terima" id="jumlah_terima" placeholder="Masukkan Jumlah Terima..." value="<?= $pnrm->jumlah_terima ?>">
+                                <input readonly type="text" pattern="[0-9 ]{0,32}" title="Maksimum 32, Hanya Angka" required class="form-control" name="jumlah_terima" id="jumlah_terima" placeholder="Masukkan Jumlah Terima..." value="<?= $pnrm->jumlah_terima ?>">
                                 <small id="jumlah_terima" class="form-text text-muted">Masukkan jumlah terima</small>
                                 <?php echo form_error('jumlah_terima'); ?>
                             </div>

@@ -106,7 +106,8 @@
                         <select class="form-control selectpicker" multiple data-live-search="true" name="penerima[]" id="penerima" required>
                             <option value=""></option>
                             <?php foreach($penerima as $pnm){?>
-                            <option value="<?=$pnm->id_penerima?>"><?=$pnm->nama_penerima?> - <?=$pnm->alamat_penerima?></option>
+                            <option <?=$pnm->jumlah_terima >= 3 ? "disabled class='text-danger'" : ""?>
+                            value="<?=$pnm->id_penerima?>"><?=$pnm->nama_penerima?> (<?=$pnm->alamat_penerima?>/<?=$pnm->jumlah_terima?>)</option>
                             <?php }?>
                         </select>
                     </div>
