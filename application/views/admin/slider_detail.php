@@ -29,7 +29,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right">Foto Slider :</td>
-                                    <td ><?=$detSlider->file?></td>
+                                    <td ><img src="<?=base_url()?>assets/user/img/slide/<?=$detSlider->file?>" alt="Foto Slider" class="img-fluid"></td>
                                 </tr>
                             </tbody>
                         </table>

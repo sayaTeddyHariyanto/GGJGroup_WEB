@@ -83,7 +83,8 @@
           <strong>Catat Tanggalnya!</strong></p>
       </div>
       <?php foreach ($jadwal as $rowJadwal) { ?>
-        <div class="col-lg-3 bs-wizard-step <?= $rowJadwal->status_kegiatan == '1' ? 'complete' : 'active' ?>">
+        <?php if($rowJadwal->status_kegiatan == '1'){?>
+        <div class="col-lg-3 bs-wizard-step complete">
           <div class="text-center bs-wizard-stepnum"><?= $rowJadwal->tanggal_kegiatan ?></div>
           <div class="progress">
             <div class="progress-bar"></div>
@@ -91,6 +92,7 @@
           <a href="#" class="bs-wizard-dot"></a>
           <div class="bs-wizard-info text-justify px-3"><?= $rowJadwal->judul ?></div>
         </div>
+        <?php }?>
       <?php } ?>
 
       <!-- <div class="col-lg-3 bs-wizard-step active">

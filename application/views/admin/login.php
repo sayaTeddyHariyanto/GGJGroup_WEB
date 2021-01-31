@@ -43,6 +43,7 @@
                                     <hr>
                                     <form class="user" method="post" action="<?php echo base_url('admin/login/login'); ?>">
                                         <?php echo $this->session->flashdata('message'); ?>
+                                        <?php echo $this->session->flashdata('pesan'); ?>
                                         <?php echo validation_errors(); ?>
                                         <div class="form-group">
                                             <input type="text" required class="form-control form-control-user" id="username" name="username" placeholder="Masukkan Username Anda..." value="<?= set_value('username'); ?>">

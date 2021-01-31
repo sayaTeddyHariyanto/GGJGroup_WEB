@@ -28,42 +28,29 @@
           <form action="<?= base_url() ?>user/pembayaran_zakat/bayar" method="post">
             <div class="card-body px-5">
               <table class="table table-sm table-borderless">
+                  <?php $user = $this->db->get_where('tb_anggota', ['id_anggota' => $this->session->userdata('id')])->row(); ?>
                 <tbody>
                   <tr>
                     <th style="width:100px;" class="text-right">Nama</th>
                     <td>:</td>
-                    <td>Primasdika Yunia Putra</td>
+                    <td><?php echo $user->nama_anggota?></td>
                   </tr>
                   <tr>
                     <th style="width:100px;" class="text-right">Nomor HP</th>
                     <td>:</td>
-                    <td>085376215972</td>
+                    <td><?= $user->no_hp_anggota ?></td>
                   </tr>
                   <tr>
                     <th style="width:100px;" class="text-right"></th>
                     <td></td>
-                    <td><a class="btn btn-success" href="<?= base_url() ?>user/profil/edit" role="button">Edit Profil</a></td>
+                    <td><a class="btn btn-success" href="<?= base_url() ?>user/anggota/edit" role="button">Edit Profil</a></td>
                   </tr>
                 </tbody>
               </table>
               <hr> <!-- Batas data diri anggota -->
               <div class="form-group">
                 <label for="bulan">Pilih Bulan:</label>
-                <select class="form-control" name="bulan" id="bulan" required>
-                  <option value="">-- Pilih Bulan --</option>
-                  <option value="Januari">Januari</option>
-                  <option value="Februari">Februari</option>
-                  <option value="Maret">Maret</option>
-                  <option value="April">April</option>
-                  <option value="Mei">Mei</option>
-                  <option value="Juni">Juni</option>
-                  <option value="Juli">Juli</option>
-                  <option value="Agustus">Agustus</option>
-                  <option value="September">September</option>
-                  <option value="Oktober">Oktober</option>
-                  <option value="Novermber">Novermber</option>
-                  <option value="Desember">Desember</option>
-                </select>
+                <input type="month" required class="form-control" name="bulan"  placeholder="Pilih Bulan">
               </div>
               <div class="form-group">
                 <label for="nominal">Nominal</label>
@@ -73,7 +60,7 @@
               <hr> <!-- Batas Gambar doa zakat -->
               <div class="text-center">
                 <h4>Doa Membayar Zakat</h4>
-                <img src="<?= base_url() ?>assets/user/img/doa_zakat.jpg" alt="Doa Zakat" class="img-fluid">
+                <img src="<?= base_url() ?>assets/user/img/doa_zakat.JPG" alt="Doa Zakat" class="img-fluid">
               </div>
               <hr> <!-- Batas Metode pembayaran -->
               <div class="text-center">

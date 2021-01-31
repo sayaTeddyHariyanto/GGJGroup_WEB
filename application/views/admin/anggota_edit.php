@@ -64,7 +64,6 @@
                                 </select>
                                 <?php echo form_error('status'); ?>
                             </div>
-                            <a class="btn btn-success px-3 mr-1" href="<?=base_url()?>admin/anggota/reset_password">Reset Password</a>
                         </div>
                         <div class="form-group text-center">
                             <button class="btn btn-primary px-3 mr-1" type="submit">Simpan</button>

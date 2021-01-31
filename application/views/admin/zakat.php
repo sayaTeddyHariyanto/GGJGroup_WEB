@@ -42,7 +42,18 @@
                                 <td><?= $this->db->get_where('tb_anggota', ['id_anggota' => $row_zakat->id_anggota])->row()->nama_anggota; ?></td>
                                 <td><?= $row_zakat->bulan_zakat ?></td>
                                 <td>Rp. <?= number_format($row_zakat->nominal_zakat, 0, ',', '.') ?></td>
-                                <td><?= $row_zakat->status_zakat == 0 ? "<span class='badge badge-danger p-2'>Belum Terverifikasi</span>" : "<span class='badge badge-success p-2'>Terverifikasi</span>"?></td>
+                                <td>
+                                    <?php if($row_zakat->status_zakat != 0){
+                                        if($row_zakat->status_zakat == 1){
+                                            echo "<span class='badge badge-success p-2'>Terverifikasi</span>";
+                                        }else{
+                                            echo "<span class='badge badge-danger p-2'>Gagal Terverifikasi</span>";
+                                        }
+                                        
+                                    }else{
+                                        echo "<span class='badge badge-danger p-2'>Belum Terverifikasi</span>";
+                                    }?>
+                                </td>
                                 <td>
                                     <a class="btn mb-2 px-3 btn-info btn-sm mr-2" href="<?= base_url() ?>admin/zakat/detail/<?= $row_zakat->id_zakat ?>"><i class="fa fa-info"></i></a>
                                 </td>

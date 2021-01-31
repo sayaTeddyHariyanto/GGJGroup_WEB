@@ -35,6 +35,7 @@
                             <th>Nama</th>
                             <th>Alamat</th>
                             <th>No Hp</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -46,6 +47,13 @@
                                 <td><?= $detAng->nama_anggota ?></td>
                                 <td><?= $detAng->alamat_anggota ?></td>
                                 <td><?= $detAng->no_hp_anggota ?></td>
+                                <td class="text-center">
+                                    <?php if($detAng->status_anggota == 1){?>
+                                    <span class="badge badge-primary p-1">Aktif</span>
+                                    <?php }else{ ?>
+                                    <span class="badge badge-danger">Non-Aktif</span>
+                                    <?php }?>
+                                    </td>
                                 <td>
                                     <a class="btn mb-2 btn-primary btn-sm mr-2" data-toggle="tooltip" data-placement="top" title="Edit" href="<?= base_url() ?>admin/anggota/edit/<?= $detAng->id_anggota ?>"><i class="fa fa-edit"></i></a>
                                     <a class="btn mb-2 px-3 btn-info btn-sm mr-2" data-toggle="tooltip" data-placement="top" title="Detail" href="<?= base_url() ?>admin/anggota/detail/<?= $detAng->id_anggota ?>"><i class="fa fa-info"></i></a>

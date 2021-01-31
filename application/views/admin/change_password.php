@@ -28,7 +28,7 @@
 
                     <div class="form-group text-center">
                         <button class="btn btn-primary px-3 mr-1" type="submit">Simpan Perubahan</button>
-                        <a class="btn btn-danger px-3 mr-1">Batal</a>
+                        <a href="<?=base_url()?>admin/guide" class="btn btn-danger px-3 mr-1">Batal</a>
                     </div>
                 </form>
             </div>

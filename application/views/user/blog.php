@@ -31,9 +31,9 @@
                 <img src="<?=base_url()?>assets/admin/img/berita/<?=$rowBlog->thumbnail?>" alt="" class="img-fluid">
               </div>
 
-              <h2 class="entry-title">
+              <h5 class="entry-title">
                 <span><?=$rowBlog->judul_berita?></span>
-              </h2>
+              </h5>
               <p class="mt-n3 small text-justify text-secondary">
                 <?=$rowBlog->deskripsi?>
               </p>

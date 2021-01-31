@@ -44,13 +44,15 @@
                         <td><?=$i?></td>
                         <td><?=$detBayar->tanggal_zakat?></td>
                         <td><?=$detBayar->bulan_zakat?></td>
-                        <td><?=$detBayar->nominal_zakat?></td>
+                        <td>Rp. <?= number_format($detBayar->nominal_zakat, 0, ',', '.') ?></td>
                         <td>
                                 <?php if ($detBayar->status_zakat == '0'){
                                     echo 'Menunggu Verifikasi';
                         
                                 }else if ($detBayar->status_zakat == '1'){
-                                echo 'Terverifikasi';
+                                    echo 'Terverifikasi';
+                                }else{
+                                    echo 'Gagal Terverifikasi';
                                 }
                                 ?>
                                 <br><a class="badge badge-success text-white p-2" href="<?=base_url()?>user/history_pembayaran/detail/<?=$detBayar->id_zakat?>">Lihat Detail</a></li>

@@ -29,7 +29,7 @@ class Distribusi extends CI_Controller
         $data['dis'] = $this->m_crud->getAll('distribusi_zakat')->result();
         $data['kategori'] = $this->m_crud->getAll('tb_kategori')->result();
         $data['anggota'] = $this->m_crud->edit(['status_anggota' => 1], 'tb_anggota')->result();
-        $data['penerima'] = $this->m_crud->edit(['status_penerima' => 1], 'tb_penerima')->result();
+        $data['penerima'] = $this->db->query("Select * From tb_penerima, tb_kategori Where tb_penerima.id_kategori = tb_kategori.id_kategori AND tb_penerima.status_penerima = 1")->result();
         $data['sidebar'] = 'distribusi';
         $this->load->view('templates/admin_header');
         $this->load->view('templates/admin_sidebar', $data);

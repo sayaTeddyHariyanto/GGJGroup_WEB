@@ -14,8 +14,7 @@
                 <div class="px-2">
                     <?php echo $this->session->flashdata('pesan'); ?>
                 </div>
-                <?php// print_r($penerima);
-                die; ?>
+                
                 <?php foreach ($penerima as $pnrm) { ?>
 
                     <table class="table table-borderless mt-1">

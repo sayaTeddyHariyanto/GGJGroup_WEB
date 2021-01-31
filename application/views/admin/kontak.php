@@ -84,7 +84,7 @@
                     </div>
                     <div class="form-group">
                         <label for="akun">Nama Akun:</label>
-                        <input type="text" pattern="[a-zA-Z0-9 ]{2,100}" required
+                        <input type="text" pattern="[a-zA-Z0-9 @_-.+]{2,100}" required
                             class="form-control" name="akun" id="akun" aria-describedby="akun" placeholder="Masukkan nama akun..." value="<?=set_value('akun')?>">
                         <small id="akun" class="form-text text-muted">Masukkan nama akun yang sesuai</small>
                         <?php echo form_error('akun'); ?>

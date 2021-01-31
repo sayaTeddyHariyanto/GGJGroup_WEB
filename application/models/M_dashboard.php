@@ -24,7 +24,7 @@ class M_dashboard extends CI_Model{
 
         $bulan_sekarang = date("Y-m");
 
-        $query = $this->db->query("SELECT SUM(pembayaran_zakat.nominal_zakat) as nominal_zakat FROM pembayaran_zakat WHERE pembayaran_zakat.tanggal_zakat LIKE '%$bulan_sekarang%'")->row()->nominal_zakat;
+        $query = $this->db->query("SELECT SUM(pembayaran_zakat.nominal_zakat) as nominal_zakat FROM pembayaran_zakat WHERE pembayaran_zakat.tanggal_zakat LIKE '%$bulan_sekarang%' AND pembayaran_zakat.status_zakat = 1")->row()->nominal_zakat;
         
         return $query;
     }
@@ -33,7 +33,7 @@ class M_dashboard extends CI_Model{
 
         $bulan_sekarang = date("Y-m");
 
-        $query = $this->db->query("SELECT SUM(distribusi_zakat.nominal_distribusi) as nominal_distribusi FROM distribusi_zakat WHERE distribusi_zakat.tanggal_distribusi LIKE '%$bulan_sekarang%'")->row()->nominal_distribusi;
+        $query = $this->db->query("SELECT SUM(distribusi_zakat.nominal_distribusi) as nominal_distribusi FROM distribusi_zakat WHERE distribusi_zakat.tanggal_distribusi LIKE '%$bulan_sekarang%' AND distribusi_zakat.status_distribusi = 1 ")->row()->nominal_distribusi;
         
         return $query;
     }
@@ -42,8 +42,8 @@ class M_dashboard extends CI_Model{
 
         $bulan_sekarang = date("Y-m");
 
-        $total_zakat = $this->db->query("SELECT SUM(pembayaran_zakat.nominal_zakat) as nominal_zakat FROM pembayaran_zakat WHERE pembayaran_zakat.tanggal_zakat LIKE '%$bulan_sekarang%'")->row()->nominal_zakat;
-        $total_distribusi = $this->db->query("SELECT SUM(distribusi_zakat.nominal_distribusi) as nominal_distribusi FROM distribusi_zakat WHERE distribusi_zakat.tanggal_distribusi LIKE '%$bulan_sekarang%'")->row()->nominal_distribusi;
+        $total_zakat = $this->db->query("SELECT SUM(pembayaran_zakat.nominal_zakat) as nominal_zakat FROM pembayaran_zakat WHERE pembayaran_zakat.tanggal_zakat LIKE '%$bulan_sekarang%' AND pembayaran_zakat.status_zakat = 1")->row()->nominal_zakat;
+        $total_distribusi = $this->db->query("SELECT SUM(distribusi_zakat.nominal_distribusi) as nominal_distribusi FROM distribusi_zakat WHERE distribusi_zakat.tanggal_distribusi LIKE '%$bulan_sekarang%' AND distribusi_zakat.status_distribusi = 1")->row()->nominal_distribusi;
 
         $sisa_saldo = $total_zakat - $total_distribusi;
         return $sisa_saldo;

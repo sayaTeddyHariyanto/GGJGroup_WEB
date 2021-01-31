@@ -17,7 +17,7 @@ class Zakat extends CI_Controller
     function index()
     {
         $where = array(
-            'status_zakat' => 1
+            'status_zakat !=' => 0
         );
         $data['zakat'] = $this->m_crud->edit($where, 'pembayaran_zakat')->result();
         $data['sidebar'] = 'zakat';
@@ -64,13 +64,13 @@ class Zakat extends CI_Controller
         $this->load->view('templates/admin_footer');
     }
 
-    function ubah_status($id_zakat)
+    function ubah_status($id_zakat, $value)
     {
         $where = array(
             'id_zakat' => $id_zakat
         );
         $data = array(
-            'status_zakat' => 1
+            'status_zakat' => $value
         );
         $this->m_crud->update($where, $data, 'pembayaran_zakat');
         if ($this->db->affected_rows() == true) {

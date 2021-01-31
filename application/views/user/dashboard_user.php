@@ -4,7 +4,7 @@
 <section id="breadcrumbs" class="breadcrumbs">
     <div class="container mt-5">
 
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex mb-3 justify-content-between align-items-center">
         <!-- <h2>Pembayaran Zakat</h2> -->
         <ol>
             <li><a href="<?=base_url()?>user/landingpage">Beranda</a></li>
@@ -12,6 +12,7 @@
         </ol>
         </div>
 
+    <?=$this->session->flashdata('pesan');?>
     </div>
 </section><!-- End Breadcrumbs -->
 
@@ -26,14 +27,17 @@
         </div>
         <div class="card mb-4">
         <div class="card-body">
-            <?=$this->session->flashdata('pesan');?>
             <h4>Data Saya</h4>
             <hr>
             <div class="row mx-4">
                 <div class="col-lg-3 col-12 text-lg-right my-lg-0 my-4 d-lg-none d-block text-center">
                     <div class="text-center">
-                    <img src="http://placehold.it/50x50" alt="Hahaha" width="100" class="img-fluid rounded-circle"><br>
-                    <button type="button" class="btn mt-2 btn-sm btn-primary" data-toggle="modal">Edit Foto</button>
+                    <?php if($profil->foto_anggota == null || $profil->foto_anggota == ''){?>
+                    <img src="http://placehold.it/50x50" alt="Foto Profil" width="100" class="img-fluid rounded-circle"><br>
+                    <?php }else{ ?>
+                    <img src="<?=base_url()?>assets/user/img/profil/<?=$profil->foto_anggota?>" alt="Foto Profil" width="100" class="img-fluid rounded-circle">
+                    <?php }?><br>
+                    <button type="button" data-target="#modalUploadFoto" class="btn mt-2 btn-sm btn-primary" data-toggle="modal">Edit Foto</button>
                     </div>
                 </div>
                 <div class="col-lg-9 col-12">
@@ -77,7 +81,7 @@
                     <?php if($profil->foto_anggota == null || $profil->foto_anggota == ''){?>
                     <img src="http://placehold.it/50x50" alt="Foto Profil" width="100" class="img-fluid rounded-circle"><br>
                     <?php }else{ ?>
-                    <img src="<?=base_url()?>assets/user/img/profil/<?=$profil->foto_anggota?>" alt="Foto Profil" width="100" id="preview" class="img-fluid rounded-circle">
+                    <img src="<?=base_url()?>assets/user/img/profil/<?=$profil->foto_anggota?>" alt="Foto Profil" width="100" class="img-fluid rounded-circle">
                     <?php }?><br>
                     <button type="button" data-target="#modalUploadFoto" class="btn mt-2 btn-sm btn-primary" data-toggle="modal">Edit Foto</button>
                     </div>

@@ -16,7 +16,6 @@
     <div class="row">
         <div class="col-6">
             <button class="btn btn-sm btn-success mb-3" data-toggle="modal" data-target="#tambah_data"><i class="fas fa-plus fa-sm mr-2"></i>Tambah Data</button>
-            <a href="<?= base_url() ?>admin/" class="btn btn-sm btn-primary mb-3"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Data</a>
         </div>
     </div>
 
@@ -36,6 +35,7 @@
                             <th>Judul Distribusi</th>
                             <th>Tanggal</th>
                             <th>Nominal</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -53,9 +53,10 @@
                                         }
                                     ?>
                                 </td>
-                                <td><?= $row_dis->judul_distribusi ?></td>
+                                <td width="200px"><?= $row_dis->judul_distribusi ?></td>
                                 <td><?= $row_dis->tanggal_distribusi ?></td>
                                 <td>Rp. <?= number_format($row_dis->nominal_distribusi, 0, ',', '.') ?></td>
+                                <td><?=$row_dis->status_distribusi == 0 ? "<span class='badge badge-primary'>Perencanaan</span>" : "<span class='badge badge-success'>Selesai</span>" ?></td>
                                 <td>
                                     <a data-toggle="tooltip" data-placement="top" title="Detail" class="btn mb-2 px-3 btn-info btn-sm mr-2" href="<?= base_url() ?>admin/distribusi/detail/<?= $row_dis->id_distribusi ?>"><i class="fa fa-info"></i></a>
                                     <a data-toggle="tooltip" data-placement="top" title="Edit" class="btn mb-2 btn-primary btn-sm mr-2" href="<?= base_url() ?>admin/distribusi/edit/<?= $row_dis->id_distribusi ?>"><i class="fa fa-edit"></i></a>
@@ -106,8 +107,8 @@
                         <select class="form-control selectpicker" multiple data-live-search="true" name="penerima[]" id="penerima" required>
                             <option value=""></option>
                             <?php foreach($penerima as $pnm){?>
-                            <option <?=$pnm->jumlah_terima >= 3 ? "disabled class='text-danger'" : ""?>
-                            value="<?=$pnm->id_penerima?>"><?=$pnm->nama_penerima?> (<?=$pnm->alamat_penerima?>/<?=$pnm->jumlah_terima?>)</option>
+                            <option 
+                            value="<?=$pnm->id_penerima?>"><?=$pnm->nama_penerima?> (<?=$pnm->nama_kategori?>/<?=$pnm->alamat_penerima?>/<?=$pnm->jumlah_terima?>)</option>
                             <?php }?>
                         </select>
                     </div>

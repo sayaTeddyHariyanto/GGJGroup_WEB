@@ -16,7 +16,6 @@
     <div class="row">
         <div class="col-6">
             <button class="btn btn-sm btn-success mb-2" data-toggle="modal" data-target="#tambah_data"><i class="fas fa-plus fa-sm mr-2"></i>Tambah Data</button>
-            <a href="<?= base_url() ?>admin/" class="btn btn-sm btn-primary mb-3"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Data</a>
         </div>
     </div>
 

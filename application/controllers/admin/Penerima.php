@@ -27,12 +27,22 @@ class Penerima extends CI_Controller
         $this->load->view('templates/admin_custom_js');
         $this->load->view('templates/admin_footer');
     }
+    
+    function addr_line1($addr_line1)
+    {
+        if (preg_match('/[\^£$%&*}{@#~><>|=+¬]/', $addr_line1)) {
+            $this->form_validation->set_message('addr_line1', 'Mohon maaf tidak diperbolehkan menggunakan karakter spesial');
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     function tambah_penerima()
     {
         //rules
         $this->form_validation->set_rules('nama_penerima', 'Nama Penerima', 'trim|required|alpha_numeric_spaces|min_length[2]|max_length[100]');
-        $this->form_validation->set_rules('alamat_penerima', 'Alamat Penerima', 'trim|required|alpha_numeric_spaces|max_length[225]');
+        $this->form_validation->set_rules('alamat_penerima', 'Alamat Penerima', 'trim|required|callback_addr_line1|max_length[225]');
         $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'trim|required|alpha_numeric_spaces|min_length[2]|max_length[100]');
         $this->form_validation->set_rules('jumlah_tanggungan', 'Jumlah Tanggungan', 'trim|required|numeric');
         $this->form_validation->set_rules('jumlah_terima', 'Jumlah Terima', 'trim|required|numeric');
@@ -132,7 +142,7 @@ class Penerima extends CI_Controller
 
         //rules
         $this->form_validation->set_rules('nama_penerima', 'Nama Penerima', 'trim|required|alpha_numeric_spaces|min_length[2]|max_length[100]');
-        $this->form_validation->set_rules('alamat_penerima', 'Alamat Penerima', 'required');
+        $this->form_validation->set_rules('alamat_penerima', 'Alamat Penerima', 'required|callback_addr_line1');
         $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'trim|required|alpha_numeric_spaces|min_length[2]|max_length[100]');
         $this->form_validation->set_rules('jumlah_tanggungan', 'Jumlah Tanggungan', 'trim|required|numeric');
         $this->form_validation->set_rules('jumlah_terima', 'Jumlah Terima', 'trim|required|numeric');

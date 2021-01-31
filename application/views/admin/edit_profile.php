@@ -40,21 +40,7 @@
                             <?php echo form_error('username'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="password_admin">Password:</label>
-                            <input type="password" class="form-control" name="password_admin" id="password_admin" placeholder="Masukkan Password Admin..." value="<?= $prfl->password_admin ?>">
-                            <input type=button id="show" value="Show Password" onclick="ShowPassword()">
-                            <input type=button style="display:none" id="hide" value="Hide Password" onclick="HidePassword()">
-                            <script type="text/javascript">
-                                $(document).ready(function() {
-                                    $('.form-checkbox').click(function() {
-                                        if ($(this).is(':checked')) {
-                                            $('.form-password').attr('type', 'text');
-                                        } else {
-                                            $('.form-password').attr('type', 'password');
-                                        }
-                                    });
-                                });
-                            </script>
+                            <input type="hidden" class="form-control" name="password_admin" id="password_admin" placeholder="Masukkan Password Admin..." value="<?= $prfl->password_admin ?>">
                         </div>
                         <div class="form-group">
                             <label for="status">Status :</label>

@@ -130,7 +130,7 @@ class Profile_admin extends CI_Controller
     function changePassword()
     {
 
-        $data['admin'] = $this->db->get_where('tb_admin', ['username' => $this->session->userdata('username')])->row_array();
+        $data['admin'] = $this->db->get_where('tb_admin', ['id_admin' => $this->session->userdata('id')])->row_array();
 
         //set rules
         $this->form_validation->set_rules('password_sekarang', 'Password Sekarang', 'required|trim');
@@ -140,6 +140,7 @@ class Profile_admin extends CI_Controller
         //set pesan
         $this->form_validation->set_message('required', 'Maaf, {field} harus terisi');
         $this->form_validation->set_message('min_length', 'Mohon maaf, Masukan {field} minimum {param} karakter');
+        $this->form_validation->set_message('matches', 'Mohon maaf, {field} tidak cocok dengan {param}');
 
         //wadah pesan
         $this->form_validation->set_error_delimiters('<div class="text-center"><span class="badge badge-danger text-white mt-2 px-4">', '</span></div>');
@@ -155,7 +156,7 @@ class Profile_admin extends CI_Controller
         } else {
             $password_sekarang = $this->input->post('password_sekarang');
             $password_baru = $this->input->post('password_baru');
-            if (!password_verify($password_sekarang, $data['tb_admin']['password_admin'])) {
+            if (md5($password_sekarang) != $data['admin']['password_admin']) {
                 $this->session->set_flashdata('pesan', '
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong>Maaf!</strong> Password lama yang dimasukkan salah.
@@ -177,21 +178,22 @@ class Profile_admin extends CI_Controller
                 ');
                     redirect('admin/Profile_admin/changePassword');
                 } else {
-                    $password_hash = password_hash($password_baru, PASSWORD_DEFAULT);
+                    $password_hash = md5($password_baru);
 
                     $this->db->set('password_admin', $password_hash);
-                    $this->db->where('username', $this->session->userdata('username'));
-                    $this->db->update('admin');
+                    $this->db->where('id_admin', $this->session->userdata('id'));
+                    $this->db->update('tb_admin');
 
                     $this->session->set_flashdata('pesan', '
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Maaf!</strong> Berhasil mengubah data!
+                        <strong>Selamat!</strong> password berhasil diubah, silahkan login!
                         <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 ');
-                    redirect('admin/Profile_admin/changePassword');
+                    $this->session->sess_destroy(); //menghentikan semua sesion
+		            redirect(base_url('admin/login')); // diarahkan ke form login
                 }
             }
         }

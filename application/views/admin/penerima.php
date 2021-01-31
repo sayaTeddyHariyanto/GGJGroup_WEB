@@ -119,7 +119,7 @@
                     </div>
                     <div class="form-group">
                         <label for="pekerjaan">Pekerjaan:</label>
-                        <input type="text" pattern="[a-zA-Z0-9]{2,100}" title="Masukkan hanya huruf, angka dan spasi" required class="form-control" name="pekerjaan" id="pekerjaan" aria-describedby="pekerjaan" placeholder="Masukkan Pekerjaan..." value="<?= set_value('pekerjaan') ?>">
+                        <input type="text" pattern="[a-zA-Z0-9 ,-_]{2,100}" title="Masukkan hanya huruf, angka dan spasi" required class="form-control" name="pekerjaan" id="pekerjaan" aria-describedby="pekerjaan" placeholder="Masukkan Pekerjaan..." value="<?= set_value('pekerjaan') ?>">
                         <small id="pekerjaan" class="form-text text-muted">Masukkan pekerjaan penerima dengan benar (hanya angka)</small>
                         <?php echo form_error('pekerjaan'); ?>
                     </div>

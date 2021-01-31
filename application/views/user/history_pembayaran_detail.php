@@ -70,7 +70,7 @@
                         <tr>
                         <th  class="text-right">Nominal</th>
                         <td>:</td>
-                        <td><?=$detBayar->nominal_zakat?></td>
+                        <td>Rp. <?= number_format($detBayar->nominal_zakat, 0, ',', '.') ?></td>
                         </tr>
                         <tr><th class="text-right">Status</th>
                         <td>:</td>
@@ -78,7 +78,9 @@
                                     echo '<li class="badge badge-danger">Menunggu Verifikasi</li>';
                         
                                 }else if ($detBayar->status_zakat == '1'){
-                                echo '<li class="badge badge-primary">Terverifikasi</li>';
+                                    echo '<li class="badge badge-primary">Terverifikasi</li>';
+                                }else{
+                                    echo '<li class="badge badge-primary">Gagal Terverifikasi</li>';
                                 }
                                 ?></td>
                         </tr>   

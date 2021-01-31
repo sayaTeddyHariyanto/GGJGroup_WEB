@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="form-group text-center">
-                            <a class="btn btn-primary px-3 mr-1" href="<?= base_url() ?>admin/berita">Kembali</a>
+                            <a class="btn btn-primary px-3 mr-1" href="<?= base_url() ?>admin/guide">Kembali</a>
                             <button class="btn btn-success px-3 mr-1" type="submit">Simpan</button>
                         </div>
                     </form>

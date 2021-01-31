@@ -97,7 +97,7 @@ class Pendaftaran_penerima extends CI_Controller
         } else {
             $data = array(
                 'id_kategori' => $this->input->post('nama_kategori'),
-                'id_anggota' => $this->input->post('nama_anggota'),
+                'id_anggota' => $this->session->userdata('id'),
                 'nama_penerima' => $this->input->post('nama_penerima'),
                 'alamat_penerima' => $this->input->post('alamat_penerima'),
                 'pekerjaan' => $this->input->post('pekerjaan'),

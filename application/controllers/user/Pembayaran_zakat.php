@@ -169,7 +169,7 @@ class Pembayaran_zakat extends CI_Controller
     function bayar()
     {
         $this->form_validation->set_rules('nominal', 'Email', 'trim|required|numeric');
-        $this->form_validation->set_rules('bulan', 'Kritik/Saran', 'trim|required|alpha');
+        $this->form_validation->set_rules('bulan', 'Kritik/Saran', 'trim|required');
         $this->form_validation->set_message('numeric', 'Mohon maaf, {field} harus diisi hanya angka');
         $this->form_validation->set_message('alpha', 'Mohon maaf, {field} harus diisi hanya huruf');
         $this->form_validation->set_message('required', 'Mohon maaf, {field} harus diisi');

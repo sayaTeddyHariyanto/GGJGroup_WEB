@@ -6,7 +6,7 @@
                 <h2 class="font-weight-bolder mb-0">Detail Data</h2>
                 <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
                     <li class="breadcrumb-item"><a href="<?= base_url() ?>admin/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="<?= base_url() ?>admin/anggota"></i> Zakat</a></li>
+                    <li class="breadcrumb-item"><a href="<?= base_url() ?>admin/zakat"></i> Zakat</a></li>
                     <li class="breadcrumb-item active">Detail Zakat</li>
                 </ul>
             </div>
@@ -57,11 +57,16 @@
                                 <td class="text-right"></td>
                                 <td>
                                     <?php
-                                    if ($row_zakat->status_zakat == 1) {
+                                    if ($row_zakat->status_zakat != 0) {
+                                        if($row_zakat->status_zakat == 1){
                                         echo '<span name="" id="" class="btn btn-danger" role="button">Terverifikasi</span>';
-                                    } else {
-                                        echo '<a name="" id="" class="btn btn-primary" href="' . base_url("admin/zakat/ubah_status/$row_zakat->id_zakat") . '" role="button">Verifikasi</a>';
-                                    }
+                                        }else{
+                                         echo '<span name="" id="" class="btn btn-danger" role="button">Gagal Terverifikasi</span>';  
+                                        }
+                                    } else { ?>
+                                        <a onclick="return confirm('Apakah anda yakin memverifikasi pembayaran ini?');" name="" id="" class="btn btn-primary mr-2" href="<?=base_url("admin/zakat/ubah_status/$row_zakat->id_zakat/1")?>" role="button">Verifikasi Berhasil</a>
+                                        <a onclick="return confirm('Apakah anda yakin memverifikasi pembayaran ini?');" name="" id="" class="btn btn-danger" href="<?=base_url("admin/zakat/ubah_status/$row_zakat->id_zakat/2")?>" role="button">Verifikasi Gagal</a>
+                                    <?php }
                                     ?>
                                 </td>
                             </tr>

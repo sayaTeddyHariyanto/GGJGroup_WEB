@@ -42,17 +42,6 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="nama_anggota">Nama Anggota:</label>
-                            <select name="nama_anggota" class="form-control selectpicker" data-live-search="true" required>
-                                <option value="">--Pilih Anggota--</option>
-                                <?php foreach ($anggota as $agt) { ?>
-                                    <option value="<?php echo $agt->id_anggota; ?>">
-                                        <?php echo $agt->nama_anggota; ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
                             <label for="nama_penerima">Nama Penerima:</label>
                             <input type="text" pattern="[a-zA-Z0-9 ]{2,100}" title="Masukkan minimal 2, maksimum 100, hanya alphabet, spasi, dash dan underscore" required class="form-control" name="nama_penerima" id="nama_penerima" aria-describedby="nama_penerima" placeholder="Masukkan nama penerima..." value="<?= set_value('nama_penerima') ?>">
                             <small id="nama_penerima" class="form-text text-muted">Masukkan nama penerima dengan benar (tidak diperbolehkan karakter spesial)</small>
@@ -76,12 +65,9 @@
                             <small id="jumlah_tanggungan" class="form-text text-muted">Masukkan jumlah tanggungan</small>
                             <?php echo form_error('jumlah_tanggungan'); ?>
                         </div>
-                        <div class="form-group">
-                            <label for="jumlah_terima">Jumlah Terima:</label>
-                            <input type="number" pattern="[0-9 ]{0,32}" title="Maksimum 32, isi hanya dengan angka" required class="form-control" name="jumlah_terima" id="jumlah_terima" aria-describedby="jumlah_terima" placeholder="Masukkan jumlah terima..." value="<?= set_value('jumlah_terima') ?>" min="0">
-                            <small id="jumlah_terima" class="form-text text-muted">Masukkan jumlah terima</small>
-                            <?php echo form_error('jumlah_terima'); ?>
-                        </div>
+                        
+                        <input type="hidden"  name="jumlah_terima" value="0" >
+                        
                 </div>
                 <div class="card-footer text-center">
                     <button type="submit" class="btn btn-success my-2">Tambahkan Penerima</button>
