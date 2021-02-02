@@ -100,6 +100,7 @@
             <a class="collapse-item" href="<?= base_url() ?>admin/jadwal">Jadwal Kegiatan</a>
             <a class="collapse-item" href="<?= base_url() ?>admin/kontak">Kontak Person</a>
             <a class="collapse-item" href="<?= base_url() ?>admin/saran">Kritik Saran</a>
+            <a class="collapse-item" href="<?= base_url() ?>admin/bank">Metode Pembayaran</a>
             <a class="collapse-item" href="<?= base_url() ?>admin/profil">Profil Kami</a>
           </div>
         </div>
