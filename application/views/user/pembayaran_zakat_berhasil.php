@@ -66,7 +66,7 @@
                 <!-- <hr> -->
             </div>
             <div class="card-footer text-center">
-              <a href="<?=base_url()?>user/dashboard/" class="btn btn-success my-2">Kembali ke Dashboard</a>
+              <a href="<?=base_url()?>user/nota_pembayaran/detail/">Lihat Nota</a>
             </div>
 
           </div><!-- End blog entries list -->
