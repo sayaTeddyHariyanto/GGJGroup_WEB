@@ -1,6 +1,6 @@
     <?php
 
-    class History_pendaftaran extends CI_Controller 
+    class History_pendaftaran extends CI_Controller
     {
         function __construct()
         {
@@ -18,7 +18,7 @@
                 </div>
                 ');
                 redirect('user/auth/login_anggota');
-            }else{
+            } else {
                 $user = $this->m_crud->edit(['id_anggota' => $this->session->userdata('id')], 'tb_anggota')->row();
                 if ($user->status_anggota == 0) { // jika password benar, maka lanjut
                     $this->session->set_flashdata('pesan', '
@@ -48,6 +48,7 @@
             $this->load->view('templates/user_custom_js');
             $this->load->view('templates/user_footer');
         }
+
         function detail($id_penerima)
         {
             $where = array('id_penerima' => $id_penerima);
@@ -60,5 +61,21 @@
             $this->load->view('templates/user_footer');
         }
 
-    
+        function printpdf()
+        {
+            $this->load->library('Dompdf_gen');
+
+            $data['penerima'] = $this->m_crud->cetak('tb_penerima')->result();
+
+            $this->load->view('user/penerima_print', $data);
+
+            $paper_size = 'A4';
+            $oriantation = 'landscape';
+            $html = $this->output->get_output();
+            $this->dompdf->set_paper($paper_size, $oriantation);
+
+            $this->dompdf->load_html($html);
+            $this->dompdf->render();
+            $this->dompdf->stream("laporan_anggota_" . date('Y-m-d_H-i-s') . ".pdf", array('Attachment' => 0));
+        }
     }

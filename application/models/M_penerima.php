@@ -47,4 +47,5 @@ class M_penerima extends CI_Model
     {
         $this->db->delete($table, $where);
     }
+
 }
