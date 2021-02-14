@@ -66,7 +66,7 @@
                 <!-- <hr> -->
             </div>
             <div class="card-footer text-center">
-              <a href="<?=base_url()?>user/nota_pembayaran/detail/">Lihat Nota</a>
+            <a href="<?=base_url()?>user/history_pembayaran/detail/<?=$row->id_zakat?>" class="btn btn-success my-2">Lihat Nota</a>
             </div>
 
           </div><!-- End blog entries list -->

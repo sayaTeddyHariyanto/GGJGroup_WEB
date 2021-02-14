@@ -62,6 +62,24 @@ class History_pembayaran extends CI_Controller
         $this->load->view('templates/user_footer');
     }
 
+    function printpdf($id_zakat)
+    {
+        $this->load->library('Dompdf_gen');
+            
+        $data['pembayaran'] = $this->m_landingpage->SelectPembayaranById($id_zakat)->result();
+
+        $this->load->view('user/nota_pembayaran', $data);
+
+        $paper_size = 'A4';
+        $oriantation = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $oriantation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("nota_pembayaran_" . date('Y-m-d_H-i-s') . ".pdf", array('Attachment' => 0));
+    }
+
     
 }
 

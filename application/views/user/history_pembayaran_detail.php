@@ -89,6 +89,7 @@
                     <hr>
                     <div class="text-center">
                         <span onclick="window.history.go(-1); return false;" class="btn btn-secondary text-white px-3 mr-1"><i class="fas fa-arrow-left mr-2"></i>Kembali</span>
+                        <a href="<?= base_url() ?>user/history_pembayaran/printpdf/<?=$detBayar->id_zakat?>" class="btn btn-primary text-white px-3 mr-1"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Bukti</a>
                     </div>
                 </div>
                 </form>

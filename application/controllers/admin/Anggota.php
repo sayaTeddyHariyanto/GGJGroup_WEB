@@ -323,6 +323,7 @@ class Anggota extends CI_Controller
         $this->load->view('templates/admin_footer');
     }
 
+
     function logout(){
 		$this->session->sess_destroy(); //menghentikan semua sesion
 		redirect(base_url('admin/login')); // diarahkan ke form login

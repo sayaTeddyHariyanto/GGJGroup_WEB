@@ -1,88 +1,99 @@
-<main id="main">
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Pembayaran</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
 
-        <!-- ======= Breadcrumbs ======= -->
-        <section id="breadcrumbs" class="breadcrumbs">
-        <div class="container mt-5">
+        body {
+            margin: 0;
+            font-family: 'Roboto', serif;
+            font-weight: 100;
+        }
 
-            <div class="d-flex justify-content-between align-items-center">
-            <!-- <h2>Pembayaran Zakat</h2> -->
-            <ol>
-                <li><a href="<?=base_url()?>user/landingpage">Beranda</a></li>
-            </ol>
-            </div>
+        .judul{
+            text-align: center;
+            padding-bottom:20px;
+        }
 
-        </div>
-        </section><!-- End Breadcrumbs -->
+        .container {
+            padding: 0px auto 5px;
+        }
 
-        <!-- ======= Blog Section ======= -->
-        <section id="blog" class="blog">
-        <div class="container">
+        table {
+            width: 90%;
+            margin: 10px auto;
+            border-collapse: collapse;
+        }
 
-            <div class="row justify-content-center">
+        th,
+        td {
+            padding: 9px;
+            border: solid 2px black;
+            color: #000;
+        }
 
-            <?php foreach($zakat as $detBayar){?>
-            <div class="col-lg-8 col-12 px-0 card shadow mb-5">
-                <div class="card-header bg-success my-0 text-white text-center">
-                <h4>Nota Pembayaran Zakat</h4>
-                </div>
-                <form action="<?=base_url()?>user/nota_pembayaran/detail/<?=$detBayar->id_zakat?>" method="post" enctype="multipart/form-data">
-                <div class="card-body px-5">
-                    <?=$this->session->flashdata('pesan');?>
-                    <input type="hidden" name="zakat" value="<?=$detBayar->id_zakat?>">
-                    <table class="table table-sm table-borderless">
-                    <tbody>
-                        <tr>
-                        <th  class="text-right">Tanggal Pembayaran</th>
-                        <td>:</td>
-                        <td><?=$detBayar->tanggal_zakat?></td>
-                        </tr>
-                        <tr>
-                        <th  class="text-right">Nama Anggota</th>
-                        <td>:</td>
-                        <td><?=$detBayar->nama_anggota?></td>
-                        </tr>
-                        <tr>
-                        <th  class="text-right">Nomor HP</th>
-                        <td>:</td>
-                        <td><?=$detBayar->no_hp_anggota?></td>
-                        </tr>
-                        <tr>
-                        <th  class="text-right">Metode Pembayaran</th>
-                        <td>:</td>
-                        <td><?=$detBayar->nama_metode?></td>
-                        </tr>
-                        <tr>
-                        <th  class="text-right">Nomor Rekening</th>
-                        <td>:</td>
-                        <td><?=$detBayar->nomer_metode?></td>
-                        </tr>
-                        <tr>
-                        <th  class="text-right">Atas Nama</th>
-                        <td>:</td>
-                        <td><?=$detBayar->atas_nama?></td>
-                        </tr>
-                        <tr>
-                        <th  class="text-right">Bulan</th>
-                        <td>:</td>
-                        <td><?=$detBayar->bulan_zakat?></td>
-                        </tr>
-                        <tr>
-                        <th  class="text-right">Nominal</th>
-                        <td>:</td>
-                        <td>Rp. <?= number_format($detBayar->nominal_zakat, 0, ',', '.') ?></td>
-                        </tr> 
-                    </tbody>
-                    </table>
-                    <hr>
+        th {
+            text-align: center;
+        }
+
+    </style>
+</head><body>
+
+<div style="text-align: center; border-bottom: solid 1px black; padding-bottom: 10px;">
+    <h1>GGJ Group Zakah</h1>
+    Besuki, Sidomekar, Semboro, Kabupaten Jember, Jawa Timur 68157 <br>
+    Nomor Telepon (0331)442211 <br>
+</div>
+<div class="judul">
+    <h2>Nota Pembayaran</h2>
+</div><br>
+
+<div style="
+    width:100%;
+    margin: auto;
+    text-align:left;
+    ">Tanggal : <?=date('Y-m-d H:i:s')?>
+</div>
+
+<div class="container">
+    <table width="100%">
+        <tr>
+            <th>No</th>
+            <th>Tanggal Pembayaran</th>
+            <th>Nama Anggota</th>
+            <th>Nomor HP</th>
+            <th>Metode Pembayaran</th>
+            <th>Nomor Rekening</th>
+            <th>Atas Nama</th>
+            <th>Bulan</th>
+            <th>Nominal Zakat</th>
+        </tr>
+        
+        <?php 
+        $no = 0;
+        foreach ($pembayaran as $rowAgt) { ?>
+
+            <tr style="text-align:center;">
+                <td><?=$no+1?></td>
+                <td style="text-align:left;"><?=$rowAgt->tanggal_zakat?></td>
+                <td style="text-align:left;"><?=$rowAgt->nama_anggota?></td>
+                <td style="text-align:left;"><?=$rowAgt->no_hp_anggota?></td>
+                <td style="text-align:left;"><?=$rowAgt->nama_metode?></td>
+                <td style="text-align:left;"><?=$rowAgt->nomer_metode?></td>
+                <td style="text-align:left;"><?=$rowAgt->atas_nama?></td>
+                <td style="text-align:left;"><?=$rowAgt->bulan_zakat?></td>
+                <td style="text-align:left;">Rp. <?= number_format($rowAgt->nominal_zakat, 0, ',', '.') ?></td>
                 
-                </div>
-                </form>
+            </tr>
 
-            </div><!-- End blog entries list -->
-            <?php }?>
-            </div>
+        <?php $no++; }?>
+        
+    </table>
+</div>
 
-        </div>
-        </section><!-- End Blog Section -->
-
-    </main><!-- End #main -->
+</body></html>
