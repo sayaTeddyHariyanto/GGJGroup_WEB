@@ -48,7 +48,7 @@
                             <a class="btn mb-2 btn-primary btn-sm mr-2" href="<?=base_url()?>admin/slider/edit/<?=$detSlider->id_foto?>"><i class="fa fa-edit"></i></a>
                             <a class="btn mb-2 px-3 btn-info btn-sm mr-2" href="<?=base_url()?>admin/slider/detail/<?=$detSlider->id_foto?>"><i class="fa fa-info"></i></a>
                             <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini?');" href="<?=base_url()?>admin/slider/hapus/<?=$detSlider->id_foto?>" 
-                                class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
+                            class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php $i++; endforeach;?>

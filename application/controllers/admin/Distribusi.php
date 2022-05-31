@@ -7,6 +7,7 @@ class Distribusi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('m_crud');
+        $this->load->model(['m_penerima']);
         // $this->load->library('Primslib');
 
         if ($this->session->userdata('status') == '') {
@@ -165,6 +166,25 @@ class Distribusi extends CI_Controller
         $this->load->view('templates/admin_footer');
     }
 
+    function tambah_distribusi($id_kategori)
+    {
+        $data['kat'] = $this->m_crud->edit(['id_kategori' => $id_kategori],'tb_penerima')->result();
+        $data['penerima'] = $this->m_crud->getAll('tb_penerima')->result();        
+        $data['p1'] = $this->m_penerima->getPrioritas1();
+        $data['p2'] = $this->m_penerima->getPrioritas2();
+        $data['p3'] = $this->m_penerima->getPrioritas3();
+        $data['kategori'] = $this->m_penerima->kategori();
+        $data['sidebar'] = 'distribusi';
+
+        $this->load->view('templates/admin_header');
+        $this->load->view('templates/admin_sidebar', $data);
+        $this->load->view('templates/admin_navbar');
+        $this->load->view('admin/distribusi_tambah', $data);
+        $this->load->view('templates/admin_footer_js');
+        $this->load->view('templates/admin_custom_js');
+        $this->load->view('templates/admin_footer');
+    }
+
     function detail($id)
     {
         $data['dis'] = $this->m_crud->edit(['id_distribusi' => $id],'distribusi_zakat')->result();
@@ -244,9 +264,9 @@ class Distribusi extends CI_Controller
                 </button>
             </div>
             ');
-            $data['dis'] = $this->m_crud->edit(['id_distribusi' => $id],'distribusi_zakat')->result();
-            $data['det_anggota'] = $this->m_crud->edit(['id_distribusi' => $id],'tb_detail_anggota')->result();
-            $data['det_penerima'] = $this->m_crud->edit(['id_distribusi' => $id],'tb_detail_penerima')->result();
+            $data['dis'] = $this->m_crud->edit(['id_distribusi' => $id_distribusi],'distribusi_zakat')->result();
+            $data['det_anggota'] = $this->m_crud->edit(['id_distribusi' => $id_distribusi],'tb_detail_anggota')->result();
+            $data['det_penerima'] = $this->m_crud->edit(['id_distribusi' => $id_distribusi],'tb_detail_penerima')->result();
             $data['kategori'] = $this->m_crud->getAll('tb_kategori')->result();
             $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
             $data['penerima'] = $this->m_crud->getAll('tb_penerima')->result();

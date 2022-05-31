@@ -50,4 +50,5 @@ class M_crud extends CI_Model
             WHERE tb_penerima.id_kategori = tb_kategori.id_kategori AND tb_penerima.id_anggota = tb_anggota.id_anggota AND tb_penerima.id_penerima='$where'");
         //return $this->db->get_where($table, $where, );
     }
+
 }

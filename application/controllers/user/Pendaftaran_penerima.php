@@ -49,6 +49,8 @@ class Pendaftaran_penerima extends CI_Controller
         $data['penerima'] = $this->m_penerima->tampil_tabel()->result();
         $data['kategori'] = $this->m_penerima->kategori();
         $data['anggota'] = $this->m_penerima->anggota();
+        $data['var_f'] = $this->m_penerima->fisik();
+        $data['var_h'] = $this->m_penerima->hunian();
         $this->load->view('templates/user_header');
         $this->load->view('templates/user_navbar');
         $this->load->view('user/pendaftaran_penerima', $data);
@@ -57,53 +59,34 @@ class Pendaftaran_penerima extends CI_Controller
         $this->load->view('templates/user_footer');
     }
 
-    function tambah_penerima2()
+    function tambah_penerima()
     {
         //rules
-        $this->form_validation->set_rules('nama_penerima', 'Nama Penerima', 'trim|required|alpha_numeric_spaces|min_length[2]|max_length[100]');
-        $this->form_validation->set_rules('alamat_penerima', 'Alamat Penerima', 'trim|required|callback_addr_line1|max_length[225]');
-        $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'trim|required|alpha_numeric_spaces|min_length[2]|max_length[100]');
-        $this->form_validation->set_rules('jumlah_tanggungan', 'Jumlah Tanggungan', 'trim|required|numeric');
-        $this->form_validation->set_rules('jumlah_terima', 'Jumlah Terima', 'trim|required|numeric');
-
-        //pesan
-        $this->form_validation->set_message('required', 'Maaf, {field} harus terisi');
-        $this->form_validation->set_message('alpha_numeric_spaces', 'Mohon maaf, {field} isikan dengan huruf, angka, spasi');
-        $this->form_validation->set_message('numeric', 'Mohon maaf, {field} harus diisi menggunakan angka saja');
-        $this->form_validation->set_message('min_length', 'Mohon maaf, Masukan {field} minimum {param} karakter');
-        $this->form_validation->set_message('max_length', 'Mohon maaf, Masukan {field} maximum {param} karakter');
-
-        $this->form_validation->set_error_delimiters('<div class="text-center"><span class="badge badge-danger text-white mt-2 px-4">', '</span></div>');
-
-        if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('pesan', '
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Maaf!</strong> coba lengkapi ulang form register.
-                <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                ');
-            $data['penerima'] = $this->m_penerima->tampil_tabel()->result();
-            $data['kategori'] = $this->m_crud->getAll('tb_kategori')->result();
-            $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
-
-            $this->load->view('templates/user_header');
-            $this->load->view('templates/user_navbar');
-            $this->load->view('user/pendaftaran_penerima', $data);
-            $this->load->view('templates/user_footer_js');
-            $this->load->view('templates/user_custom_js');
-            $this->load->view('templates/user_footer');
-        } else {
+        
             $data = array(
                 'id_kategori' => $this->input->post('nama_kategori'),
                 'id_anggota' => $this->session->userdata('id'),
                 'nama_penerima' => $this->input->post('nama_penerima'),
                 'alamat_penerima' => $this->input->post('alamat_penerima'),
-                'pekerjaan' => $this->input->post('pekerjaan'),
-                'jumlah_tanggungan' => $this->input->post('jumlah_tanggungan'),
-                'jumlah_terima' => $this->input->post('jumlah_terima'),
-                'status_penerima' => 0
+                'status_penerima' => 0,
+                'penghasilan' => $this->input->post('penghasilan'),
+                'penghasilan_p1' => $this->input->post('p1'),
+                'penghasilan_p2' => $this->input->post('p2'),
+                'penghasilan_p3' => $this->input->post('p3'),
+                'jarak' => $this->input->post('jarak'),
+                'jarak_p1' => $this->input->post('j1'),
+                'jarak_p2' => $this->input->post('j2'),
+                'jarak_p3' => $this->input->post('j3'),
+                'fisik' => $this->input->post('fisik'),
+                'fisik_p1' => $this->input->post('f1'),
+                'fisik_p2' => $this->input->post('f2'),
+                'fisik_p3' => $this->input->post('f3'),
+                'hunian' => $this->input->post('hunian'),
+                'hunian_p1' => $this->input->post('h1'),
+                'hunian_p2' => $this->input->post('h2'),
+                'hunian_p3' => $this->input->post('h3'),
+                'skor' => $this->input->post('skor'),
+                'prioritas' => $this->input->post('prioritas')
             );
 
             $this->m_crud->insert($data, 'tb_penerima');
@@ -126,8 +109,8 @@ class Pendaftaran_penerima extends CI_Controller
                             </button>
                         </div>
                         ');
-                redirect('user/pendaftaran_penerima');
+                redirect('user/tambah_penerima');
             }
-        }
+        
     }
 }

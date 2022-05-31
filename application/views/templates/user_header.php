@@ -27,6 +27,7 @@
   <link href="<?=base_url()?>assets/user/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="<?=base_url()?>assets/user/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="<?= base_url() ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <!-- Template Main CSS File -->
   <link href="<?=base_url()?>assets/user/css/style.css" rel="stylesheet">
 
@@ -36,4 +37,5 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  
 </head>

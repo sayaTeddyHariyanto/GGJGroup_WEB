@@ -67,19 +67,12 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <div class="modal fade" id="tambah_data" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <form action="<?= base_url() ?>admin/anggota/tambah" method="post">
-                <div class="modal-header">
-                    <h5 class="modal-title font-weight-bolder text-ijo">Tambah Data</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama">Nama:</label>
@@ -126,10 +119,6 @@
                         </select>
                         <?php echo form_error('status'); ?>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Tambah</button>
                 </div>
             </form>
         </div>

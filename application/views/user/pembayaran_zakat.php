@@ -62,7 +62,7 @@
                 <h4>Doa Membayar Zakat</h4>
                 <img src="<?= base_url() ?>assets/user/img/doa_zakat.JPG" alt="Doa Zakat" class="img-fluid">
               </div>
-              <hr> <!-- Batas Metode pembayaran -->
+              <!-- Batas Metode pembayaran -->
               <div class="text-center">
                 <h4>Metode Pembayaran</h4>
               </div>

@@ -15,7 +15,7 @@
 
     <div class="row">
         <div class="col-6">
-            <button class="btn btn-sm btn-success mb-3" data-toggle="modal" data-target="#tambah_data"><i class="fas fa-plus fa-sm mr-2"></i>Tambah Data</button>
+        <button class="btn btn-sm btn-success mb-2" data-toggle="modal" data-target="#tambah_data"><i class="fas fa-plus fa-sm mr-2"></i>Tambah Data</button>
         </div>
     </div>
 
@@ -84,59 +84,21 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="status">Kategori:</label>
-                        <select class="form-control selectpicker" data-live-search="true" name="kategori" id="kategori" required>
-                            <option value="" selected>Pilih Kategori</option>
-                            <?php foreach($kategori as $kat){?>
-                            <option value="<?=$kat->id_kategori?>"><?=$kat->nama_kategori?></option>
-                            <?php }?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Anggota:</label>
-                        <select class="form-control selectpicker" multiple data-live-search="true" name="anggota[]" id="anggota" required>
-                            <option value=""></option>
-                            <?php foreach($anggota as $ang){?>
-                            <option value="<?=$ang->id_anggota?>"><?=$ang->nama_anggota?></option>
-                            <?php }?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Penerima:</label>
-                        <select class="form-control selectpicker" multiple data-live-search="true" name="penerima[]" id="penerima" required>
-                            <option value=""></option>
-                            <?php foreach($penerima as $pnm){?>
-                            <option 
-                            value="<?=$pnm->id_penerima?>"><?=$pnm->nama_penerima?> (<?=$pnm->nama_kategori?>/<?=$pnm->alamat_penerima?>/<?=$pnm->jumlah_terima?>)</option>
-                            <?php }?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="judul">Judul:</label>
-                        <input type="text" class="form-control" pattern="[a-zA-Z0-9 ,.-]{2,100}" name="judul" id="judul"maxlength="100" placeholder="Masukkan Judul..." required value="<?= set_value('judul') ?>">
-                        <small id="judul" class="form-text text-muted">Judul maksimum 100 karakter</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="tanggal">Tanggal:</label>
-                        <input type="date" required class="form-control" name="tanggal" id="tanggal">
-                    </div>
-                    <div class="form-group">
-                        <label for="tanggal">Nominal:</label>
-                        <input type="number" required class="form-control" min="0" placeholder="Masukkan nominal distribusi zakat" name="nominal" id="nominal">
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Status Tampil:</label>
-                        <select class="custom-select" name="status" id="status" required>
-                            <option value="" selected>Pilih Status</option>
-                            <option value="0">PERENCANAAN</option>
-                            <option value="1">SUDAH DILAKSANAKAN</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                            <label>Kategori</label>
+                            <select name="nama_kategori" class="form-control selectpicker" data-live-search="true" required>
+                                <option value="">--Pilih Kategori--</option>
+                                <?php foreach ($kategori as $key) { ?>
+                                    <option value="<?php echo $key->id_kategori; ?>">
+                                        <?php echo $key->nama_kategori; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Tambah</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <a name="" id="" class="btn btn-primary" href="<?= base_url() ?>admin/distribusi/tambah_distribusi/<?= $key->id_kategori?>" role="button">Lanjutkan</a>
                 </div>
             </form>
         </div>

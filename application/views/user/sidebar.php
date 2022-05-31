@@ -54,7 +54,7 @@ $bulan = $ci->m_landingpage->getBulanforSidebar()->result();
                     <?php 
                     $bln = substr($rowBulan->tanggal_berita, 0, 7);
                     $beritaBulan = $ci->m_landingpage->getBeritabyBulan($bln)->result();
-                    foreach ($beritaBulan as $rowBeritaBulan) :
+                    foreach ($beritaBulan as $rowBeritaBulan):
 
                     $old_date = $rowBeritaBulan->tanggal_berita;
                     $old_date_timestamp = strtotime($old_date);
