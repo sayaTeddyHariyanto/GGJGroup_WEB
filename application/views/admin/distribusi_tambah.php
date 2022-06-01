@@ -12,6 +12,7 @@
             </div>
             <div class="card-body">
             <form action="<?= base_url() ?>admin/distribusi/tambah" method="post">
+                    <input type="hidden" name="id_kategori" value="<?=$id_kategori?>">
                     <div class="form-group">
                         <label for="judul">Judul:</label>
                         <input type="text" class="form-control" pattern="[a-zA-Z0-9 ,.-]{2,100}" name="judul" id="judul"maxlength="100" placeholder="Masukkan Judul..." required value="<?= set_value('judul') ?>">
@@ -32,26 +33,29 @@
                             <option value="0">PERENCANAAN</option>
                             <option value="1">SUDAH DILAKSANAKAN</option>
                         </select>
-                    </div>                    
-                    
-                    <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Prioritas</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php $i=1; foreach($kat as $rowkat) :?>
-                        <tr>
-                        <th scope="row"><?= $i?></th>
-                        <td><?=$rowkat->nama_penerima?></td>
-                        <td><?=$rowkat->prioritas?></td>
-                        </tr>
-                    <?php $i++; endforeach;?>
-                    </tbody>
-                    </table>
+                    </div>  
+                    <div class="form-group">
+                        <label for="">Pilih Penerima</label><br>       
+                        <?php foreach ($penerima as $key) { ?> 
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="penerima[]" id="" value="<?=$key->id_penerima?>"> <?=$key->nama_penerima . ' ('. $key->prioritas .')'?>
+                            </label>
+                        </div>
+                        <?php }?>   
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="">Pilih Anggota</label><br>       
+                        <?php foreach ($anggota as $ang) { ?> 
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="anggota[]" id="" value="<?=$ang->id_anggota?>"> <?=$ang->nama_anggota?>
+                            </label>
+                        </div>
+                        <?php }?>   
+                        
+                    </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Tambah</button>

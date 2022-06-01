@@ -76,7 +76,7 @@
 <div class="modal fade" id="tambah_data" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
-            <form action="<?= base_url() ?>admin/distribusi/tambah" method="post">
+            <form action="<?= base_url() ?>admin/distribusi/lanjuttambah" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title font-weight-bolder text-ijo">Tambah Data</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -85,7 +85,7 @@
                 </div>
                 <div class="modal-body">
                 <div class="form-group">
-                            <label>Kategori</label>
+                        <label>Kategori</label>
                             <select name="nama_kategori" class="form-control selectpicker" data-live-search="true" required>
                                 <option value="">--Pilih Kategori--</option>
                                 <?php foreach ($kategori as $key) { ?>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <a name="" id="" class="btn btn-primary" href="<?= base_url() ?>admin/distribusi/tambah_distribusi/<?= $key->id_kategori?>" role="button">Lanjutkan</a>
+                    <button type="submit" class="btn btn-primary">Lanjutkan</a>
                 </div>
             </form>
         </div>

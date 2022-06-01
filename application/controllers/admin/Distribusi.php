@@ -41,11 +41,21 @@ class Distribusi extends CI_Controller
         $this->load->view('templates/admin_footer');
     }
 
+    public function lanjuttambah()
+    {
+        $id_kategori = $this->input->post("nama_kategori");
+        redirect("admin/distribusi/tambah_distribusi/$id_kategori");
+    }
+
+
+
     function tambah()
     {
+        // var_dump($_POST); exit;
+        $id_kategori = $this->input->post("id_kategori");
         // rules
         $this->form_validation->set_rules('status', 'Status', 'trim|required');
-        $this->form_validation->set_rules('kategori', 'Kategori', 'trim|required');
+        $this->form_validation->set_rules('tanggal', 'Tanggal', 'trim|required');
         $this->form_validation->set_rules('judul', 'Judul', 'trim|required|min_length[2]|max_length[100]|callback_addr_line1');
         $this->form_validation->set_rules('nominal', 'Nomor Hp', 'trim|required|numeric');
 
@@ -68,21 +78,25 @@ class Distribusi extends CI_Controller
                 </button>
             </div>
             ');
-            $data['dis'] = $this->m_crud->getAll('distribusi_zakat')->result();
-            $data['kategori'] = $this->m_crud->getAll('tb_kategori')->result();
+            $data['id_kategori'] = $id_kategori;
+            $data['penerima'] = $this->db->query("SELECT * FROM `tb_penerima` WHERE id_kategori = $id_kategori ORDER BY tb_penerima.prioritas ASC")->result();
             $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
-            $data['penerima'] = $this->m_crud->getAll('tb_penerima')->result();
+            $data['p1'] = $this->m_penerima->getPrioritas1();
+            $data['p2'] = $this->m_penerima->getPrioritas2();
+            $data['p3'] = $this->m_penerima->getPrioritas3();
+            $data['kategori'] = $this->m_penerima->kategori();
             $data['sidebar'] = 'distribusi';
+
             $this->load->view('templates/admin_header');
             $this->load->view('templates/admin_sidebar', $data);
             $this->load->view('templates/admin_navbar');
-            $this->load->view('admin/distribusi', $data);
+            $this->load->view('admin/distribusi_tambah', $data);
             $this->load->view('templates/admin_footer_js');
             $this->load->view('templates/admin_custom_js');
             $this->load->view('templates/admin_footer');
         }else{
             $data = array(
-                'id_kategori' => $this->input->post('kategori'),
+                'id_kategori' => $this->input->post('id_kategori'),
                 'judul_distribusi' => $this->input->post('judul'),
                 'tanggal_distribusi' => $this->input->post('tanggal'),
                 'nominal_distribusi' => $this->input->post('nominal'),
@@ -104,12 +118,12 @@ class Distribusi extends CI_Controller
 
                 $penerima = $this->input->post('penerima');
                 for ($i=0; $i < count($penerima); $i++) { 
-                    $dataAng = array(
+                    $dataPen = array(
                         'id_penerima' => $penerima[$i],
                         'id_distribusi' => $insert_id
                     );
 
-                    $this->m_crud->insert($dataAng, 'tb_detail_penerima');
+                    $this->m_crud->insert($dataPen, 'tb_detail_penerima');
                 }
 
                 if ($this->db->affected_rows() == true) {
@@ -168,8 +182,9 @@ class Distribusi extends CI_Controller
 
     function tambah_distribusi($id_kategori)
     {
-        $data['kat'] = $this->m_crud->edit(['id_kategori' => $id_kategori],'tb_penerima')->result();
-        $data['penerima'] = $this->m_crud->getAll('tb_penerima')->result();        
+        $data['id_kategori'] = $id_kategori;
+        $data['penerima'] = $this->db->query("SELECT * FROM `tb_penerima` WHERE id_kategori = $id_kategori ORDER BY tb_penerima.prioritas ASC")->result();
+        $data['anggota'] = $this->m_crud->getAll('tb_anggota')->result();
         $data['p1'] = $this->m_penerima->getPrioritas1();
         $data['p2'] = $this->m_penerima->getPrioritas2();
         $data['p3'] = $this->m_penerima->getPrioritas3();
